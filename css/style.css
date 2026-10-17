@@ -1566,8 +1566,8 @@ body.has-mobile-bar {
 .footer__map {
   position: relative;
   display: block;
-  flex: 1 1 100%; /* vlastní řádek přes celou šířku pod sloupci patičky */
-  height: 300px;
+  flex: 2 1 320px;
+  min-height: 240px;
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid var(--line);
