@@ -59,6 +59,6 @@ a funkci `initThemeSwitcher` v `js/main.js`.
 Čísla v pásu statistik pod hero (roky, zakázky, ordinace) jsou zatím
 ukázková – doplnit v `index.html` (atribut `data-count` i text). 98 % je potvrzené.
 Vše v `[hranatých závorkách]` je placeholder: přesnost v µm, dodací lhůty,
-otevírací doba, implantátové systémy, CAD software, foto týmu, texty „O nás“.
+implantátové systémy, CAD software, foto týmu, texty „O nás“.
 Fotky přístrojů, screenshoty Modellieru a video jsou od Zirkonzahnu –
 před spuštěním nahradit vlastními nebo mít písemný souhlas.
