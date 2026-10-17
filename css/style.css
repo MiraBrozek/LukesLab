@@ -755,8 +755,7 @@ body.has-mobile-bar {
   display: flex;
   flex-direction: column-reverse; /* v HTML je popisek (dt) první kvůli čtečkám */
   gap: 2px;
-  padding: 2px 16px 2px 24px;
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 2px 16px 2px 20px; /* stejné odsazení jako v pásu statistik */
 }
 
 .hero__stat dd {
@@ -773,7 +772,8 @@ body.has-mobile-bar {
 }
 
 /* Tlačítko pauza / přehrát */
-/* Tlačítko pauzy je mimo mřížku čísel – „sedí“ vpravo na vodorovné čáře */
+/* Tlačítko pauzy je mimo mřížku čísel: na mobilu „sedí“ vpravo na vodorovné
+   čáře, na desktopu je vpravo na úrovni čísel (viz @media níže). */
 .hero__toggle {
   position: absolute;
   top: 0;
@@ -817,8 +817,8 @@ body.has-mobile-bar {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .hero__stat {
-    padding-left: 40px;
+  .hero__toggle {
+    top: calc(50% + 12px); /* střed řádku s čísly (12 px = polovina padding-top) */
   }
 }
 
@@ -856,14 +856,8 @@ body.has-mobile-bar {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 2px 16px 2px 24px; /* odstup čísla od svislé linky vlevo – stejný jako v hero */
+  padding: 2px 16px 2px 20px; /* odstup čísla od svislé linky vlevo – stejný jako v hero */
   border-left: 1px solid var(--line);
-}
-
-@media (min-width: 900px) {
-  .stats__item {
-    padding-left: 40px;
-  }
 }
 
 .stats__item dt {
