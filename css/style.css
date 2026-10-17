@@ -1500,7 +1500,7 @@ body.has-mobile-bar {
   padding: 4px 0;
 }
 
-/* Mapa (Google Maps) – celá plocha je odkaz do Google Maps */
+/* Mapa – statický obrázek (img/mapa.jpg), celá plocha je odkaz do Google Maps */
 .footer__map {
   position: relative;
   display: block;
@@ -1518,19 +1518,41 @@ body.has-mobile-bar {
   box-shadow: 0 12px 32px rgba(15, 21, 24, 0.08);
 }
 
-/* Mapa jen ukazuje polohu – klik „propadne“ na odkaz pod ní.
-   Je o 64 px vyšší a posunutá nahoru: tím se schová rámeček
-   „Otevřít v Mapách“, který Google vkládá do levého horního rohu
-   (byl by tam podruhé a stejně by na klik nereagoval). */
-.footer__map iframe {
+/* Obrázek vyplní celou plochu; ořez je od středu, takže adresa
+   (uprostřed obrázku) zůstane vždy uprostřed */
+.footer__map-img {
   position: absolute;
-  top: -64px;
-  left: 0;
-  display: block;
+  inset: 0;
   width: 100%;
-  height: calc(100% + 64px);
-  border: 0;
-  pointer-events: none;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.footer__map:hover .footer__map-img {
+  transform: scale(1.04);
+}
+
+/* Špendlík: spodní špička přesně ve středu mapy */
+.footer__map-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+  color: var(--accent);
+  filter: drop-shadow(0 4px 6px rgba(15, 21, 24, 0.3));
+}
+
+/* Povinné uvedení zdroje mapových podkladů */
+.footer__map-credit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-top-left-radius: 6px;
+  font-size: 11px;
+  color: var(--muted);
 }
 
 /* Štítek „Otevřít v Google Maps“ vlevo dole */

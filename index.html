@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=14">
-  <script src="js/main.js?v=14" defer></script>
-  <script src="js/efekty.js?v=14" defer></script>
-  <script src="js/zakazka.js?v=14" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=15">
+  <script src="js/main.js?v=15" defer></script>
+  <script src="js/efekty.js?v=15" defer></script>
+  <script src="js/zakazka.js?v=15" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -746,17 +746,22 @@
         <a href="#zakazka">Poslat zakázku</a>
       </div>
 
-      <!-- Mapa z Google Maps. Celá plocha je odkaz: na mobilu otevře aplikaci
-           Google Maps, na PC Google Maps v nové záložce prohlížeče.
-           Samotná mapa (iframe) na klik nereaguje – jen ukazuje polohu. -->
+      <!-- Mapa = statický obrázek (img/mapa.jpg, podklad © OpenStreetMap,
+           adresa je přesně uprostřed). Nic se nenačítá od Googlu, takže
+           není potřeba cookie lišta. Celá plocha je odkaz: na mobilu otevře
+           aplikaci Google Maps, na PC Google Maps v nové záložce. -->
       <a class="footer__map"
          href="https://www.google.com/maps/search/?api=1&amp;query=P%C5%99%C3%ADstavn%C3%AD+1244%2F43%2C+170+00+Praha+7"
          target="_blank" rel="noopener"
          aria-label="Otevřít adresu Přístavní 1244/43, Praha 7 v Google Maps">
-        <iframe
-          title="Mapa – Přístavní 1244/43, Praha 7"
-          src="https://maps.google.com/maps?q=P%C5%99%C3%ADstavn%C3%AD%201244%2F43%2C%20170%2000%20Praha%207&amp;z=16&amp;output=embed"
-          loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <img class="footer__map-img" src="img/mapa.jpg" width="800" height="480" loading="lazy"
+             alt="Mapa okolí laboratoře – Přístavní 1244/43, Praha 7 – Holešovice">
+        <!-- Špendlík uprostřed obrázku = adresa -->
+        <svg class="footer__map-pin" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
+          <path d="M17 1C8.2 1 1 8 1 16.7 1 28.5 17 43 17 43s16-14.5 16-26.3C33 8 25.8 1 17 1z" fill="currentColor" stroke="#FFFFFF" stroke-width="2"/>
+          <circle cx="17" cy="16.5" r="6" fill="#FFFFFF"/>
+        </svg>
+        <span class="footer__map-credit">© OpenStreetMap</span>
         <span class="footer__map-label">
           Otevřít v Google Maps
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
