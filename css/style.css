@@ -640,7 +640,7 @@ body.has-mobile-bar {
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: stretch; /* obsah přes celou výšku – text nahoře, čísla dole */
   min-height: min(calc(100svh - var(--header-h)), 820px);
   min-height: clamp(560px, calc(100svh - var(--header-h)), 820px);
   overflow: hidden;
@@ -665,13 +665,15 @@ body.has-mobile-bar {
   object-fit: cover;
 }
 
-/* Tmavý přechod zespodu – video nahoře zůstane světlé, text dole čitelný.
+/* Ztmavení kvůli čitelnosti textu: zleva (nadpis a odstavec) a zespodu
+   (čísla). Vpravo nahoře zůstane video světlé.
    Čísla = průhlednost (0 = žádné ztmavení, 1 = černá). */
 .hero__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(8, 12, 14, 0.82) 0%, rgba(8, 12, 14, 0.45) 50%, rgba(8, 12, 14, 0) 100%);
+    linear-gradient(to right, rgba(8, 12, 14, 0.62) 0%, rgba(8, 12, 14, 0.3) 50%, rgba(8, 12, 14, 0) 80%),
+    linear-gradient(to top, rgba(8, 12, 14, 0.75) 0%, rgba(8, 12, 14, 0.2) 40%, rgba(8, 12, 14, 0) 70%);
 }
 
 .hero__content {
@@ -679,7 +681,7 @@ body.has-mobile-bar {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-top: 96px;
+  padding-top: 56px;
   padding-bottom: 32px;
 }
 
@@ -708,6 +710,7 @@ body.has-mobile-bar {
   line-height: 1.16; /* řádky „Digitální přesnost.“ a „Lidský dotek.“ se nesmí dotýkat */
   letter-spacing: -0.045em;
   font-weight: 800;
+  margin-bottom: 12px; /* větší odstup od odstavce pod nadpisem */
 }
 
 /* Každý řádek nadpisu zvlášť – kvůli animaci při načtení */
@@ -737,7 +740,7 @@ body.has-mobile-bar {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 16px;
+  margin-top: auto; /* odsune čísla ke spodnímu okraji hera */
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
@@ -794,8 +797,8 @@ body.has-mobile-bar {
 
 @media (min-width: 720px) {
   .hero__content {
-    padding-top: 120px;
-    padding-bottom: 64px;
+    padding-top: 72px;
+    padding-bottom: 56px;
     gap: 28px;
   }
 
