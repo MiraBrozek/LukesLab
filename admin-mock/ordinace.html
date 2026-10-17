@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ordinace – Lukeš Lab admin</title>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/admin.css?v=1">
+  <script src="js/admin-mock.js?v=1" defer></script>
+</head>
+
+<!-- MOCK: seznam ordinací (klientů) s hledáním a filtrem regionu.
+     Řádky tabulky kreslí admin-mock.js. -->
+<body data-page="ordinace">
+
+<div class="app">
+
+  <aside class="sidebar">
+    <a class="logo" href="svozy.html">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="#0B5C6B"/>
+        <path d="M11 12c0-2 1.6-3 3.2-3 1.2 0 2 .6 2.8.6s1.6-.6 2.8-.6c1.6 0 3.2 1 3.2 3 0 3-1.2 4.4-1.6 7.2-.3 2.2-.7 5.8-2.1 5.8-1.3 0-1.2-4.2-2.3-4.2s-1 4.2-2.3 4.2c-1.4 0-1.8-3.6-2.1-5.8-.4-2.8-1.6-4.2-1.6-7.2z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__name">Lukeš Lab</span>
+        <span class="logo__sub">Administrace</span>
+      </span>
+    </a>
+
+    <nav class="sidebar__nav" aria-label="Hlavní menu">
+      <a class="sidebar__link" href="svozy.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 000-7h-9a3.5 3.5 0 010-7H16"/></svg>
+        Plán svozu
+      </a>
+      <a class="sidebar__link is-active" href="ordinace.html" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V5a2 2 0 012-2h8a2 2 0 012 2v16M16 9h2a2 2 0 012 2v10M2 21h20M8 7h4M8 11h4M8 15h4"/></svg>
+        Ordinace
+      </a>
+    </nav>
+
+    <div class="sidebar__user">
+      <span class="sidebar__avatar" aria-hidden="true">PL</span>
+      <span class="sidebar__name">Petr Lukeš</span>
+      <a class="sidebar__logout" href="index.html" title="Odhlásit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        <span class="visually-hidden">Odhlásit</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="mock-banner">Ukázka obrazovek – data jsou smyšlená a nic se neukládá.</div>
+
+    <div class="page-head">
+      <div>
+        <span class="section-label">Klienti</span>
+        <h1>Ordinace</h1>
+        <p class="page-head__sub">Adresy pro svoz a doručení, kontakty a pokyny pro řidiče.</p>
+      </div>
+      <div class="page-head__actions">
+        <a class="btn btn--primary" href="ordinace-upravit.html">+ Přidat ordinaci</a>
+      </div>
+    </div>
+
+    <section class="panel" aria-label="Seznam ordinací">
+      <div class="toolbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <label class="visually-hidden" for="clinic-search">Hledat ordinaci</label>
+          <input class="input" id="clinic-search" type="search" placeholder="Hledat název, lékaře, ulici, telefon…">
+        </div>
+        <div class="segmented" role="group" aria-label="Region">
+          <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
+          <button type="button" data-filter="praha" aria-pressed="false">Praha</button>
+          <button type="button" data-filter="plzen" aria-pressed="false">Plzeň</button>
+        </div>
+        <span class="field__hint" id="clinic-count" aria-live="polite"></span>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Ordinace</th>
+            <th scope="col">Adresa pro svoz</th>
+            <th scope="col">Kontakt</th>
+            <th scope="col">Kdy vyzvednout</th>
+            <th scope="col"><span class="visually-hidden">Akce</span></th>
+          </tr>
+        </thead>
+        <tbody id="clinic-rows"></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

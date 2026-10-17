@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nová ordinace – Lukeš Lab admin</title>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/admin.css?v=1">
+  <script src="js/admin-mock.js?v=1" defer></script>
+</head>
+
+<!-- MOCK: přidání / úprava ordinace.
+     ordinace-upravit.html?id=p1 → vyplněno údaji ordinace (admin-mock.js),
+     bez ?id → prázdný formulář pro novou ordinaci.
+     Pole mají name stejné jako sloupce budoucí databázové tabulky. -->
+<body data-page="upravit">
+
+<div class="app">
+
+  <aside class="sidebar">
+    <a class="logo" href="svozy.html">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="#0B5C6B"/>
+        <path d="M11 12c0-2 1.6-3 3.2-3 1.2 0 2 .6 2.8.6s1.6-.6 2.8-.6c1.6 0 3.2 1 3.2 3 0 3-1.2 4.4-1.6 7.2-.3 2.2-.7 5.8-2.1 5.8-1.3 0-1.2-4.2-2.3-4.2s-1 4.2-2.3 4.2c-1.4 0-1.8-3.6-2.1-5.8-.4-2.8-1.6-4.2-1.6-7.2z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__name">Lukeš Lab</span>
+        <span class="logo__sub">Administrace</span>
+      </span>
+    </a>
+
+    <nav class="sidebar__nav" aria-label="Hlavní menu">
+      <a class="sidebar__link" href="svozy.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 000-7h-9a3.5 3.5 0 010-7H16"/></svg>
+        Plán svozu
+      </a>
+      <a class="sidebar__link is-active" href="ordinace.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V5a2 2 0 012-2h8a2 2 0 012 2v16M16 9h2a2 2 0 012 2v10M2 21h20M8 7h4M8 11h4M8 15h4"/></svg>
+        Ordinace
+      </a>
+    </nav>
+
+    <div class="sidebar__user">
+      <span class="sidebar__avatar" aria-hidden="true">PL</span>
+      <span class="sidebar__name">Petr Lukeš</span>
+      <a class="sidebar__logout" href="index.html" title="Odhlásit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        <span class="visually-hidden">Odhlásit</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="mock-banner">Ukázka obrazovek – data jsou smyšlená a nic se neukládá.</div>
+
+    <nav class="crumbs" aria-label="Drobečková navigace">
+      <a href="ordinace.html">Ordinace</a> › <span id="crumb-current">Nová ordinace</span>
+    </nav>
+
+    <div class="page-head">
+      <h1 id="edit-title">Nová ordinace</h1>
+    </div>
+
+    <div class="edit">
+
+      <form class="panel" id="clinic-form">
+        <div class="panel__body">
+
+          <div class="form-section">
+            <h2>Ordinace</h2>
+            <div class="fields fields--2">
+              <div class="field">
+                <label for="f-nazev">Název ordinace</label>
+                <input class="input" id="f-nazev" name="nazev" required>
+              </div>
+              <div class="field">
+                <label for="f-lekar">Lékař</label>
+                <input class="input" id="f-lekar" name="lekar" placeholder="MUDr. …">
+              </div>
+              <div class="field">
+                <label for="f-telefon">Telefon</label>
+                <input class="input" id="f-telefon" name="telefon" type="tel">
+              </div>
+              <div class="field">
+                <label for="f-email">E-mail</label>
+                <input class="input" id="f-email" name="email" type="email">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Adresa pro svoz a doručení</h2>
+            <div class="fields fields--3">
+              <div class="field">
+                <label for="f-ulice">Ulice a číslo</label>
+                <input class="input" id="f-ulice" name="ulice" required>
+              </div>
+              <div class="field">
+                <label for="f-mesto">Město</label>
+                <input class="input" id="f-mesto" name="mesto" required>
+              </div>
+              <div class="field">
+                <label for="f-psc">PSČ</label>
+                <input class="input" id="f-psc" name="psc" inputmode="numeric">
+              </div>
+              <div class="field">
+                <label for="f-region">Region</label>
+                <select class="input" id="f-region" name="region">
+                  <option value="praha">Praha a okolí</option>
+                  <option value="plzen">Plzeň a okolí</option>
+                </select>
+              </div>
+              <div class="field field--wide">
+                <label for="f-pokyn">Pokyn pro řidiče</label>
+                <input class="input" id="f-pokyn" name="pokyn" placeholder="Kde zvonit, patro, komu předat, kde parkovat…">
+                <span class="field__hint">Zobrazí se u zastávky v trase a ve vytištěném plánu.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Kdy lze vyzvednout / doručit</h2>
+            <div class="fields fields--2">
+              <div class="field field--wide">
+                <span class="field__label">Dny</span>
+                <div class="days">
+                  <label><input type="checkbox" checked><span>Po</span></label>
+                  <label><input type="checkbox" checked><span>Út</span></label>
+                  <label><input type="checkbox" checked><span>St</span></label>
+                  <label><input type="checkbox" checked><span>Čt</span></label>
+                  <label><input type="checkbox" checked><span>Pá</span></label>
+                  <label><input type="checkbox"><span>So</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-od">Od</label>
+                <input class="input" id="f-od" type="time" value="08:00">
+              </div>
+              <div class="field">
+                <label for="f-do">Do</label>
+                <input class="input" id="f-do" type="time" value="15:00">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Poznámka</h2>
+            <div class="field">
+              <label class="visually-hidden" for="f-poznamka">Poznámka</label>
+              <textarea class="input" id="f-poznamka" name="poznamka" placeholder="Interní poznámka – fakturace, preferovaný materiál…"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel__foot">
+          <button class="btn btn--primary" type="submit">Uložit</button>
+          <a class="btn btn--ghost" href="ordinace.html">Zrušit</a>
+          <button class="btn btn--danger" type="button" id="btn-delete" style="margin-left: auto">Archivovat ordinaci</button>
+        </div>
+      </form>
+
+      <div class="edit__side">
+
+        <!-- Poloha podle adresy – v ostré verzi se dopočítá automaticky -->
+        <section class="panel" id="map-panel" aria-labelledby="map-title">
+          <div class="panel__head">
+            <h2 id="map-title">Poloha</h2>
+            <span class="field__hint">podle adresy</span>
+          </div>
+          <div class="map map--small">
+            <img id="map-img" src="img/mapa-praha.jpg" width="960" height="640" alt="Mapa s polohou ordinace">
+            <div id="map-pins"></div>
+            <span class="map__credit">© OpenStreetMap</span>
+          </div>
+        </section>
+
+        <section class="panel" id="history-panel" aria-labelledby="history-title">
+          <div class="panel__head">
+            <h2 id="history-title">Poslední svozy</h2>
+          </div>
+          <ul class="history">
+            <li><span><span class="badge badge--pickup">Vyzvednout</span></span><time datetime="2026-10-14">14. 10. 2026</time></li>
+            <li><span><span class="badge badge--delivery">Doručit</span></span><time datetime="2026-10-09">9. 10. 2026</time></li>
+            <li><span><span class="badge badge--pickup">Vyzvednout</span> <span class="badge badge--delivery">Doručit</span></span><time datetime="2026-10-02">2. 10. 2026</time></li>
+            <li><span><span class="badge badge--delivery">Doručit</span></span><time datetime="2026-09-25">25. 9. 2026</time></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
