@@ -202,8 +202,8 @@
      ------------------------------------------------------------------------
      Když je sekce vidět, kroky 01–06 se jednou postupně zvýrazní
      (.is-active, v CSS s ukazatelem průběhu) a na 6. kroku se procházení
-     zastaví. Najetí myší nebo kliknutí vybere krok ručně a procházení
-     přeruší; po odjetí myši ze seznamu pokračuje (pokud ještě nedoběhlo).
+     zastaví. Najetí myší, kliknutí nebo Tab na krok spustí procházení
+     od tohoto kroku – čára pod ním doběhne a pokračuje se až do 6. kroku.
      ------------------------------------------------------------------------ */
 
   var TOUR_STEP_MS = 2400; // jak dlouho svítí jeden krok (musí sedět s CSS --tour-step)
@@ -215,7 +215,6 @@
     var steps = Array.prototype.slice.call(list.children);
     var current = -1;
     var timer = null;
-    var finished = false; // procházení už jednou doběhlo do konce
 
     list.style.setProperty('--tour-step', TOUR_STEP_MS + 'ms');
 
@@ -229,7 +228,6 @@
     function next() {
       // Po posledním kroku konec – 6. krok zůstane zvýrazněný
       if (current >= steps.length - 1) {
-        finished = true;
         stop();
         return;
       }
@@ -237,7 +235,7 @@
     }
 
     function play() {
-      if (reduceMotion || timer || finished) return;
+      if (reduceMotion || timer) return;
       list.classList.add('is-playing');
       next();
       timer = setInterval(next, TOUR_STEP_MS);
@@ -249,19 +247,23 @@
       list.classList.remove('is-playing');
     }
 
-    // Ruční výběr: myš, dotyk i klávesnice (Tab + Enter)
+    // Spustí procházení od zvoleného kroku (play() hned posune o jeden dál)
+    function playFrom(index) {
+      if (reduceMotion) {
+        activate(index);
+        return;
+      }
+      stop();
+      current = index - 1;
+      play();
+    }
+
+    // Ruční výběr: myš, dotyk i klávesnice (Tab)
     steps.forEach(function (step, i) {
       step.tabIndex = 0;
-      step.addEventListener('mouseenter', function () { stop(); activate(i); });
-      step.addEventListener('focus', function () { stop(); activate(i); });
-      step.addEventListener('click', function () { stop(); activate(i); });
-    });
-
-    list.addEventListener('mouseleave', function () {
-      if (timer || finished) return;
-      // Pokračujeme od vybraného kroku (play() hned posune o jeden dál)
-      current = current - 1;
-      play();
+      step.addEventListener('mouseenter', function () { playFrom(i); });
+      step.addEventListener('focus', function () { playFrom(i); });
+      step.addEventListener('click', function () { if (current !== i) playFrom(i); });
     });
 
     // Výchozí stav: zvýrazněný krok „Náhled ke schválení“
