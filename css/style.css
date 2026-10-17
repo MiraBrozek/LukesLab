@@ -94,6 +94,18 @@
   --accent-tint: #FBF8F4;
 }
 
+:root[data-accent="sky"] {       /* nebeská modrá #A8D8FF – na bílém pozadí by
+                                    nebyla čitelná, proto ji používáme na tmavém
+                                    pozadí, v linkách a podbarvení; tlačítka
+                                    a texty mají tmavší odstín stejné modré */
+  --accent: #2A6E9E;
+  --accent-hover: #1F5479;
+  --accent-soft: #EAF5FF;
+  --accent-on-dark: #A8D8FF;
+  --accent-line: #A8D8FF;
+  --accent-tint: #F5FAFF;
+}
+
 :root[data-accent="graphite"] {  /* grafitová – čistě černobílý web */
   --accent: #2B3238;
   --accent-hover: #14191D;
