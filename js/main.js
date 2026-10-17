@@ -129,38 +129,48 @@
 
   /* 3. Zvýraznění aktuální sekce v menu
      ------------------------------------------------------------------------
-     Při posouvání stránky sledujeme, která sekce je právě vidět,
-     a odpovídající odkaz v menu dostane třídu .is-active.
+     Při posouvání stránky hledáme poslední sekci, jejíž začátek už minul
+     pomyslnou čáru ve 30 % výšky okna. Odpovídající odkaz v menu dostane
+     třídu .is-active. Na úplném konci stránky se zvýrazní poslední odkaz
+     (Kontakt), protože patička k čáře nikdy nedojede.
+     Funguje to i pro nízké sekce (Ceník), které by jinak „přeskočila“
+     sousední sekce.
      ------------------------------------------------------------------------ */
 
   function initActiveNav() {
     var links = document.querySelectorAll('.nav__link[href^="#"]');
-    if (!links.length || !('IntersectionObserver' in window)) return;
+    if (!links.length) return;
 
-    // Mapa: id sekce -> odkaz v menu
-    var linkById = {};
-    var sections = [];
+    // Dvojice sekce + odkaz v menu (v pořadí, v jakém jsou v menu)
+    var items = [];
     links.forEach(function (link) {
-      var id = link.getAttribute('href').slice(1);
-      var section = document.getElementById(id);
-      if (section) {
-        linkById[id] = link;
-        sections.push(section);
-      }
+      var section = document.getElementById(link.getAttribute('href').slice(1));
+      if (section) items.push({ section: section, link: link });
     });
+    if (!items.length) return;
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        links.forEach(function (link) { link.classList.remove('is-active'); });
-        linkById[entry.target.id].classList.add('is-active');
+    function update() {
+      var line = window.innerHeight * 0.3;
+      var current = null;
+
+      items.forEach(function (item) {
+        if (item.section.getBoundingClientRect().top <= line) current = item;
       });
-    }, {
-      // Sekce je „aktivní“, když protíná pás kousek pod hlavičkou
-      rootMargin: '-30% 0px -60% 0px'
-    });
 
-    sections.forEach(function (section) { observer.observe(section); });
+      // Dole na stránce – zvýraznit poslední položku
+      var atBottom = window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom) current = items[items.length - 1];
+
+      items.forEach(function (item) {
+        item.link.classList.toggle('is-active', item === current);
+      });
+    }
+
+    // Výpočet je nenáročný (pár sekcí), stačí ho spustit při každém posunu
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   }
 
 

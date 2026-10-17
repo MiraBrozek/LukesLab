@@ -1092,6 +1092,8 @@ body.has-mobile-bar {
    Sekce nemá horní odsazení – galerie nad ní má vlastní. */
 .section--pricing {
   padding-top: 0;
+  /* Po kliknutí na „Ceník“ v menu nechat nad rámečkem trochu místa */
+  scroll-margin-top: 40px;
 }
 
 .pricing {
