@@ -772,13 +772,13 @@ body.has-mobile-bar {
 }
 
 /* Tlačítko pauza / přehrát */
-/* Tlačítko pauzy je mimo mřížku čísel: na mobilu „sedí“ vpravo na vodorovné
-   čáře, na desktopu je vpravo na úrovni čísel (viz @media níže). */
+/* Tlačítko pauzy je mimo mřížku čísel: na mobilu vpravo nad vodorovnou
+   čárou ve stejném řádku jako tlačítko „Jak pracujeme“ (48 px výška tlačítka
+   + 24 px mezera), na desktopu vpravo na úrovni čísel (viz @media níže). */
 .hero__toggle {
   position: absolute;
-  top: 0;
+  top: -72px;
   right: 0;
-  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -810,6 +810,10 @@ body.has-mobile-bar {
     gap: 28px;
   }
 
+  .hero__toggle {
+    top: -76px; /* 48 px tlačítko + 28 px mezera */
+  }
+
 }
 
 @media (min-width: 900px) {
@@ -819,6 +823,7 @@ body.has-mobile-bar {
 
   .hero__toggle {
     top: calc(50% + 12px); /* střed řádku s čísly (12 px = polovina padding-top) */
+    transform: translateY(-50%);
   }
 }
 
