@@ -998,7 +998,7 @@ body.has-mobile-bar {
   gap: 12px;
   font-family: var(--font-mono);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500; /* IBM Plex Mono je načtené jen v řezech 400 a 500 – vyšší by prohlížeč „dopočítal“ a písmo by bylo rozmazané */
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
