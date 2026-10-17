@@ -200,10 +200,10 @@
 
   /* 5. Kroky digitálního modelování
      ------------------------------------------------------------------------
-     Když je sekce vidět, kroky 01–06 se samy postupně zvýrazňují
-     (.is-active, v CSS s ukazatelem průběhu). Najetí myší nebo kliknutí
-     vybere krok ručně a automatické procházení se zastaví; po odjetí
-     myši ze seznamu pokračuje.
+     Když je sekce vidět, kroky 01–06 se jednou postupně zvýrazní
+     (.is-active, v CSS s ukazatelem průběhu) a na 6. kroku se procházení
+     zastaví. Najetí myší nebo kliknutí vybere krok ručně a procházení
+     přeruší; po odjetí myši ze seznamu pokračuje (pokud ještě nedoběhlo).
      ------------------------------------------------------------------------ */
 
   var TOUR_STEP_MS = 2400; // jak dlouho svítí jeden krok (musí sedět s CSS --tour-step)
@@ -215,6 +215,7 @@
     var steps = Array.prototype.slice.call(list.children);
     var current = -1;
     var timer = null;
+    var finished = false; // procházení už jednou doběhlo do konce
 
     list.style.setProperty('--tour-step', TOUR_STEP_MS + 'ms');
 
@@ -226,11 +227,17 @@
     }
 
     function next() {
-      activate((current + 1) % steps.length);
+      // Po posledním kroku konec – 6. krok zůstane zvýrazněný
+      if (current >= steps.length - 1) {
+        finished = true;
+        stop();
+        return;
+      }
+      activate(current + 1);
     }
 
     function play() {
-      if (reduceMotion || timer) return;
+      if (reduceMotion || timer || finished) return;
       list.classList.add('is-playing');
       next();
       timer = setInterval(next, TOUR_STEP_MS);
@@ -251,7 +258,7 @@
     });
 
     list.addEventListener('mouseleave', function () {
-      if (timer) return;
+      if (timer || finished) return;
       // Pokračujeme od vybraného kroku (play() hned posune o jeden dál)
       current = current - 1;
       play();
