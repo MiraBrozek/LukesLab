@@ -206,7 +206,7 @@
      myši ze seznamu pokračuje.
      ------------------------------------------------------------------------ */
 
-  var TOUR_STEP_MS = 3200; // jak dlouho svítí jeden krok (musí sedět s CSS --tour-step)
+  var TOUR_STEP_MS = 2400; // jak dlouho svítí jeden krok (musí sedět s CSS --tour-step)
 
   function initModellingTour() {
     var list = document.querySelector('.modelling__steps');
