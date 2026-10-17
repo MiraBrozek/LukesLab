@@ -114,6 +114,15 @@
   --on-accent: #0F2A3D;        /* …s tmavým textem (kontrast cca 10 : 1) */
 }
 
+:root[data-accent="gum"] {       /* dásňová růžová – tlumená, aby byla čitelná i s bílým textem */
+  --accent: #B0456A;
+  --accent-hover: #8E3554;
+  --accent-soft: #FBEEF2;
+  --accent-on-dark: #F4B8CB;
+  --accent-line: #E9B3C4;
+  --accent-tint: #FDF7F9;
+}
+
 :root[data-accent="graphite"] {  /* grafitová – čistě černobílý web */
   --accent: #2B3238;
   --accent-hover: #14191D;
