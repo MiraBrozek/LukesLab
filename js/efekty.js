@@ -86,6 +86,7 @@
     '.section-head',
     '.stats__item',
     '.card',
+    '.pricing',
     '.step',
     '.modelling__media',
     '.modelling__steps',

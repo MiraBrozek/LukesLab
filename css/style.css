@@ -449,12 +449,20 @@ a:hover {
 
 .header__phone {
   display: none;
-  padding: 12px 0;
-  font-family: var(--font-mono);
-  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
   color: var(--text);
-  text-decoration: none;
-  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.header__phone:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* CTA v hlavičce schováme na mobilu – tam je lišta dole */
@@ -584,10 +592,10 @@ a:hover {
   }
 }
 
-/* Telefon se do hlavičky vejde až na širokém displeji */
-@media (min-width: 1320px) {
+/* Ikona telefonu v hlavičce na desktopu (na mobilu je telefon v liště dole) */
+@media (min-width: 1140px) {
   .header__phone {
-    display: inline;
+    display: inline-flex;
   }
 }
 
@@ -1051,6 +1059,56 @@ body.has-mobile-bar {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.55;
+}
+
+
+/* Ceník na vyžádání – zvýrazněný pruh pod kartami služeb */
+.pricing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 40px;
+  margin-top: 20px;
+  padding: 28px 24px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+}
+
+@media (min-width: 720px) {
+  .pricing {
+    padding: 32px 40px;
+  }
+}
+
+.pricing__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 620px;
+}
+
+.pricing__text h3 {
+  font-size: clamp(22px, 2.6vw, 28px);
+}
+
+.pricing__text p {
+  color: var(--text-soft);
+}
+
+.pricing__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pricing__buttons .btn svg {
+  transition: transform 0.2s;
+}
+
+.pricing__buttons .btn:hover svg {
+  transform: translateX(4px);
 }
 
 
