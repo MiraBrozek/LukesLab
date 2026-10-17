@@ -7,3 +7,6 @@ Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+
+# Skutečný seznam ordinací (osobní a kontaktní údaje) – nesmí do veřejného repa
+/ordinace/
