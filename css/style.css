@@ -732,23 +732,22 @@ body.has-mobile-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: auto; /* tlačítka sjedou dolů, těsně nad čáru s čísly */
 }
 
 /* Spodní řádek: čtyři čísla + tlačítko pauzy */
 .hero__bottom {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-top: auto; /* odsune čísla ke spodnímu okraji hera */
+  position: relative;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
+/* Čísla v hero mají stejnou mřížku a odsazení jako pás statistik pod ním
+   (sekce 8) – sloupce obou řádků jsou tak přesně pod sebou. */
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px 32px;
+  gap: 20px 0;
   margin: 0;
 }
 
@@ -756,6 +755,8 @@ body.has-mobile-bar {
   display: flex;
   flex-direction: column-reverse; /* v HTML je popisek (dt) první kvůli čtečkám */
   gap: 2px;
+  padding: 2px 16px 2px 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .hero__stat dd {
@@ -772,7 +773,12 @@ body.has-mobile-bar {
 }
 
 /* Tlačítko pauza / přehrát */
+/* Tlačítko pauzy je mimo mřížku čísel – „sedí“ vpravo na vodorovné čáře */
 .hero__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -781,13 +787,15 @@ body.has-mobile-bar {
   height: 48px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 21, 24, 0.55); /* neprůhledné, aby čára neprosvítala */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   color: #FFFFFF;
   cursor: pointer;
 }
 
 .hero__toggle:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(15, 21, 24, 0.8);
 }
 
 /* Ikona se přepíná podle stavu (třída is-paused z main.js) */
@@ -802,10 +810,15 @@ body.has-mobile-bar {
     gap: 28px;
   }
 
+}
+
+@media (min-width: 900px) {
   .hero__stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px 48px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hero__stat {
+    padding-left: 40px;
   }
 }
 
@@ -817,7 +830,7 @@ body.has-mobile-bar {
    (počítání řídí efekty.js). Štítek nahoře ve stylu „01 — Služby“,
    pod ním číslo v barvě akcentu. Každá položka je odsazená od linky. */
 .stats {
-  padding: 40px 0;
+  padding: 28px 0;
   background: #FFFFFF;
   border-bottom: 1px solid var(--line);
 }
@@ -831,7 +844,7 @@ body.has-mobile-bar {
 
 @media (min-width: 900px) {
   .stats {
-    padding: 48px 0;
+    padding: 32px 0;
   }
 
   .stats__grid {
@@ -842,8 +855,8 @@ body.has-mobile-bar {
 .stats__item {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 4px 16px 4px 24px; /* odstup čísla od svislé linky vlevo */
+  gap: 8px;
+  padding: 2px 16px 2px 24px; /* odstup čísla od svislé linky vlevo – stejný jako v hero */
   border-left: 1px solid var(--line);
 }
 
