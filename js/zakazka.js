@@ -112,6 +112,13 @@
   /* 4. Odeslání
      ------------------------------------------------------------------------ */
 
+  // Datum z políčka typu date (2026-10-24) → česky (24. 10. 2026)
+  function formatDate(isoDate) {
+    var parts = isoDate.split('-');
+    if (parts.length !== 3) return isoDate;
+    return Number(parts[2]) + '. ' + Number(parts[1]) + '. ' + parts[0];
+  }
+
   function showError(message) {
     errorBox.innerHTML = message;
     errorBox.hidden = false;
@@ -138,18 +145,26 @@
 
     var orderNumber = createOrderNumber();
 
-    // Data z formuláře → obyčejný objekt { "Název pole": "hodnota" }
-    var data = {};
-    new FormData(form).forEach(function (value, key) {
+    var fields = new FormData(form);
+
+    // Data pro Web3Forms. Pole se v e-mailu zobrazí v tomto pořadí:
+    // nejdřív číslo zakázky, pak pole formuláře shora dolů.
+    var data = {
+      // Speciální pole Web3Forms (v e-mailu se nezobrazují jako řádky):
+      access_key: WEB3FORMS_KEY,
+      subject: 'Nová zakázka ' + orderNumber + ' – ' + fields.get('Ordinace'),
+      from_name: 'Web Lukeš Lab',
+      replyto: fields.get('email'),   // „Odpovědět“ v e-mailu půjde rovnou lékaři
+
+      'Číslo zakázky': orderNumber
+    };
+
+    fields.forEach(function (value, key) {
+      if (value === '') return;                 // nevyplněná pole do e-mailu nedáváme
+      if (key === 'email') key = 'E-mail';      // hezčí název řádku
+      if (key === 'Požadovaný termín') value = formatDate(value);
       data[key] = value;
     });
-
-    // Speciální pole pro Web3Forms (předmět, odesílatel, adresa pro odpověď)
-    data.access_key = WEB3FORMS_KEY;
-    data.subject = 'Nová zakázka ' + orderNumber + ' – ' + data['Ordinace'];
-    data.from_name = 'Web Lukeš Lab';
-    data.replyto = data.email;
-    data['Číslo zakázky'] = orderNumber;
 
     // Ukázkový režim – formulář ještě není napojený
     if (!WEB3FORMS_KEY) {

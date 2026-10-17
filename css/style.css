@@ -1558,51 +1558,84 @@ body.has-mobile-bar {
   border-top: 1px solid var(--line);
 }
 
+/* Mřížka patičky: na mobilu pod sebou, na tabletu 3 sloupce + mapa
+   pod nimi, na desktopu 3 sloupce + mapa v jednom řádku */
 .footer__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px 40px;
 }
 
+@media (min-width: 640px) {
+  .footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer__map {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1.2fr 1fr 0.8fr 1.6fr;
+  }
+
+  .footer__map {
+    grid-column: auto;
+  }
+}
+
+/* Sloupec: štítek nahoře, pod ním obsah – všechny sloupce začínají stejně */
 .footer__col {
-  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   font-size: 15px;
-}
-
-.footer__col--wide {
-  flex: 2 1 300px;
+  line-height: 1.6;
+  color: var(--text-soft);
 }
 
 .footer__title {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
-.footer__name {
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.footer address {
+.footer address,
+.footer__col p {
+  margin: 0;
   font-style: normal;
-  line-height: 1.6;
-  color: var(--text-soft);
 }
 
-.footer__col a {
-  padding: 4px 0;
+/* Seznam odkazů – bez podtržení, barva akcentu až při najetí */
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__links a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer__links a:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 /* Mapa – statický obrázek (img/mapa.jpg), celá plocha je odkaz do Google Maps */
 .footer__map {
   position: relative;
   display: block;
-  flex: 2 1 320px;
   min-height: 240px;
   overflow: hidden;
   border-radius: 16px;
