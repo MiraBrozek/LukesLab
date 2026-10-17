@@ -1520,9 +1520,11 @@ body.has-mobile-bar {
   gap: 12px;
 }
 
+/* Kulatá fotka u jména (span = šedé místo, dokud fotka není) */
 .team__avatar {
-  width: 48px;
-  height: 48px;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #D5DCE0;
   object-fit: cover;
