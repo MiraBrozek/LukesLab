@@ -1726,13 +1726,23 @@ body.has-mobile-bar {
   color: var(--muted);
 }
 
-/* Upozornění na autorská práva – drobným písmem pod spodním řádkem */
+/* Informace o MDR – druhý řádek pod copyrightem */
+.footer__mdr {
+  display: block;
+  margin-top: 4px;
+}
+
+/* Upozornění na autorská práva – zvýrazněný rámeček přes celou šířku */
 .footer__legal {
-  max-width: 760px;
-  margin-top: 12px;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--muted);
+  margin-top: 32px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text);
 }
 
 /* Zjednodušená patička na podstránkách */
