@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=13">
-  <script src="js/main.js?v=13" defer></script>
-  <script src="js/efekty.js?v=13" defer></script>
-  <script src="js/zakazka.js?v=13" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <script src="js/main.js?v=14" defer></script>
+  <script src="js/efekty.js?v=14" defer></script>
+  <script src="js/zakazka.js?v=14" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -746,13 +746,22 @@
         <a href="#zakazka">Poslat zakázku</a>
       </div>
 
-      <!-- Mapa z OpenStreetMap (bez sledovacích cookies, není potřeba cookie lišta) -->
-      <div class="footer__map">
+      <!-- Mapa z Google Maps. Celá plocha je odkaz: na mobilu otevře aplikaci
+           Google Maps, na PC Google Maps v nové záložce prohlížeče.
+           Samotná mapa (iframe) na klik nereaguje – jen ukazuje polohu. -->
+      <a class="footer__map"
+         href="https://www.google.com/maps/search/?api=1&amp;query=P%C5%99%C3%ADstavn%C3%AD+1244%2F43%2C+170+00+Praha+7"
+         target="_blank" rel="noopener"
+         aria-label="Otevřít adresu Přístavní 1244/43, Praha 7 v Google Maps">
         <iframe
           title="Mapa – Přístavní 1244/43, Praha 7"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=14.4478%2C50.1013%2C14.4598%2C50.1073&amp;layer=mapnik&amp;marker=50.1043034%2C14.4538413"
-          loading="lazy"></iframe>
-      </div>
+          src="https://maps.google.com/maps?q=P%C5%99%C3%ADstavn%C3%AD%201244%2F43%2C%20170%2000%20Praha%207&amp;z=16&amp;output=embed"
+          loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <span class="footer__map-label">
+          Otevřít v Google Maps
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
     </div>
 
     <div class="footer__bottom">
