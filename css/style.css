@@ -1728,32 +1728,26 @@ body.has-mobile-bar {
   color: var(--muted);
 }
 
-/* Copyright a upozornění na autorská práva – zvýrazněný rámeček přes celou šířku.
-   Rámeček je vysunutý do stran o svůj vnitřní okraj, aby text lícoval
-   se zbytkem patičky. Na mobilu (okraj 16 px) vede přes celou šířku displeje. */
+/* Řádek s copyrightem – tučně, nad zvýrazněným upozorněním */
+.footer__copyright {
+  margin-top: 32px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Upozornění na autorská práva – zvýrazněný rámeček přes celou šířku.
+   Rámeček je vysunutý do stran o svůj vnitřní okraj (12 px),
+   aby text lícoval se zbytkem patičky. */
 .footer__legal {
-  margin: 32px calc(var(--gutter) * -1) 0;
-  padding: 16px var(--gutter);
+  margin: 8px -12px 0;
+  padding: 12px;
+  border-radius: 8px;
   background: var(--accent-soft);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.6;
   color: var(--text);
-}
-
-@media (min-width: 720px) {
-  .footer__legal {
-    margin-inline: -20px;
-    padding-inline: 20px;
-    border-radius: 8px;
-  }
-}
-
-/* Řádek s copyrightem – tučně, na samostatném řádku nad upozorněním */
-.footer__copyright {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 700;
 }
 
 /* Zjednodušená patička na podstránkách */
