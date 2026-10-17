@@ -1764,15 +1764,33 @@ body.has-mobile-bar {
 }
 
 .form legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
   padding: 0;
   font-size: 18px;
   font-weight: 800;
 }
 
+/* Číslo kroku v kolečku v barvě akcentu (1, 2, 3) */
+.form__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 /* Větší mezera mezi oddíly 1., 2. a 3. (k mezeře 32 px z gap formuláře) */
 .form fieldset + fieldset {
-  margin-top: 24px;
+  margin-top: 12px;
 }
 
 /* Dvě pole vedle sebe (na mobilu pod sebou) */

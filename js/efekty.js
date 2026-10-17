@@ -49,7 +49,13 @@
         observer.unobserve(entry.target);
         callback(entry.target);
       });
-    }, options || { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    }, options || {
+      // threshold 0 = stačí, aby byl vidět kousek prvku. Vyšší hodnota
+      // by u vysokých prvků (formulář na mobilu) čekala, až je vidět
+      // velká část – po skoku na kotvu by prvek zůstal neviditelný.
+      threshold: 0,
+      rootMargin: '0px 0px -8% 0px'
+    });
 
     elements.forEach(function (el) { observer.observe(el); });
   }
