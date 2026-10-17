@@ -698,7 +698,7 @@ body.has-mobile-bar {
 .hero__title {
   max-width: 980px;
   font-size: clamp(42px, 8vw, 84px);
-  line-height: 1.1; /* řádky „Digitální přesnost.“ a „Lidský dotek.“ se nesmí dotýkat */
+  line-height: 1.16; /* řádky „Digitální přesnost.“ a „Lidský dotek.“ se nesmí dotýkat */
   letter-spacing: -0.045em;
   font-weight: 800;
 }
