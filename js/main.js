@@ -133,8 +133,9 @@
      pomyslnou čáru ve 30 % výšky okna. Odpovídající odkaz v menu dostane
      třídu .is-active. Na úplném konci stránky se zvýrazní poslední odkaz
      (Kontakt), protože patička k čáře nikdy nedojede.
-     Funguje to i pro nízké sekce (Ceník), které by jinak „přeskočila“
-     sousední sekce.
+     Po kliknutí na odkaz v menu se kliknutá položka označí hned a během
+     plynulého posunu ji výpočet nepřepíše – jinak by se u nízké sekce
+     (Ceník) mohla označit sousední sekce.
      ------------------------------------------------------------------------ */
 
   function initActiveNav() {
@@ -149,7 +150,18 @@
     });
     if (!items.length) return;
 
+    // Po kliknutí v menu: true, dokud posun ke kotvě neskončí
+    var clickLock = false;
+    var unlockTimer;
+
+    function setActive(current) {
+      items.forEach(function (item) {
+        item.link.classList.toggle('is-active', item === current);
+      });
+    }
+
     function update() {
+      if (clickLock) return;
       var line = window.innerHeight * 0.3;
       var current = null;
 
@@ -162,10 +174,25 @@
         document.documentElement.scrollHeight - 2;
       if (atBottom) current = items[items.length - 1];
 
-      items.forEach(function (item) {
-        item.link.classList.toggle('is-active', item === current);
-      });
+      setActive(current);
     }
+
+    function unlock() {
+      clickLock = false;
+      clearTimeout(unlockTimer);
+    }
+
+    // Kliknutí v menu – označit hned a zamknout přepočet do konce posunu.
+    // Událost scrollend znají novější prohlížeče, časovač je pojistka.
+    items.forEach(function (item) {
+      item.link.addEventListener('click', function () {
+        setActive(item);
+        clickLock = true;
+        clearTimeout(unlockTimer);
+        unlockTimer = setTimeout(unlock, 1500);
+      });
+    });
+    window.addEventListener('scrollend', unlock);
 
     // Výpočet je nenáročný (pár sekcí), stačí ho spustit při každém posunu
     window.addEventListener('scroll', update, { passive: true });
