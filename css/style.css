@@ -543,6 +543,15 @@ a:hover {
   box-shadow: none;
 }
 
+/* „Poslat zakázku“ na konci mobilního menu – tlačítko přes celou šířku */
+.nav__cta {
+  margin-top: 16px;
+}
+
+.nav__cta .btn {
+  width: 100%;
+}
+
 /* Od tabletu: tlačítko „Poslat zakázku“ v hlavičce */
 @media (min-width: 720px) {
   .header__cta {
@@ -574,6 +583,11 @@ a:hover {
   }
 
   .burger {
+    display: none;
+  }
+
+  /* Na desktopu je „Poslat zakázku“ v hlavičce, v menu ho skryjeme */
+  .nav__cta {
     display: none;
   }
 }
