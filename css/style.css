@@ -1693,6 +1693,15 @@ body.has-mobile-bar {
   color: var(--muted);
 }
 
+/* Upozornění na autorská práva – drobným písmem pod spodním řádkem */
+.footer__legal {
+  max-width: 760px;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
 /* Zjednodušená patička na podstránkách */
 .footer--simple {
   padding: 32px 0;
