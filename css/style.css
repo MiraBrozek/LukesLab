@@ -1467,6 +1467,14 @@ body.has-mobile-bar {
   border-radius: 24px;
 }
 
+/* Na užších displejích (fotka a text pod sebou) je nahoře nadpis s textem
+   a fotka až pod nimi – sekce tak nezačíná šedým obdélníkem */
+@media (max-width: 959px) {
+  .about__photo {
+    order: 2;
+  }
+}
+
 .about__text {
   flex: 1 1 440px;
   min-width: 0;
