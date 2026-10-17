@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=16">
-  <script src="js/main.js?v=16" defer></script>
-  <script src="js/efekty.js?v=16" defer></script>
-  <script src="js/zakazka.js?v=16" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=17">
+  <script src="js/main.js?v=17" defer></script>
+  <script src="js/efekty.js?v=17" defer></script>
+  <script src="js/zakazka.js?v=17" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -771,12 +771,14 @@
       <!-- Mapa = statický obrázek (img/mapa.jpg, podklad © OpenStreetMap,
            adresa je přesně uprostřed). Nic se nenačítá od Googlu, takže
            není potřeba cookie lišta. Celá plocha je odkaz: na mobilu otevře
-           aplikaci Google Maps, na PC Google Maps v nové záložce. -->
+           aplikaci Google Maps, na PC Google Maps v nové záložce.
+           „@50.10…,14.45…,16z“ v odkazu = střed a přiblížení v běžném
+           zobrazení mapy (ne satelit). -->
       <a class="footer__map"
-         href="https://www.google.com/maps/search/?api=1&amp;query=P%C5%99%C3%ADstavn%C3%AD+1244%2F43%2C+170+00+Praha+7"
+         href="https://www.google.com/maps/place/P%C5%99%C3%ADstavn%C3%AD+1244%2F43,+170+00+Praha+7/@50.1043034,14.4538413,16z"
          target="_blank" rel="noopener"
          aria-label="Otevřít adresu Přístavní 1244/43, Praha 7 v Google Maps">
-        <img class="footer__map-img" src="img/mapa.jpg" width="800" height="480" loading="lazy"
+        <img class="footer__map-img" src="img/mapa.jpg?v=2" width="800" height="480" loading="lazy"
              alt="Mapa okolí laboratoře – Přístavní 1244/43, Praha 7 – Holešovice">
         <!-- Špendlík uprostřed obrázku = adresa -->
         <svg class="footer__map-pin" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
