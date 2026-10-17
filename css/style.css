@@ -874,6 +874,8 @@ body.has-mobile-bar {
 .stats__item {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* číslo vždy dole – když se popisek zalomí na 2 řádky,
+                                     čísla v řádku stále lícují */
   gap: 8px;
   padding: 2px 16px 2px 20px; /* odstup čísla od svislé linky vlevo – stejný jako v hero */
   border-left: 1px solid var(--line);
