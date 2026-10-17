@@ -200,10 +200,11 @@
 
   /* 5. Kroky digitálního modelování
      ------------------------------------------------------------------------
-     Když je sekce vidět, kroky 01–06 se jednou postupně zvýrazní
-     (.is-active, v CSS s ukazatelem průběhu) a na 6. kroku se procházení
-     zastaví. Najetí myší, kliknutí nebo Tab na krok spustí procházení
-     od tohoto kroku – čára pod ním doběhne a pokračuje se až do 6. kroku.
+     Když je sekce poprvé vidět, kroky 01–06 se JEDNOU postupně zvýrazní
+     (.is-active + běžící čára, třída .is-playing) a na 6. kroku se
+     procházení zastaví. Znovu se spustí až po obnovení stránky.
+     Najetí myší, kliknutí nebo Tab krok jen zvýrazní – čára je hned celá.
+     Pokud k tomu dojde během procházení, procházení skončí.
      ------------------------------------------------------------------------ */
 
   var TOUR_STEP_MS = 2400; // jak dlouho svítí jeden krok (musí sedět s CSS --tour-step)
@@ -215,6 +216,7 @@
     var steps = Array.prototype.slice.call(list.children);
     var current = -1;
     var timer = null;
+    var userTookOver = false; // návštěvník už vybral krok sám → žádné další procházení
 
     list.style.setProperty('--tour-step', TOUR_STEP_MS + 'ms');
 
@@ -235,7 +237,7 @@
     }
 
     function play() {
-      if (reduceMotion || timer) return;
+      if (reduceMotion || timer || userTookOver) return;
       list.classList.add('is-playing');
       next();
       timer = setInterval(next, TOUR_STEP_MS);
@@ -247,23 +249,19 @@
       list.classList.remove('is-playing');
     }
 
-    // Spustí procházení od zvoleného kroku (play() hned posune o jeden dál)
-    function playFrom(index) {
-      if (reduceMotion) {
-        activate(index);
-        return;
-      }
+    // Ruční výběr kroku: zastaví procházení a krok jen zvýrazní
+    function select(index) {
+      userTookOver = true;
       stop();
-      current = index - 1;
-      play();
+      activate(index);
     }
 
-    // Ruční výběr: myš, dotyk i klávesnice (Tab)
+    // Myš, dotyk i klávesnice (Tab)
     steps.forEach(function (step, i) {
       step.tabIndex = 0;
-      step.addEventListener('mouseenter', function () { playFrom(i); });
-      step.addEventListener('focus', function () { playFrom(i); });
-      step.addEventListener('click', function () { if (current !== i) playFrom(i); });
+      step.addEventListener('mouseenter', function () { select(i); });
+      step.addEventListener('focus', function () { select(i); });
+      step.addEventListener('click', function () { select(i); });
     });
 
     // Výchozí stav: zvýrazněný krok „Náhled ke schválení“

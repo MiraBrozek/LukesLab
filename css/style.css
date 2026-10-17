@@ -2141,14 +2141,19 @@ body.has-mobile-bar {
   background: var(--accent-tint);
 }
 
-/* Modelování – ukazatel průběhu u právě zvýrazněného kroku */
-.modelling__steps.is-playing li.is-active::after {
+/* Modelování – čára pod zvýrazněným krokem: při ručním výběru je hned
+   celá, během automatického procházení (.is-playing) postupně „běží“ */
+.modelling__steps li.is-active::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
+  width: 100%;
   height: 3px;
   background: var(--accent);
+}
+
+.modelling__steps.is-playing li.is-active::after {
   animation: progress var(--tour-step, 2400ms) linear both;
 }
 
