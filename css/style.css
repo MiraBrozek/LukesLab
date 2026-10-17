@@ -713,7 +713,7 @@ body.has-mobile-bar {
 
 .hero__eyebrow::before {
   content: '';
-  width: 32px;
+  width: 20px;
   height: 1px;
   background: currentColor;
 }
@@ -995,7 +995,7 @@ body.has-mobile-bar {
 .section-label {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 500; /* IBM Plex Mono je načtené jen v řezech 400 a 500 – vyšší by prohlížeč „dopočítal“ a písmo by bylo rozmazané */
@@ -1007,7 +1007,7 @@ body.has-mobile-bar {
 .section-label::before {
   content: '';
   flex-shrink: 0;
-  width: 32px;
+  width: 20px;
   height: 1px;
   background: currentColor;
 }
