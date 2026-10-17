@@ -1770,6 +1770,13 @@ body.has-mobile-bar {
   font-weight: 800;
 }
 
+/* Slabá čára mezi oddíly 1., 2. a 3. (mezery nad a pod ní dává gap formuláře) */
+.form__divider {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
 /* Dvě pole vedle sebe (na mobilu pod sebou) */
 .form__row {
   display: grid;
