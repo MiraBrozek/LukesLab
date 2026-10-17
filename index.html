@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=34">
-  <script src="js/main.js?v=34" defer></script>
-  <script src="js/efekty.js?v=34" defer></script>
-  <script src="js/zakazka.js?v=34" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=36">
+  <script src="js/main.js?v=36" defer></script>
+  <script src="js/efekty.js?v=36" defer></script>
+  <script src="js/zakazka.js?v=36" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -609,7 +609,7 @@
               <label class="choice__option">
                 <input type="radio" name="Způsob předání" value="Digitální sken (STL)" checked>
                 <strong>Digitální sken (STL)</strong>
-                <span>Pošlete odkaz na soubory</span>
+                <span>Pošlete odkaz na soubory,<br>nebo přílohou na petr&#8209;lukes@seznam.cz</span>
               </label>
               <label class="choice__option">
                 <input type="radio" name="Způsob předání" value="Svoz otisku">
@@ -619,14 +619,7 @@
             </div>
 
             <!-- Varianta STL (výchozí) -->
-            <div class="stack" id="box-stl" style="gap: 14px">
-              <p class="note">
-                <strong>Jak poslat STL:</strong> nahrajte soubory (horní a dolní čelist, skus) na
-                <a href="https://www.uschovna.cz/" target="_blank" rel="noopener">Úschovnu</a>,
-                <a href="https://wetransfer.com/" target="_blank" rel="noopener">WeTransfer</a>
-                nebo do svého cloudu a vložte sem odkaz. Případně je pošlete přímo ze skeneru
-                na <a href="mailto:petr-lukes@seznam.cz">petr-lukes@seznam.cz</a>.
-              </p>
+            <div id="box-stl">
               <label class="field">
                 Odkaz na soubory
                 <span class="field__hint">STL / PLY / ZIP – nepovinné, pokud posíláte jinak</span>
@@ -703,7 +696,6 @@
               </label>
               <label class="field">
                 <span>Kód pacienta <span class="field__req" aria-hidden="true">*</span></span>
-                <span class="field__hint">bez jména – kvůli GDPR</span>
                 <input type="text" name="Kód pacienta" required>
               </label>
               <label class="field">

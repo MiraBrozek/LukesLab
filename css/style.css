@@ -1887,20 +1887,6 @@ body.has-mobile-bar {
   outline-offset: 2px;
 }
 
-/* Informační rámeček (jak poslat STL) */
-.note {
-  padding: 16px 18px;
-  border-radius: 14px;
-  background: var(--accent-tint);
-  border: 1px dashed var(--accent-line);
-  font-size: 14px;
-  color: var(--text-soft);
-}
-
-.note strong {
-  color: var(--text);
-}
-
 .form__footer {
   display: flex;
   flex-wrap: wrap;
