@@ -224,6 +224,13 @@ a:hover {
   letter-spacing: 0.02em;
 }
 
+/* Zalomení řádku jen na mobilu (od 900 px se ignoruje) */
+@media (min-width: 900px) {
+  .br-mobile {
+    display: none;
+  }
+}
+
 /* Text pouze pro čtečky obrazovky */
 .visually-hidden {
   position: absolute !important;
