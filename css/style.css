@@ -20,12 +20,12 @@
      13. Technologie (tmavá sekce)
      14. Naše práce (galerie)
      15. O nás
-     16. CTA blok
-     17. Patička
-     18. Podstránka služby
-     19. Formulář „Poslat zakázku“
-     20. Textová stránka (ochrana údajů)
-     21. Omezení animací
+     16. Patička
+     17. Podstránka služby
+     18. Formulář „Poslat zakázku“
+     19. Textová stránka (ochrana údajů)
+     20. Omezení animací
+     21. DOČASNÉ: přepínač barev
    ========================================================================== */
 
 
@@ -45,6 +45,8 @@
   --accent-hover: #08434E;
   --accent-soft: #E6F0F2;    /* jemné zvýraznění */
   --accent-on-dark: #9FD0D8; /* akcent na tmavém pozadí */
+  --accent-line: #9CC4CB;    /* přerušované rámečky (poznámka ve formuláři) */
+  --accent-tint: #F6FAFB;    /* velmi jemné podbarvení */
   --dark: #0F1518;           /* sekce Technologie */
   --hero-bg: #0B0F11;        /* pozadí hera, než se načte video */
 
@@ -59,6 +61,46 @@
   --radius-big: 28px;
   --section-pad: 56px;       /* svislý padding sekcí – na desktopu 96 px */
   --header-h: 68px;          /* výška hlavičky – kvůli odskoku kotev */
+}
+
+/* Varianty akcentní barvy – přepínají se atributem data-accent na <html>.
+   Výchozí (bez atributu) je petrolejová výše.
+   Po výběru finální barvy stačí její hodnoty zkopírovat do :root
+   a tyto bloky smazat. */
+:root[data-accent="navy"] {      /* půlnoční modrá */
+  --accent: #1D4E89;
+  --accent-hover: #163B68;
+  --accent-soft: #E8EEF6;
+  --accent-on-dark: #A9C5EA;
+  --accent-line: #A9BEDB;
+  --accent-tint: #F6F8FC;
+}
+
+:root[data-accent="cobalt"] {    /* kobaltová – výraznější modrá */
+  --accent: #1F57C3;
+  --accent-hover: #17439A;
+  --accent-soft: #E8EFFC;
+  --accent-on-dark: #A8C3F5;
+  --accent-line: #A9C0EC;
+  --accent-tint: #F5F8FE;
+}
+
+:root[data-accent="bronze"] {    /* bronzová – teplá, „zlatá“ jako titan po anodizaci */
+  --accent: #8A6534;
+  --accent-hover: #6C4E27;
+  --accent-soft: #F4EEE6;
+  --accent-on-dark: #D9BC8E;
+  --accent-line: #D2BE9F;
+  --accent-tint: #FBF8F4;
+}
+
+:root[data-accent="graphite"] {  /* grafitová – čistě černobílý web */
+  --accent: #2B3238;
+  --accent-hover: #14191D;
+  --accent-soft: #ECEEF0;
+  --accent-on-dark: #D5DADE;
+  --accent-line: #BFC6CC;
+  --accent-tint: #F7F8F9;
 }
 
 @media (min-width: 720px) {
@@ -146,8 +188,7 @@ a:hover {
 
 /* Na tmavém pozadí je focus světlý */
 .hero :focus-visible,
-.section--dark :focus-visible,
-.cta :focus-visible {
+.section--dark :focus-visible {
   outline-color: var(--accent-on-dark);
 }
 
@@ -334,6 +375,11 @@ a:hover {
 
 .logo:hover {
   color: var(--text);
+}
+
+/* Čtvereček v logu má barvu akcentu */
+.logo svg rect {
+  fill: var(--accent);
 }
 
 .logo__text {
@@ -591,8 +637,16 @@ body.has-mobile-bar {
   min-height: min(calc(100svh - var(--header-h)), 820px);
   min-height: clamp(560px, calc(100svh - var(--header-h)), 820px);
   overflow: hidden;
-  background: var(--hero-bg);
+  /* Poster = statický snímek, než se video načte (nebo když se nespustí) */
+  background: var(--hero-bg) url('../video/hero-poster-pc.jpg') center / cover no-repeat;
   color: #FFFFFF;
+}
+
+/* Na mobilu poster ve stejném výřezu na výšku jako mobilní video */
+@media (max-width: 720px) {
+  .hero {
+    background-image: url('../video/hero-poster-mobil.jpg');
+  }
 }
 
 /* Video roztažené přes celou plochu (ořízne se, aby nevznikly pruhy) */
@@ -604,12 +658,13 @@ body.has-mobile-bar {
   object-fit: cover;
 }
 
-/* Tmavý přechod zespodu – video nahoře zůstane světlé, text dole čitelný */
+/* Tmavý přechod zespodu – video nahoře zůstane světlé, text dole čitelný.
+   Čísla = průhlednost (0 = žádné ztmavení, 1 = černá). */
 .hero__overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(8, 12, 14, 0.88) 0%, rgba(8, 12, 14, 0.55) 45%, rgba(8, 12, 14, 0.15) 100%);
+    linear-gradient(to top, rgba(8, 12, 14, 0.82) 0%, rgba(8, 12, 14, 0.45) 50%, rgba(8, 12, 14, 0) 100%);
 }
 
 .hero__content {
@@ -630,7 +685,7 @@ body.has-mobile-bar {
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #CFE3E7;
+  color: var(--accent-on-dark);
 }
 
 .hero__eyebrow::before {
@@ -643,7 +698,7 @@ body.has-mobile-bar {
 .hero__title {
   max-width: 980px;
   font-size: clamp(42px, 8vw, 84px);
-  line-height: 0.98;
+  line-height: 1.1; /* řádky „Digitální přesnost.“ a „Lidský dotek.“ se nesmí dotýkat */
   letter-spacing: -0.045em;
   font-weight: 800;
 }
@@ -968,7 +1023,7 @@ a.card:hover {
 
 /* Místo pro budoucí screen-recording */
 .modelling__thumbs .placeholder {
-  border: 1px dashed #9CC4CB;
+  border: 1px dashed var(--accent-line);
   background: #FFFFFF;
   border-radius: 14px;
   font-size: 13px;
@@ -1080,7 +1135,7 @@ a.card:hover {
 .tech__params dt {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #8FC6CF;
+  color: var(--accent-on-dark);
 }
 
 .tech__params dd {
@@ -1278,55 +1333,7 @@ a.card:hover {
 }
 
 
-/* 16. CTA blok
-   ========================================================================== */
-
-.cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 40px 24px;
-  border-radius: var(--radius-big);
-  background: var(--accent);
-  color: #FFFFFF;
-}
-
-.cta__text {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 620px;
-}
-
-.cta__text h2 {
-  font-size: clamp(28px, 3.6vw, 38px);
-}
-
-.cta__text p {
-  font-size: 17px;
-  color: #D3E6E9;
-}
-
-.cta__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.cta .btn--light {
-  color: var(--accent);
-}
-
-@media (min-width: 720px) {
-  .cta {
-    padding: 56px;
-  }
-}
-
-
-/* 17. Patička
+/* 16. Patička
    ========================================================================== */
 
 .footer {
@@ -1420,7 +1427,7 @@ a.card:hover {
 }
 
 
-/* 18. Podstránka služby
+/* 17. Podstránka služby
    ========================================================================== */
 
 .breadcrumbs ol {
@@ -1638,20 +1645,14 @@ a.card:hover {
 }
 
 
-/* 19. Formulář „Poslat zakázku“
+/* 18. Formulář „Poslat zakázku“
    ========================================================================== */
-
-.page-order {
-  background: var(--surface);
-}
 
 .order {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   align-items: flex-start;
-  padding-top: 48px;
-  padding-bottom: var(--section-pad);
 }
 
 .order__intro {
@@ -1662,12 +1663,12 @@ a.card:hover {
   gap: 18px;
 }
 
-.order__intro h1 {
-  font-size: clamp(36px, 5vw, 44px);
-  line-height: 1.08;
-}
-
-.order__intro p {
+/* Odkaz na ceník a telefon pod výhodami */
+.order__alt {
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
   color: var(--text-soft);
 }
 
@@ -1702,7 +1703,9 @@ a.card:hover {
   gap: 32px;
   padding: 24px;
   background: #FFFFFF;
+  border: 1px solid var(--line);
   border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(15, 21, 24, 0.06);
 }
 
 @media (min-width: 720px) {
@@ -1849,8 +1852,8 @@ a.card:hover {
 .note {
   padding: 16px 18px;
   border-radius: 14px;
-  background: #F6FAFB;
-  border: 1px dashed #9CC4CB;
+  background: var(--accent-tint);
+  border: 1px dashed var(--accent-line);
   font-size: 14px;
   color: var(--text-soft);
 }
@@ -1892,7 +1895,6 @@ a.card:hover {
 .sent {
   display: flex;
   justify-content: center;
-  padding: var(--section-pad) 0;
 }
 
 .sent__box {
@@ -1902,7 +1904,8 @@ a.card:hover {
   gap: 16px;
   max-width: 560px;
   padding: 48px 24px;
-  background: #FFFFFF;
+  background: var(--accent-tint);
+  border: 1px solid var(--line);
   border-radius: 24px;
   text-align: center;
 }
@@ -1922,7 +1925,7 @@ a.card:hover {
   color: var(--accent);
 }
 
-.sent__box h1 {
+.sent__box h3 {
   font-size: 32px;
 }
 
@@ -1931,7 +1934,7 @@ a.card:hover {
 }
 
 
-/* 20. Textová stránka (ochrana údajů)
+/* 19. Textová stránka (ochrana údajů)
    ========================================================================== */
 
 .prose {
@@ -1958,7 +1961,7 @@ a.card:hover {
 }
 
 
-/* 21. Omezení animací
+/* 20. Omezení animací
    --------------------------------------------------------------------------
    Pokud má návštěvník v systému zapnuté „omezit animace“, vypneme
    plynulé posouvání a přechody. Video pauzuje main.js.
@@ -1974,5 +1977,66 @@ a.card:hover {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+
+/* 21. DOČASNÉ: přepínač barev
+   --------------------------------------------------------------------------
+   Lišta nad hlavičkou pro výběr akcentní barvy. Po výběru smazat
+   tuto sekci i blok .theme-bar v index.html.
+   ========================================================================== */
+
+.theme-bar {
+  background: var(--dark);
+  color: #C3CCD1;
+  font-size: 13px;
+}
+
+.theme-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+}
+
+.theme-bar__label {
+  font-family: var(--font-mono);
+}
+
+.theme-bar__swatches {
+  display: flex;
+  gap: 8px;
+}
+
+/* Barevné kolečko; barvu dostává z inline proměnné --swatch */
+.swatch {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: var(--swatch);
+  cursor: pointer;
+}
+
+.swatch:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.swatch[aria-pressed="true"] {
+  border-color: #FFFFFF;
+  box-shadow: 0 0 0 2px var(--dark), 0 0 0 4px #FFFFFF;
+}
+
+.theme-bar__name {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Na úzkém mobilu se popisek nevejde */
+@media (max-width: 420px) {
+  .theme-bar__label {
+    display: none;
   }
 }

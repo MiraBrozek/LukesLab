@@ -10,6 +10,7 @@
      3. Zvýraznění aktuální sekce v menu
      4. Filtr galerie „Naše práce“
      5. Aktuální rok v patičce
+     6. DOČASNÉ: přepínač barev
    ========================================================================== */
 
 (function () {
@@ -59,11 +60,12 @@
 
   /* 2. Video v hero sekci
      ------------------------------------------------------------------------
-     - Některé prohlížeče blokují autoplay, i když je video bez zvuku.
-       Proto ho spustíme ještě jednou ze skriptu.
-     - Pokud má návštěvník zapnuté „omezit animace“, video nespustíme
-       a zůstane vidět jen statický obrázek (poster).
+     - Některé prohlížeče (např. Brave) blokují autoplay, i když je video
+       bez zvuku. Proto ho spustíme ze skriptu, a když to prohlížeč
+       odmítne, zkusíme to znovu při první akci návštěvníka (klik,
+       posun stránky, klávesa).
      - Tlačítko .hero__toggle video pozastaví / znovu spustí (WCAG 2.2.2).
+       Když ho návštěvník sám pozastaví, už ho automaticky nespouštíme.
      ------------------------------------------------------------------------ */
 
   function initHeroVideo() {
@@ -71,7 +73,8 @@
     var toggle = document.querySelector('.hero__toggle');
     if (!video) return;
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pausedByUser = false;
+    var retryEvents = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
 
     function updateToggle() {
       if (!toggle) return;
@@ -80,27 +83,43 @@
       toggle.setAttribute('aria-label', paused ? 'Spustit video na pozadí' : 'Pozastavit video na pozadí');
     }
 
-    // Jistota, že je video ztlumené (podmínka pro autoplay)
-    video.muted = true;
-
-    if (reduceMotion) {
-      video.removeAttribute('autoplay');
-      video.pause();
-    } else {
-      // play() vrací Promise – chybu (zablokovaný autoplay) tiše ignorujeme
+    // Pokus o spuštění; play() vrací Promise, která selže při zablokování
+    function tryPlay() {
+      if (pausedByUser || !video.paused) return;
       var playing = video.play();
-      if (playing && playing.catch) playing.catch(function () {});
+      if (playing && playing.catch) {
+        playing.catch(function () {
+          // Zablokováno → počkáme na první akci návštěvníka
+          retryEvents.forEach(function (name) {
+            window.addEventListener(name, retryOnce, { once: true, passive: true });
+          });
+        });
+      }
     }
+
+    function retryOnce() {
+      retryEvents.forEach(function (name) {
+        window.removeEventListener(name, retryOnce);
+      });
+      tryPlay();
+    }
+
+    // Ztlumení je podmínka pro autoplay – nastavíme i ze skriptu pro jistotu
+    video.muted = true;
+    video.defaultMuted = true;
 
     video.addEventListener('play', updateToggle);
     video.addEventListener('pause', updateToggle);
     updateToggle();
+    tryPlay();
 
     if (toggle) {
       toggle.addEventListener('click', function () {
         if (video.paused) {
-          video.play();
+          pausedByUser = false;
+          tryPlay();
         } else {
+          pausedByUser = true;
           video.pause();
         }
       });
@@ -186,6 +205,47 @@
   }
 
 
+  /* 6. DOČASNÉ: přepínač barev
+     ------------------------------------------------------------------------
+     Kolečka v liště .theme-bar nastaví atribut data-accent na <html>
+     (barvy jsou definované v css/style.css). Volba se pamatuje
+     v prohlížeči (localStorage). Po výběru finální barvy smazat.
+     ------------------------------------------------------------------------ */
+
+  function initThemeSwitcher() {
+    var swatches = document.querySelectorAll('.swatch');
+    var nameEl = document.querySelector('.theme-bar__name');
+    if (!swatches.length) return;
+
+    var root = document.documentElement;
+
+    function select(accent) {
+      // „petrol“ je výchozí barva v :root, nepotřebuje atribut
+      if (accent === 'petrol') {
+        root.removeAttribute('data-accent');
+      } else {
+        root.setAttribute('data-accent', accent);
+      }
+
+      swatches.forEach(function (swatch) {
+        var active = swatch.getAttribute('data-accent-choice') === accent;
+        swatch.setAttribute('aria-pressed', String(active));
+        if (active && nameEl) nameEl.textContent = swatch.title;
+      });
+
+      try { localStorage.setItem('accent', accent); } catch (e) {}
+    }
+
+    swatches.forEach(function (swatch) {
+      swatch.addEventListener('click', function () {
+        select(swatch.getAttribute('data-accent-choice'));
+      });
+    });
+
+    select(root.getAttribute('data-accent') || 'petrol');
+  }
+
+
   /* Spuštění – skript je vložený s atributem defer,
      takže HTML je v tuto chvíli už načtené. */
   initMobileMenu();
@@ -193,4 +253,5 @@
   initActiveNav();
   initGalleryFilter();
   initYear();
+  initThemeSwitcher();
 })();

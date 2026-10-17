@@ -6,15 +6,14 @@ zubní laboratoř Petra Lukeše v Praze-Holešovicích.
 ## Struktura
 
 ```
-index.html                  homepage (hero s videem, sekce 01–06, kontakt)
+index.html                  homepage (hero s videem, sekce 01–06, 07 formulář, kontakt)
 sluzba.html                 detail služby – šablona (Implantologická protetika)
-zakazka.html                formulář „Poslat zakázku“
 ochrana-osobnich-udaju.html zásady ochrany osobních údajů (pracovní text)
 css/style.css               všechny styly (barvy a rozměry nahoře v :root)
-js/main.js                  menu, video, filtr galerie – na všech stránkách
-js/zakazka.js               logika formuláře a odeslání
+js/main.js                  menu, video, filtr galerie, přepínač barev
+js/zakazka.js               logika formuláře „Poslat zakázku“ a odeslání
 img/                        fotky (názvy souborů zachovat při výměně)
-video/                      hero video ve dvou velikostech + poster
+video/                      hero video (PC + výřez na výšku pro mobil) + postery
 tools/priprav-video.ps1     převod nového videa (černobílé, světlejší, bez zvuku)
 PoC/                        původní návrh a podklady (_claude_readme.md)
 ```
@@ -42,9 +41,17 @@ z Úschovny / WeTransferu, nebo je pošle e-mailem přímo ze skeneru.
 
 Skript přepíše soubory ve složce `video/` (potřebuje ffmpeg: `winget install Gyan.FFmpeg`).
 
+## Přepínač barev (dočasný)
+
+Lišta nad hlavičkou přepíná akcentní barvu webu (petrolejová, půlnoční modrá,
+kobaltová, bronzová, grafitová). Po výběru: hodnoty zvolené barvy zkopírovat
+v `css/style.css` do `:root`, smazat bloky `[data-accent=…]`, sekci 21
+v CSS, lištu `.theme-bar` a skript „přepínač barev“ v `index.html`
+a funkci `initThemeSwitcher` v `js/main.js`.
+
 ## Co je potřeba doplnit
 
 Vše v `[hranatých závorkách]` je placeholder: přesnost v µm, dodací lhůty,
 otevírací doba, implantátové systémy, CAD software, foto týmu, texty „O nás“.
-Fotky stroje M1, screenshoty Modellieru a video jsou od Zirkonzahnu –
+Fotky přístrojů, screenshoty Modellieru a video jsou od Zirkonzahnu –
 před spuštěním nahradit vlastními nebo mít písemný souhlas.

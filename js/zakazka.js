@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Lukeš Lab – formulář „Poslat zakázku“ (zakazka.html)
+   Lukeš Lab – formulář „Poslat zakázku“ (sekce #zakazka na index.html)
    --------------------------------------------------------------------------
    Web je čistě statický (bez PHP), proto formulář odesílá data přes službu
    Web3Forms (https://web3forms.com). Ta je přepošle e-mailem laboratoři.
@@ -34,6 +34,7 @@
   var form = document.getElementById('order-form');
   if (!form) return;
 
+  var section = document.getElementById('zakazka');
   var orderBox = document.getElementById('order');
   var sentBox = document.getElementById('sent');
   var boxStl = document.getElementById('box-stl');
@@ -123,7 +124,7 @@
 
     orderBox.hidden = true;
     sentBox.hidden = false;
-    window.scrollTo(0, 0);
+    section.scrollIntoView();
 
     // Focus na potvrzení, aby ho přečetla i čtečka obrazovky
     sentBox.querySelector('.sent__box').focus();
@@ -194,6 +195,6 @@
 
     sentBox.hidden = true;
     orderBox.hidden = false;
-    window.scrollTo(0, 0);
+    section.scrollIntoView();
   });
 })();
