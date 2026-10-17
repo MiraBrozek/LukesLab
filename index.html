@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=17">
-  <script src="js/main.js?v=17" defer></script>
-  <script src="js/efekty.js?v=17" defer></script>
-  <script src="js/zakazka.js?v=17" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20">
+  <script src="js/main.js?v=20" defer></script>
+  <script src="js/efekty.js?v=20" defer></script>
+  <script src="js/zakazka.js?v=20" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -116,11 +116,11 @@
     <nav class="nav" id="nav" aria-label="Hlavní navigace">
       <ul class="nav__list">
         <li><a class="nav__link" href="#sluzby">Služby</a></li>
-        <li><a class="nav__link" href="#cenik">Ceník</a></li>
         <li><a class="nav__link" href="#spoluprace">Spolupráce</a></li>
         <li><a class="nav__link" href="#modelovani">Modelování</a></li>
         <li><a class="nav__link" href="#technologie">Technologie</a></li>
         <li><a class="nav__link" href="#prace">Naše práce</a></li>
+        <li><a class="nav__link" href="#cenik">Ceník</a></li>
         <li><a class="nav__link" href="#onas">O nás</a></li>
         <!-- Jen v mobilním menu – na desktopu je tlačítko přímo v hlavičce -->
         <li class="nav__mobile-only"><a class="nav__link" href="#zakazka">Poslat zakázku</a></li>
@@ -320,24 +320,6 @@
           </div>
         </article>
       </div>
-
-      <!-- CENÍK – neveřejný, posíláme na vyžádání.
-           Tlačítko otevře e-mail s předvyplněným předmětem a textem. -->
-      <div class="pricing" id="cenik">
-        <div class="pricing__text">
-          <span class="section-num">Ceník</span>
-          <h3>Ceník na vyžádání</h3>
-          <p>Cena závisí na materiálu a rozsahu práce. Ordinacím posíláme aktuální ceník obvykle do [24&nbsp;h] – stačí napsat nebo zavolat.</p>
-        </div>
-        <div class="pricing__buttons">
-          <a class="btn btn--primary" href="mailto:petr-lukes@seznam.cz?subject=%C5%BD%C3%A1dost%20o%20cen%C3%ADk&amp;body=Dobr%C3%BD%20den%2C%0A%0Apros%C3%ADm%20o%20zasl%C3%A1n%C3%AD%20aktu%C3%A1ln%C3%ADho%20cen%C3%ADku.%0A%0AOrdinace%3A%20%0ATelefon%3A%20%0A">
-            Vyžádat ceník
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn--secondary" href="tel:+420604746757">+420 604 746 757</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -518,6 +500,30 @@
         </figure>
       </div>
 
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       CENÍK – neveřejný, posíláme na vyžádání
+       Tlačítko otevře e-mail s předvyplněným předmětem a textem.
+       ==================================================================== -->
+  <section class="section section--pricing" id="cenik" aria-label="Ceník">
+    <div class="wrap">
+      <div class="pricing">
+        <div class="pricing__text">
+          <span class="section-num">Ceník</span>
+          <h3>Ceník na vyžádání</h3>
+          <p>Cena závisí na materiálu a rozsahu práce. Ordinacím posíláme aktuální ceník obvykle do [24&nbsp;h] – stačí napsat nebo zavolat.</p>
+        </div>
+        <div class="pricing__buttons">
+          <a class="btn btn--primary" href="mailto:petr-lukes@seznam.cz?subject=%C5%BD%C3%A1dost%20o%20cen%C3%ADk&amp;body=Dobr%C3%BD%20den%2C%0A%0Apros%C3%ADm%20o%20zasl%C3%A1n%C3%AD%20aktu%C3%A1ln%C3%ADho%20cen%C3%ADku.%0A%0AOrdinace%3A%20%0ATelefon%3A%20%0A">
+            Vyžádat ceník
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--secondary" href="tel:+420604746757">+420 604 746 757</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -778,7 +784,7 @@
          href="https://www.google.com/maps/place/P%C5%99%C3%ADstavn%C3%AD+1244%2F43,+170+00+Praha+7/@50.1043034,14.4538413,16z"
          target="_blank" rel="noopener"
          aria-label="Otevřít adresu Přístavní 1244/43, Praha 7 v Google Maps">
-        <img class="footer__map-img" src="img/mapa.jpg?v=2" width="800" height="480" loading="lazy"
+        <img class="footer__map-img" src="img/mapa.jpg?v=3" width="1200" height="480" loading="lazy"
              alt="Mapa okolí laboratoře – Přístavní 1244/43, Praha 7 – Holešovice">
         <!-- Špendlík uprostřed obrázku = adresa -->
         <svg class="footer__map-pin" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true">
