@@ -47,6 +47,12 @@
   --accent-on-dark: #9FD0D8; /* akcent na tmavém pozadí */
   --accent-line: #9CC4CB;    /* přerušované rámečky (poznámka ve formuláři) */
   --accent-tint: #F6FAFB;    /* velmi jemné podbarvení */
+  /* Výplň tlačítek, koleček a linek + barva textu na ní.
+     Většinou stejná jako --accent s bílým textem; světlá varianta
+     (nebeská modrá) má světlou výplň a tmavý text. */
+  --accent-fill: var(--accent);
+  --accent-fill-hover: var(--accent-hover);
+  --on-accent: #FFFFFF;
   --dark: #0F1518;           /* sekce Technologie */
   --hero-bg: #0B0F11;        /* pozadí hera, než se načte video */
 
@@ -94,16 +100,18 @@
   --accent-tint: #FBF8F4;
 }
 
-:root[data-accent="sky"] {       /* nebeská modrá #A8D8FF – na bílém pozadí by
-                                    nebyla čitelná, proto ji používáme na tmavém
-                                    pozadí, v linkách a podbarvení; tlačítka
-                                    a texty mají tmavší odstín stejné modré */
+:root[data-accent="sky"] {       /* nebeská modrá #A8D8FF – tlačítka a linky jsou
+                                    světle modré s tmavým textem; texty na bílém
+                                    mají tmavší odstín stejné modré (čitelnost) */
   --accent: #2A6E9E;
   --accent-hover: #1F5479;
   --accent-soft: #EAF5FF;
   --accent-on-dark: #A8D8FF;
   --accent-line: #A8D8FF;
   --accent-tint: #F5FAFF;
+  --accent-fill: #A8D8FF;      /* tlačítka ve světle modré… */
+  --accent-fill-hover: #8DCBFF;
+  --on-accent: #0F2A3D;        /* …s tmavým textem (kontrast cca 10 : 1) */
 }
 
 :root[data-accent="graphite"] {  /* grafitová – čistě černobílý web */
@@ -263,8 +271,8 @@ a:hover {
   top: -100px;
   z-index: 100;
   padding: 12px 18px;
-  background: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-fill);
+  color: var(--on-accent);
   border-radius: 8px;
   font-weight: 600;
 }
@@ -316,13 +324,13 @@ a:hover {
 
 /* Hlavní akce – petrolejová */
 .btn--primary {
-  background: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .btn--primary:hover {
-  background: var(--accent-hover);
-  color: #FFFFFF;
+  background: var(--accent-fill-hover);
+  color: var(--on-accent);
 }
 
 /* Sekundární – bílá s rámečkem */
@@ -1720,8 +1728,8 @@ body.has-mobile-bar {
 }
 
 .footer__map:hover .footer__map-label {
-  background: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .footer__bottom {
@@ -1863,8 +1871,8 @@ body.has-mobile-bar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-fill);
+  color: var(--on-accent);
   font-size: 15px;
   font-weight: 700;
 }
@@ -2211,7 +2219,7 @@ body.has-mobile-bar {
   left: 0;
   width: 100%;
   height: 3px;
-  background: var(--accent);
+  background: var(--accent-fill);
   transform-origin: left;
 }
 
@@ -2241,7 +2249,7 @@ body.has-mobile-bar {
   bottom: 0;
   width: 100%;
   height: 3px;
-  background: var(--accent);
+  background: var(--accent-fill);
 }
 
 .modelling__steps.is-playing li.is-active::after {
@@ -2386,8 +2394,8 @@ body.has-mobile-bar {
   height: 48px;
   border: 0;
   border-radius: 50%;
-  background: var(--accent);
-  color: #FFFFFF;
+  background: var(--accent-fill);
+  color: var(--on-accent);
   box-shadow: 0 8px 24px rgba(15, 21, 24, 0.2);
   cursor: pointer;
   opacity: 0;
@@ -2403,7 +2411,7 @@ body.has-mobile-bar {
 }
 
 .to-top:hover {
-  background: var(--accent-hover);
+  background: var(--accent-fill-hover);
 }
 
 /* Na mobilu nad spodní lištou */
