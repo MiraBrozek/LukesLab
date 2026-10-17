@@ -6,8 +6,8 @@ zubní laboratoř Petra Lukeše v Praze-Holešovicích.
 ## Struktura
 
 ```
-index.html                  celý web na jedné stránce (hero, čísla, sekce 01–06,
-                            07 formulář, kontakt)
+index.html                  celý web na jedné stránce (hero, čísla, sekce,
+                            formulář, kontakt)
 ochrana-osobnich-udaju.html zásady ochrany osobních údajů (pracovní text)
 css/style.css               všechny styly (barvy a rozměry nahoře v :root)
 js/main.js                  menu, video, filtr galerie, přepínač barev

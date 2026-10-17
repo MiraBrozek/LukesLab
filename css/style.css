@@ -846,7 +846,7 @@ body.has-mobile-bar {
    ========================================================================== */
 
 /* Statistiky – čtyři čísla oddělená svislými linkami
-   (počítání řídí efekty.js). Štítek nahoře ve stylu „01 — Služby“,
+   (počítání řídí efekty.js). Štítek nahoře v neproporcionálním písmu,
    pod ním číslo v barvě akcentu. Každá položka je odsazená od linky. */
 .stats {
   padding: 28px 0;
@@ -971,7 +971,7 @@ body.has-mobile-bar {
 
 /* 9. Záhlaví sekcí
    --------------------------------------------------------------------------
-   Číslo sekce + nadpis + perex, vpravo případně odkaz.
+   Štítek sekce + nadpis + perex, vpravo případně odkaz.
    ========================================================================== */
 
 .section-head {
@@ -990,14 +990,29 @@ body.has-mobile-bar {
   max-width: 700px;
 }
 
-/* „01 — Služby“ */
-.section-num {
+/* Štítek nad nadpisem sekce („SLUŽBY“, „NAŠE PRÁCE“…) –
+   stejný styl jako „Budoucnost je tu“ v hero: linka + prostrkaný text */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--accent);
 }
 
-.section--dark .section-num {
+.section-label::before {
+  content: '';
+  flex-shrink: 0;
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+}
+
+.section--dark .section-label {
   color: var(--accent-on-dark);
 }
 
