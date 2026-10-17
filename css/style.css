@@ -815,7 +815,7 @@ body.has-mobile-bar {
 
 /* Statistiky – čtyři čísla oddělená svislými linkami
    (počítání řídí efekty.js). Štítek nahoře ve stylu „01 — Služby“,
-   číslo tmavé, jen jednotka (+, %) má barvu akcentu. */
+   pod ním číslo v barvě akcentu. Každá položka je odsazená od linky. */
 .stats {
   padding: 40px 0;
   background: #FFFFFF;
@@ -842,25 +842,14 @@ body.has-mobile-bar {
 .stats__item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* obsah buňky na střed – řádek je vyvážený */
   gap: 10px;
-  padding: 4px 16px;
-  text-align: center;
+  padding: 4px 16px 4px 24px; /* odstup čísla od svislé linky vlevo */
   border-left: 1px solid var(--line);
 }
 
-/* První položka v řádku bez linky vlevo (mobil: 1. a 3., desktop: 1.) */
-.stats__item:nth-child(odd) {
-  border-left: 0;
-}
-
 @media (min-width: 900px) {
-  .stats__item:nth-child(odd) {
-    border-left: 1px solid var(--line);
-  }
-
-  .stats__item:first-child {
-    border-left: 0;
+  .stats__item {
+    padding-left: 40px;
   }
 }
 
@@ -874,20 +863,19 @@ body.has-mobile-bar {
 
 .stats__item dd {
   margin: 0;
-  font-size: clamp(34px, 4vw, 48px);
+  font-size: clamp(30px, 3.4vw, 40px);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--text);
+  color: var(--accent);
   font-variant-numeric: tabular-nums; /* číslice stejně široké – při počítání neposkakují */
 }
 
-/* „+“ a „%“ menší a v barvě akcentu */
+/* „+“ a „%“ o něco menší */
 .stats__unit {
   margin-left: 3px;
-  font-size: 0.7em;
+  font-size: 0.75em;
   font-weight: 600;
-  color: var(--accent);
 }
 
 /* „Pracujeme s“ – štítek vlevo, vpravo ubíhající řada */
