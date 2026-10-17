@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <title>Lukeš Lab – digitální zubní laboratoř, Praha 7 Holešovice</title>
+  <meta name="description" content="Digitální zubní laboratoř v Praze-Holešovicích. Korunky a můstky ze zirkonu, implantologická protetika, All-on-4/6 a titanové konstrukce. Návrh ve 3D, frézování na Zirkonzahn M1.">
+  <link rel="canonical" href="https://www.lukeslab.cz/">
+
+  <!-- Náhled při sdílení (Facebook, WhatsApp, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lukeš Lab – digitální zubní laboratoř">
+  <meta property="og:description" content="Digitální přesnost. Lidský dotek. Zubní laboratoř v Praze-Holešovicích.">
+  <meta property="og:image" content="video/hero-poster.jpg">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Písma: Manrope (text a nadpisy), IBM Plex Mono (technické štítky) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+
+  <!-- Strukturovaná data pro Google (název, adresa, telefon) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Lukeš Lab",
+    "description": "Digitální zubní laboratoř",
+    "url": "https://www.lukeslab.cz/",
+    "telephone": "+420604746757",
+    "email": "petr-lukes@seznam.cz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Přístavní 1244/43",
+      "addressLocality": "Praha 7 – Holešovice",
+      "postalCode": "170 00",
+      "addressCountry": "CZ"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.1043034,
+      "longitude": 14.4538413
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Petr Lukeš"
+    }
+  }
+  </script>
+</head>
+
+<body class="has-mobile-bar">
+
+<a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+
+<!-- ======================================================================
+     HLAVIČKA
+     Pořadí odkazů v menu odpovídá pořadí sekcí na stránce (01–06).
+     Stejná hlavička je i na ostatních stránkách – při změně upravit všude.
+     ====================================================================== -->
+<header class="header">
+  <div class="wrap header__inner">
+
+    <a class="logo" href="#top" aria-label="Lukeš Lab – na začátek stránky">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="#0B5C6B"/>
+        <path d="M11 12c0-2 1.6-3 3.2-3 1.2 0 2 .6 2.8.6s1.6-.6 2.8-.6c1.6 0 3.2 1 3.2 3 0 3-1.2 4.4-1.6 7.2-.3 2.2-.7 5.8-2.1 5.8-1.3 0-1.2-4.2-2.3-4.2s-1 4.2-2.3 4.2c-1.4 0-1.8-3.6-2.1-5.8-.4-2.8-1.6-4.2-1.6-7.2z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__name">Lukeš Lab</span>
+        <span class="logo__sub">Zubní laboratoř · Praha 7</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Hlavní navigace">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#sluzby">Služby</a></li>
+        <li><a class="nav__link" href="#spoluprace">Spolupráce</a></li>
+        <li><a class="nav__link" href="#modelovani">Modelování</a></li>
+        <li><a class="nav__link" href="#technologie">Technologie</a></li>
+        <li><a class="nav__link" href="#prace">Naše práce</a></li>
+        <li><a class="nav__link" href="#onas">O nás</a></li>
+        <li><a class="nav__link" href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href="tel:+420604746757">+420 604 746 757</a>
+      <a class="btn btn--primary header__cta" href="zakazka.html">Poslat zakázku</a>
+      <button class="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Otevřít menu">
+        <span class="burger__lines"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<main id="obsah">
+
+  <!-- ====================================================================
+       HERO – video na pozadí
+       - Video je předem převedené do černobílé, bez zvuku a zesvětlené
+         (viz tools/priprav-video.ps1). Při výměně videa stačí nahradit
+         soubory ve složce video/ a názvy nechat stejné.
+       - Na mobilu se načte menší verze (atribut media u <source>).
+       - aria-hidden: video je jen dekorace, čtečky ho přeskočí.
+       ==================================================================== -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+
+    <video class="hero__video" autoplay muted loop playsinline preload="metadata"
+           poster="video/hero-poster.jpg" aria-hidden="true">
+      <source src="video/hero-720.mp4" type="video/mp4" media="(max-width: 720px)">
+      <source src="video/hero-1280.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="wrap hero__content">
+      <p class="hero__eyebrow">Budoucnost je tu</p>
+
+      <h1 class="hero__title" id="hero-title">
+        Digitální přesnost.<br>
+        <span class="hero__title-accent">Lidský dotek.</span>
+      </h1>
+
+      <p class="hero__lead">
+        Digitální zubní laboratoř v&nbsp;Praze-Holešovicích. Navrhujeme ve 3D,
+        frézujeme na 5osé fréze Zirkonzahn M1 a&nbsp;ručně dokončujeme.
+        Výsledek? Práce, která sedí napoprvé.
+      </p>
+
+      <div class="hero__buttons">
+        <a class="btn btn--light" href="zakazka.html">
+          Poslat zakázku nebo STL
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#spoluprace">Jak pracujeme</a>
+      </div>
+
+      <div class="hero__bottom">
+        <!-- Čísla: [X] = doplní klient. Uvádět jen ověřené hodnoty. -->
+        <dl class="hero__stats">
+          <div class="hero__stat"><dt>simultánní frézování</dt><dd>5 os</dd></div>
+          <div class="hero__stat"><dt>přesnost dosedu</dt><dd>[X]&nbsp;µm</dd></div>
+          <div class="hero__stat"><dt>digitální návrh ve 3D</dt><dd>100&nbsp;%</dd></div>
+          <div class="hero__stat"><dt>od skenu k&nbsp;hotové práci</dt><dd>[X]&nbsp;dní</dd></div>
+        </dl>
+
+        <button class="hero__toggle" type="button" aria-label="Pozastavit video na pozadí">
+          <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       PÁS „PRACUJEME S“
+       ==================================================================== -->
+  <section class="strip" aria-label="Na čem stavíme">
+    <div class="wrap strip__inner">
+      <span class="strip__label">Pracujeme s</span>
+      <span class="strip__item">Zirkonzahn workflow</span>
+      <span class="strip__item">Prettau® zirkon</span>
+      <span class="strip__item">Titan Gr. 5</span>
+      <span class="strip__item">STL z intraorálních skenerů</span>
+      <span class="strip__item">[Implantátové systémy]</span>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       01 — SLUŽBY
+       Zatím má detail jen Implantologická protetika (sluzba.html).
+       Ostatní karty vedou na formulář, dokud nevzniknou jejich stránky.
+       ==================================================================== -->
+  <section class="section" id="sluzby" aria-labelledby="sluzby-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div class="section-head__text">
+          <span class="section-num">01 — Služby</span>
+          <h2 id="sluzby-title">Od jedné korunky po celou čelist na implantátech.</h2>
+          <p class="section-lead">Kompletní spektrum fixní i snímatelné protetiky pod jednou střechou. Bez externích dodavatelů, bez kompromisů v kvalitě.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <img class="card__img" src="img/mustek-frontal.jpg" width="1029" height="540" loading="lazy" alt="Zirkonový můstek, frontální pohled">
+          <div class="card__body">
+            <h3>Korunky a můstky</h3>
+            <p>Prémiový zirkon Prettau® s přirozenou translucencí a barevným přechodem jako u vlastního zubu. Monolitické pro maximální pevnost, vrstvené pro nejvyšší estetiku.</p>
+          </div>
+        </article>
+
+        <a class="card" href="sluzba.html">
+          <img class="card__img" src="img/korunka-sroub.jpg" width="411" height="512" loading="lazy" alt="Šroubovaná korunka na titanové bázi se šroubem">
+          <div class="card__body">
+            <h3>Implantologická protetika</h3>
+            <p>Šroubované korunky, individuální abutmenty a hybridní řešení na Ti-bázích. Přesné napojení, ideální emergenční profil a dlouhodobě stabilní výsledek.</p>
+            <span class="card__more">Detail služby →</span>
+          </div>
+        </a>
+
+        <article class="card">
+          <img class="card__img" src="img/all-on-6.jpg" width="1234" height="1190" loading="lazy" alt="Hybridní náhrada All-on-6 s titanovou konstrukcí">
+          <div class="card__body">
+            <h3>All-on-4 / All-on-6</h3>
+            <p>Celočelistní rekonstrukce na frézované titanové konstrukci. Lehké, pevné a esteticky přesvědčivé – nový úsměv, který pacient nepozná od vlastního.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card__img" src="img/bar-komponenty-2.jpg" width="1400" height="1168" loading="lazy" alt="Frézovaný titanový bar s komponenty">
+          <div class="card__body">
+            <h3>Titanové konstrukce a bary</h3>
+            <p>Frézováno z jednoho bloku titanu, bez pájení a bez pnutí. Pasivní dosedání na implantáty, které ocení každý implantolog.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card__img" src="img/titanova-konstrukce.jpg" width="916" height="636" loading="lazy" alt="Titanová kostra a zirkonové korunky">
+          <div class="card__body">
+            <h3>Snímatelné náhrady</h3>
+            <p>Celkové i částečné náhrady, skeletové konstrukce a opravy. Pohodlí pro pacienta, spolehlivost pro lékaře.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card__img" src="img/mustek-bw.jpg" width="1400" height="647" loading="lazy" alt="Můstek v černobílém detailu">
+          <div class="card__body">
+            <h3>Dlahy, šablony, wax-up</h3>
+            <p>Okluzní dlahy, chirurgické šablony pro navigovanou implantaci a diagnostické wax-upy, které ukážou výsledek dřív, než začne léčba.</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       02 — JAK SPOLUPRACUJEME
+       ==================================================================== -->
+  <section class="section" id="spoluprace" aria-labelledby="spoluprace-title" style="padding-top: 0">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div class="section-head__text">
+          <span class="section-num">02 — Jak spolupracujeme</span>
+          <h2 id="spoluprace-title">Plně digitální postup. Každý krok pod kontrolou.</h2>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">KROK 1</span>
+          <h3>Sken nebo otisk</h3>
+          <p>Pošlete STL z jakéhokoli intraorálního skeneru. Klasický otisk si u vás vyzvedneme.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">KROK 2</span>
+          <h3>CAD návrh ke schválení</h3>
+          <p>Obdržíte 3D náhled. Každé přání zapracujeme dřív, než se začne vyrábět.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">KROK 3</span>
+          <h3>Frézování a sintrace</h3>
+          <p>Zirkon i titan frézujeme in-house na Zirkonzahn M1 – bez čekání, bez prostředníků.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">KROK 4</span>
+          <h3>Ruční dokončení a předání</h3>
+          <p>Individuální barvení, glazura a výstupní kontrola na modelu. Hotovou práci doručíme až do ordinace.</p>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       03 — DIGITÁLNÍ MODELOVÁNÍ
+       ==================================================================== -->
+  <section class="section section--surface" id="modelovani" aria-labelledby="modelovani-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div class="section-head__text">
+          <span class="section-num">03 — Digitální modelování</span>
+          <h2 id="modelovani-title">Každá práce vzniká nejdřív ve 3D.</h2>
+          <p class="section-lead">Navrhujeme v softwaru Zirkonzahn.Modellier. Tvar, kontakty i skus vidíme na setiny milimetru, ještě než se fréza dotkne materiálu.</p>
+        </div>
+        <span class="modelling__flow">Zirkonzahn.Scan → Modellier → Nesting → M1</span>
+      </div>
+
+      <div class="modelling">
+        <figure class="modelling__media">
+          <img class="modelling__main" src="img/sw-modellier-mustek.jpg" width="1600" height="870" loading="lazy"
+               alt="Zirkonzahn.Modellier – návrh čtyř korunek s mapou vzdálenosti k antagonistům">
+          <div class="modelling__thumbs">
+            <img src="img/sw-modellier-korunka.jpg" width="780" height="420" loading="lazy"
+                 alt="Modellier – návrh jednotlivé korunky na modelu čelisti">
+            <!-- Sem později: <video autoplay muted loop playsinline> se záznamem obrazovky (10–15 s) -->
+            <div class="placeholder">[Screen-recording z Modellieru – 10–15 s smyčka]</div>
+          </div>
+          <figcaption class="modelling__caption">Barevná mapa ukazuje vzdálenost k antagonistům v mm – kontakty ladíme ještě před výrobou.</figcaption>
+        </figure>
+
+        <ol class="modelling__steps">
+          <li><span class="mono">01</span><div><strong>Import dat</strong><span>Intraorální sken (STL), sken otisku nebo modelu, případně DICOM a sken obličeje.</span></div></li>
+          <li><span class="mono">02</span><div><strong>Preparační hranice a artikulátor</strong><span>Software najde hranici preparace, model zařadíme do virtuálního artikulátoru.</span></div></li>
+          <li><span class="mono">03</span><div><strong>Návrh z knihovny zubů</strong><span>Tvar volíme z knihoven zubů, implantátových systémů, barů a attachmentů.</span></div></li>
+          <li><span class="mono">04</span><div><strong>Dolaďování a kontrola skusu</strong><span>Volné modelování hrbolků a kontaktních bodů, simulace žvýkacích pohybů.</span></div></li>
+          <li class="is-highlight"><span class="mono">05</span><div><strong>Náhled ke schválení</strong><span>Pošleme vám 3D náhled. Změny zapracujeme hned, bez nové výroby.</span></div></li>
+          <li><span class="mono">06</span><div><strong>Nesting a frézování</strong><span>Práci rozmístíme do polotovaru a posíláme rovnou na frézu M1.</span></div></li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       04 — TECHNOLOGIE (tmavá sekce)
+       Fotky M1 jsou od Zirkonzahnu – před spuštěním nahradit vlastními
+       nebo mít písemný souhlas.
+       ==================================================================== -->
+  <section class="section section--dark" id="technologie" aria-labelledby="technologie-title">
+    <div class="wrap tech">
+
+      <div class="tech__text">
+        <span class="section-num">04 — Technologie</span>
+        <h2 id="technologie-title">Jihotyrolská přesnost. Přímo v&nbsp;Holešovicích.</h2>
+        <p>Pracujeme na 5osé fréze Zirkonzahn M1 – špičce digitální zubní techniky. Simultánní frézování v pěti osách zvládne podsekřiviny, šikmé šroubové kanálky i nejjemnější anatomii fisur. Výsledkem je dosedání, které sedí napoprvé. A protože fréza stojí přímo v laboratoři, máme kvalitu i termín plně ve svých rukou.</p>
+
+        <dl class="tech__params">
+          <div><dt>Frézka</dt><dd>Zirkonzahn M1</dd></div>
+          <div><dt>Osy</dt><dd>5osé simultánní</dd></div>
+          <div><dt>Materiály</dt><dd>Zirkon · titan · PMMA · vosk</dd></div>
+          <div><dt>Software</dt><dd>[CAD software]</dd></div>
+        </dl>
+      </div>
+
+      <div class="tech__photos">
+        <figure class="tech__photo tech__photo--wide">
+          <img src="img/zz-m1-celek.jpg" width="1600" height="900" loading="lazy" alt="Zirkonzahn M1 – pracovní prostor s rotačním držákem polotovarů">
+          <figcaption>Zirkonzahn M1 · simultánní 5osé frézování</figcaption>
+        </figure>
+        <figure class="tech__photo">
+          <img src="img/zz-m1-detail.jpg" width="1600" height="900" loading="lazy" alt="Detail zásobníku nástrojů frézy">
+          <figcaption>Automatická výměna nástrojů</figcaption>
+        </figure>
+        <figure class="tech__photo">
+          <img src="img/frezka-m1.jpg" width="1400" height="1051" loading="lazy" alt="Naše fréza M1 v laboratoři v Holešovicích">
+          <figcaption>Naše M1 v Holešovicích</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       05 — NAŠE PRÁCE (galerie s filtrem)
+       Každá fotka má v data-category jednu nebo více kategorií:
+         zirkon | implantaty | titan
+       Nová fotka = zkopírovat jednu <figure> a upravit obrázek, popisek
+       a kategorie. Třídy --tall / --wide = dlaždice přes 2 řádky / sloupce.
+       ==================================================================== -->
+  <section class="section" id="prace" aria-labelledby="prace-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div class="section-head__text">
+          <span class="section-num">05 — Naše práce</span>
+          <h2 id="prace-title">Detaily, které nejsou vidět. Dokud nechybí.</h2>
+        </div>
+
+        <div class="filter" role="group" aria-label="Filtr galerie">
+          <button class="filter__btn" type="button" data-filter="all" aria-pressed="true">Vše</button>
+          <button class="filter__btn" type="button" data-filter="zirkon" aria-pressed="false">Zirkon</button>
+          <button class="filter__btn" type="button" data-filter="implantaty" aria-pressed="false">Implantáty</button>
+          <button class="filter__btn" type="button" data-filter="titan" aria-pressed="false">Titan</button>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <figure class="gallery__item gallery__item--tall" data-category="implantaty titan">
+          <img src="img/mustek-titan-baze.jpg" width="979" height="803" loading="lazy" alt="Můstek na titanové bázi">
+          <figcaption>Můstek · Ti-báze</figcaption>
+        </figure>
+        <figure class="gallery__item" data-category="zirkon implantaty">
+          <img src="img/korunky-sroubovane.jpg" width="667" height="573" loading="lazy" alt="Šroubované zirkonové korunky">
+          <figcaption>Šroubované korunky</figcaption>
+        </figure>
+        <figure class="gallery__item" data-category="implantaty titan">
+          <img src="img/abutmenty-mix.jpg" width="927" height="1086" loading="lazy" alt="Korunky s barevně anodizovanými abutmenty">
+          <figcaption>Abutmenty</figcaption>
+        </figure>
+        <figure class="gallery__item gallery__item--wide" data-category="titan zirkon">
+          <img src="img/mustek-titan-zespodu.jpg" width="886" height="780" loading="lazy" alt="Můstek s titanovou konstrukcí, pohled zespodu">
+          <figcaption>Titanová konstrukce</figcaption>
+        </figure>
+        <figure class="gallery__item" data-category="zirkon implantaty">
+          <img src="img/abutment-hybrid.jpg" width="467" height="301" loading="lazy" alt="Hybridní abutment se zirkonovou korunkou">
+          <figcaption>Hybridní abutment</figcaption>
+        </figure>
+        <figure class="gallery__item" data-category="titan zirkon">
+          <img src="img/set-korunky-bar.jpg" width="915" height="1400" loading="lazy" alt="Sada korunek a titanový bar v silikonovém klíči">
+          <figcaption>Bar + korunky</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       06 — O NÁS
+       ==================================================================== -->
+  <section class="section section--surface" id="onas" aria-labelledby="onas-title">
+    <div class="wrap about">
+
+      <!-- Nahradit: <img class="about__photo" src="img/tym.jpg" alt="…" style="object-fit: cover"> -->
+      <div class="about__photo placeholder">[Foto týmu / laboratoře v Holešovicích]</div>
+
+      <div class="about__text">
+        <span class="section-num">06 — O nás</span>
+        <h2 id="onas-title">Tým zubních techniků, pro které je přesnost posedlost.</h2>
+        <p class="section-lead">[Krátký příběh laboratoře – od kdy funguje, s jakými ordinacemi spolupracuje.] S každou ordinací jednáme napřímo, bez prostředníků: technik, který práci navrhuje, je ten, komu voláte.</p>
+
+        <ul class="team">
+          <li class="team__member">
+            <span class="team__avatar" aria-hidden="true"></span>
+            <div><strong>Petr Lukeš</strong><span>vedoucí laboratoře</span></div>
+          </li>
+          <li class="team__member">
+            <span class="team__avatar" aria-hidden="true"></span>
+            <div><strong>[Jméno Příjmení]</strong><span>CAD/CAM technik</span></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       CTA – výzva ke spolupráci
+       ==================================================================== -->
+  <section class="section" aria-label="Výzva ke spolupráci" style="padding-bottom: 64px">
+    <div class="wrap">
+      <div class="cta">
+        <div class="cta__text">
+          <h2>Vyzkoušejte, jak vypadá protetika bez kompromisů.</h2>
+          <p>Pošlete STL nebo si objednejte svoz otisku. Do [24 h] se ozveme s termínem a cenou – a první práce vás přesvědčí víc než jakákoli slova.</p>
+        </div>
+        <div class="cta__buttons">
+          <a class="btn btn--light" href="zakazka.html">Poslat zakázku</a>
+          <a class="btn btn--ghost" href="mailto:petr-lukes@seznam.cz?subject=%C5%BD%C3%A1dost%20o%20cen%C3%ADk">Ceník na vyžádání</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ======================================================================
+     PATIČKA (#kontakt)
+     ====================================================================== -->
+<footer class="footer" id="kontakt" aria-labelledby="kontakt-title">
+  <div class="wrap">
+    <h2 class="visually-hidden" id="kontakt-title">Kontakt</h2>
+
+    <div class="footer__grid">
+      <div class="footer__col footer__col--wide">
+        <span class="footer__name">Lukeš Lab</span>
+        <address>
+          Přístavní 1244/43<br>
+          170 00 Praha 7 – Holešovice
+        </address>
+        <span>Po–Pá [8:00–17:00]</span>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__title">Kontakt</span>
+        <a href="tel:+420604746757">+420 604 746 757</a>
+        <a href="mailto:petr-lukes@seznam.cz">petr-lukes@seznam.cz</a>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__title">Web</span>
+        <a href="#sluzby">Služby</a>
+        <a href="#spoluprace">Spolupráce</a>
+        <a href="#prace">Naše práce</a>
+        <a href="zakazka.html">Poslat zakázku</a>
+      </div>
+
+      <!-- Mapa z OpenStreetMap (bez sledovacích cookies, není potřeba cookie lišta) -->
+      <div class="footer__map">
+        <iframe
+          title="Mapa – Přístavní 1244/43, Praha 7"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.4478%2C50.1013%2C14.4598%2C50.1073&amp;layer=mapnik&amp;marker=50.1043034%2C14.4538413"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Lukeš Lab · Petr Lukeš, IČO 71190112</span>
+      <span>Zdravotnický prostředek na zakázku dle MDR · <a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a></span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Mobilní lišta – jen na telefonu (skrývá ji CSS od 720 px) -->
+<div class="mobile-bar">
+  <a class="btn btn--primary" href="zakazka.html">Poslat zakázku</a>
+  <a class="btn btn--secondary mobile-bar__call" href="tel:+420604746757" aria-label="Zavolat +420 604 746 757">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+  </a>
+</div>
+
+</body>
+</html>

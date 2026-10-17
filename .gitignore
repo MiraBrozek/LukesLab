@@ -1,0 +1,9 @@
+# Původní nezkomprimovaná videa z podkladů (21 MB) – web používá složku video/
+PoC/Video/
+PoC/img/*.mp4
+
+# Systémové soubory
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/

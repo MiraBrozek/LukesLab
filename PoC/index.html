@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage – zubní laboratoř – návrh</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0B5C6B}a:hover{color:#08434E}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;letter-spacing:.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;box-sizing:border-box}
+.btn-p{background:#0B5C6B;color:#FFFFFF}.btn-p:hover{background:#08434E;color:#FFFFFF}
+.btn-s{background:#FFFFFF;color:#14191D;border:1px solid #CBD3D8}.btn-s:hover{border-color:#14191D;color:#14191D}
+.card{background:#FFFFFF;border:1px solid #E3E7EA;border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:220px;object-fit:contain;background:#FFFFFF;display:block}
+.navl{color:#14191D;text-decoration:none;font-size:15px;font-weight:500;padding:12px 4px}
+</style>
+
+<style>html{scroll-behavior:smooth}@media (max-width:720px){h1{font-size:44px!important}h2{font-size:32px!important}header nav{display:none!important}}</style>
+</head>
+<body>
+
+<div style="font-family: Manrope, system-ui, sans-serif; color: #14191D; background: #FFFFFF; width: 100%">
+
+<header style="border-bottom: 1px solid #E3E7EA; background: rgba(255,255,255,0.92); position: sticky; top: 0; z-index: 10">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; min-height: 76px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #14191D">
+<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="9" fill="#0B5C6B"></rect><path d="M11 12c0-2 1.6-3 3.2-3 1.2 0 2 .6 2.8.6s1.6-.6 2.8-.6c1.6 0 3.2 1 3.2 3 0 3-1.2 4.4-1.6 7.2-.3 2.2-.7 5.8-2.1 5.8-1.3 0-1.2-4.2-2.3-4.2s-1 4.2-2.3 4.2c-1.4 0-1.8-3.6-2.1-5.8-.4-2.8-1.6-4.2-1.6-7.2z" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+<span style="display: flex; flex-direction: column; line-height: 1.1"><span style="font-weight: 800; font-size: 18px; letter-spacing: -0.01em">[NÁZEV] Dental Lab</span><span class="mono" style="font-size: 11px; color: #5A6670">Zubní laboratoř · Praha 7</span></span>
+</a>
+<nav aria-label="Hlavní navigace" style="display: flex; gap: 22px; flex-wrap: wrap">
+<a class="navl" href="#sluzby">Služby</a>
+<a class="navl" href="#technologie">Technologie</a>
+<a class="navl" href="#prace">Naše práce</a>
+<a class="navl" href="#spoluprace">Pro stomatology</a>
+<a class="navl" href="#onas">O nás</a>
+<a class="navl" href="#kontakt">Kontakt</a>
+</nav>
+<div style="display: flex; gap: 12px; align-items: center">
+<a href="tel:+420000000000" class="mono" style="font-size: 14px; color: #14191D; text-decoration: none; padding: 12px 0">+420 [TELEFON]</a>
+<a class="btn btn-p" href="zakazka.html">Poslat zakázku</a>
+</div>
+</div>
+</header>
+
+<section id="top" aria-label="Úvod" style="position: relative; min-height: 780px; display: flex; align-items: flex-end; overflow: hidden; background: #0B0F11; color: #FFFFFF">
+<video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/zz-m1-frezovani.jpg" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(0.62)"><source src="img/hero-video.mp4" type="video/mp4"></video>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(8,12,14,0.38)"></div>
+<div class="wrap" style="position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px">
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #CFE3E7; display: flex; align-items: center; gap: 12px"><span style="width: 32px; height: 1px; background: #CFE3E7; display: inline-block"></span>Budoucnost je tu</div>
+<h1 style="margin: 0; font-size: 84px; line-height: 0.98; letter-spacing: -0.045em; font-weight: 800; max-width: 980px">Digitální přesnost.<br><span style="color: #9FD0D8">Lidský dotek.</span></h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.6; color: #E1E7EA; max-width: 620px">Digitální zubní laboratoř v&#160;Praze-Holešovicích. Navrhujeme ve 3D, frézujeme na 5osé fréze Zirkonzahn M1 a&#160;ručně dokončujeme. Výsledek? Práce, která sedí napoprvé.</p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<a class="btn" href="zakazka.html" style="background: #FFFFFF; color: #0B0F11">Poslat zakázku nebo STL<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn" href="#modelovani" style="border: 1px solid rgba(255,255,255,0.6); color: #FFFFFF">Jak pracujeme</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(255,255,255,0.22); padding-top: 24px; margin-top: 24px">
+<div style="display: flex; gap: 48px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 30px; font-weight: 800">5 os</span><span style="font-size: 14px; color: #C3CCD1">simultánní frézování</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 30px; font-weight: 800">[X] µm</span><span style="font-size: 14px; color: #C3CCD1">přesnost dosedu</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 30px; font-weight: 800">100&#160;%</span><span style="font-size: 14px; color: #C3CCD1">digitální návrh ve 3D</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 30px; font-weight: 800">[X] dní</span><span style="font-size: 14px; color: #C3CCD1">od skenu k&#160;hotové práci</span></div>
+</div>
+<button id="heroToggle" aria-label="Pozastavit video na pozadí" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg></button>
+</div>
+</div>
+<span hidden class="mono" style="position: absolute; right: 24px; top: 96px; font-size: 11px; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.35); padding: 6px 10px; border-radius: 6px">&lt;video muted autoplay loop playsinline&gt; · černobíle · bez zvuku</span>
+</section>
+
+<section aria-label="Na čem stavíme" style="background: #F4F6F7; border-top: 1px solid #E3E7EA; border-bottom: 1px solid #E3E7EA">
+<div class="wrap" style="display: flex; flex-wrap: wrap; gap: 16px 48px; align-items: center; justify-content: space-between; padding-top: 22px; padding-bottom: 22px">
+<span class="mono" style="font-size: 13px; color: #5A6670">Pracujeme s</span>
+<span style="font-weight: 700; font-size: 16px; color: #2A333A">Zirkonzahn workflow</span>
+<span style="font-weight: 700; font-size: 16px; color: #2A333A">Prettau® zirkon</span>
+<span style="font-weight: 700; font-size: 16px; color: #2A333A">Titan Gr. 5</span>
+<span style="font-weight: 700; font-size: 16px; color: #2A333A">STL z intraorálních skenerů</span>
+<span style="font-weight: 700; font-size: 16px; color: #2A333A">[Implantátové systémy]</span>
+</div>
+</section>
+
+<section id="sluzby" style="padding: 96px 0 40px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<span class="mono" style="font-size: 13px; color: #0B5C6B">01 — Služby</span>
+<h2 style="margin: 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em">Od jedné korunky po celou čelist na implantátech.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5560">Kompletní spektrum fixní i snímatelné protetiky pod jednou střechou. Bez externích dodavatelů, bez kompromisů v kvalitě.</p>
+</div>
+<a href="sluzba.html" style="font-weight: 600; font-size: 15px; padding: 12px 0">Všechny služby a materiály →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px">
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/mustek-frontal.jpg" alt="Zirkonový můstek, frontální pohled">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">Korunky a můstky</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Prémiový zirkon Prettau® s přirozenou translucencí a barevným přechodem jako u vlastního zubu. Monolitické pro maximální pevnost, vrstvené pro nejvyšší estetiku.</p></div>
+</a>
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/korunka-sroub.jpg" alt="Šroubovaná korunka na titanové bázi se šroubem">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">Implantologická protetika</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Šroubované korunky, individuální abutmenty a hybridní řešení na Ti-bázích. Přesné napojení, ideální emergenční profil a dlouhodobě stabilní výsledek.</p></div>
+</a>
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/all-on-6.jpg" alt="Hybridní náhrada All-on-6 s titanovou konstrukcí">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">All-on-4 / All-on-6</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Celočelistní rekonstrukce na frézované titanové konstrukci. Lehké, pevné a esteticky přesvědčivé – nový úsměv, který pacient nepozná od vlastního.</p></div>
+</a>
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/bar-komponenty-2.jpg" alt="Frézovaný titanový bar s komponenty">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">Titanové konstrukce a bary</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Frézováno z jednoho bloku titanu, bez pájení a bez pnutí. Pasivní dosedání na implantáty, které ocení každý implantolog.</p></div>
+</a>
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/titanova-konstrukce.jpg" alt="Titanová kostra a zirkonové korunky">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">Snímatelné náhrady</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Celkové i částečné náhrady, skeletové konstrukce a opravy. Pohodlí pro pacienta, spolehlivost pro lékaře.</p></div>
+</a>
+<a href="sluzba.html" class="card" style="text-decoration: none; color: #14191D">
+<img src="img/mustek-bw.jpg" alt="Můstek v černobílém detailu">
+<div style="padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EEF1F3"><h3 style="margin: 0; font-size: 21px">Dlahy, šablony, wax-up</h3><p style="margin: 0; color: #5A6670; font-size: 15px; line-height: 1.55">Okluzní dlahy, chirurgické šablony pro navigovanou implantaci a diagnostické wax-upy, které ukážou výsledek dřív, než začne léčba.</p></div>
+</a>
+</div>
+</div>
+</section>
+
+<section id="spoluprace" style="padding: 80px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 680px">
+<span class="mono" style="font-size: 13px; color: #0B5C6B">02 — Jak spolupracujeme</span>
+<h2 style="margin: 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em">Plně digitální postup. Každý krok pod kontrolou.</h2>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden">
+<li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid #E3E7EA"><span class="mono" style="font-size: 13px; color: #0B5C6B">KROK 1</span><h3 style="margin: 0; font-size: 20px">Sken nebo otisk</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6670">Nahrajte STL z jakéhokoli intraorálního skeneru. Klasický otisk si u vás vyzvedneme.</p></li>
+<li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid #E3E7EA"><span class="mono" style="font-size: 13px; color: #0B5C6B">KROK 2</span><h3 style="margin: 0; font-size: 20px">CAD návrh ke schválení</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6670">Obdržíte 3D náhled. Každé přání zapracujeme dřív, než se začne vyrábět.</p></li>
+<li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid #E3E7EA"><span class="mono" style="font-size: 13px; color: #0B5C6B">KROK 3</span><h3 style="margin: 0; font-size: 20px">Frézování a sintrace</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6670">Zirkon i titan frézujeme in-house na Zirkonzahn M1 – bez čekání, bez prostředníků.</p></li>
+<li style="padding: 28px; display: flex; flex-direction: column; gap: 12px; background: #F4F6F7"><span class="mono" style="font-size: 13px; color: #0B5C6B">KROK 4</span><h3 style="margin: 0; font-size: 20px">Ruční dokončení a předání</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5A6670">Individuální barvení, glazura a výstupní kontrola na modelu. Hotovou práci doručíme až do ordinace.</p></li>
+</ol>
+</div>
+</section>
+
+<section id="modelovani" style="background: #F4F6F7; border-top: 1px solid #E3E7EA; padding: 96px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 700px">
+<span class="mono" style="font-size: 13px; color: #0B5C6B">03 — Digitální modelování</span>
+<h2 style="margin: 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em">Každá práce vzniká nejdřív ve 3D.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5560">Navrhujeme v softwaru Zirkonzahn.Modellier. Tvar, kontakty i skus vidíme na setiny milimetru, ještě než se fréza dotkne materiálu.</p>
+</div>
+<span class="mono" style="font-size: 12px; color: #5A6670; padding: 12px 0">Zirkonzahn.Scan → Modellier → Nesting → M1</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<figure style="margin: 0; flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<img src="img/sw-modellier-mustek.jpg" alt="Zirkonzahn.Modellier – návrh čtyř korunek s mapou vzdálenosti k antagonistům" style="width: 100%; border-radius: 20px; display: block; border: 1px solid #D5DCE0; aspect-ratio: 16 / 8.7; object-fit: cover">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<img src="img/sw-modellier-korunka.jpg" alt="Modellier – návrh jednotlivé korunky na modelu čelisti" style="width: 100%; border-radius: 14px; display: block; border: 1px solid #D5DCE0; aspect-ratio: 16 / 9; object-fit: cover">
+<div style="border-radius: 14px; border: 1px dashed #9CC4CB; background: #FFFFFF; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; font-size: 14px; color: #5A6670; aspect-ratio: 16 / 9; box-sizing: border-box">[Screen-recording z vašeho Modellieru – 10–15 s smyčka]</div>
+</div>
+<figcaption class="mono" style="font-size: 12px; color: #5A6670">Barevná mapa ukazuje vzdálenost k antagonistům v mm – kontakty ladíme ještě před výrobou.</figcaption>
+</figure>
+<ol style="flex: 2 1 340px; min-width: 0; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; background: #FFFFFF; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden">
+<li style="padding: 20px 24px; border-bottom: 1px solid #E3E7EA; display: flex; gap: 16px"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">01</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Import dat</strong><span style="font-size: 14px; line-height: 1.5; color: #5A6670">Intraorální sken (STL), sken otisku nebo modelu, případně DICOM a sken obličeje.</span></span></li>
+<li style="padding: 20px 24px; border-bottom: 1px solid #E3E7EA; display: flex; gap: 16px"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">02</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Preparační hranice a artikulátor</strong><span style="font-size: 14px; line-height: 1.5; color: #5A6670">Software najde hranici preparace, model zařadíme do virtuálního artikulátoru.</span></span></li>
+<li style="padding: 20px 24px; border-bottom: 1px solid #E3E7EA; display: flex; gap: 16px"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">03</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Návrh z knihovny zubů</strong><span style="font-size: 14px; line-height: 1.5; color: #5A6670">Tvar volíme z knihoven zubů, implantátových systémů, barů a attachmentů.</span></span></li>
+<li style="padding: 20px 24px; border-bottom: 1px solid #E3E7EA; display: flex; gap: 16px"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">04</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Dolaďování a kontrola skusu</strong><span style="font-size: 14px; line-height: 1.5; color: #5A6670">Volné modelování hrbolků a kontaktních bodů, simulace žvýkacích pohybů.</span></span></li>
+<li style="padding: 20px 24px; border-bottom: 1px solid #E3E7EA; display: flex; gap: 16px; background: #E6F0F2"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">05</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Náhled ke schválení</strong><span style="font-size: 14px; line-height: 1.5; color: #2A333A">Pošleme vám 3D náhled. Změny zapracujeme hned, bez nové výroby.</span></span></li>
+<li style="padding: 20px 24px; display: flex; gap: 16px"><span class="mono" style="font-size: 13px; color: #0B5C6B; padding-top: 3px">06</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Nesting a frézování</strong><span style="font-size: 14px; line-height: 1.5; color: #5A6670">Práci rozmístíme do polotovaru a posíláme rovnou na frézu M1.</span></span></li>
+</ol>
+</div>
+</div>
+</section>
+
+<section id="technologie" style="background: #0F1518; color: #FFFFFF; padding: 96px 0">
+<div class="wrap" style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<span class="mono" style="font-size: 13px; color: #8FC6CF">04 — Technologie</span>
+<h2 style="margin: 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em">Špičková technologie zŠvýcarská přesnost? Jihotyrolská. Přímo v&#160;Holešovicích.#160;Jižního Tyrolska. Přímo v&#160;Holešovicích.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #C3CCD1">Pracujeme na 5osé fréze Zirkonzahn M1 – špičce digitální zubní techniky. Simultánní frézování v pěti osách zvládne podsekřiviny, šikmé šroubové kanálky i nejjemnější anatomii fisur. Výsledkem je dosedání, které sedí napoprvé. A protože fréza stojí přímo v laboratoři, máme kvalitu i termín plně ve svých rukou.</p>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+<div style="border-top: 1px solid #2C363C; padding-top: 14px"><dt class="mono" style="font-size: 12px; color: #8FC6CF">Frézka</dt><dd style="margin: 6px 0 0; font-size: 17px; font-weight: 600">Zirkonzahn M1</dd></div>
+<div style="border-top: 1px solid #2C363C; padding-top: 14px"><dt class="mono" style="font-size: 12px; color: #8FC6CF">Osy</dt><dd style="margin: 6px 0 0; font-size: 17px; font-weight: 600">5osé simultánní</dd></div>
+<div style="border-top: 1px solid #2C363C; padding-top: 14px"><dt class="mono" style="font-size: 12px; color: #8FC6CF">Materiály</dt><dd style="margin: 6px 0 0; font-size: 17px; font-weight: 600">Zirkon · titan · PMMA · vosk</dd></div>
+<div style="border-top: 1px solid #2C363C; padding-top: 14px"><dt class="mono" style="font-size: 12px; color: #8FC6CF">Software</dt><dd style="margin: 6px 0 0; font-size: 17px; font-weight: 600">[CAD SOFTWARE]</dd></div>
+</dl>
+</div>
+<div style="flex: 1 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<figure style="margin: 0; grid-column: span 2; position: relative"><img src="img/zz-m1-celek.jpg" alt="Zirkonzahn M1 – pracovní prostor s rotačním držákem polotovarů" style="width: 100%; border-radius: 20px; display: block; aspect-ratio: 16 / 9; object-fit: cover"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: rgba(15,21,24,0.78); color: #FFFFFF; padding: 6px 10px; border-radius: 8px">Zirkonzahn M1 · simultánní 5osé frézování</figcaption></figure>
+<figure style="margin: 0; position: relative"><img src="img/zz-m1-detail.jpg" alt="Detail zásobníku nástrojů frézy" style="width: 100%; border-radius: 16px; display: block; aspect-ratio: 4 / 3; object-fit: cover"><figcaption class="mono" style="position: absolute; left: 10px; bottom: 10px; font-size: 11px; background: rgba(15,21,24,0.78); color: #FFFFFF; padding: 5px 8px; border-radius: 6px">Automatická výměna nástrojů</figcaption></figure>
+<figure style="margin: 0; position: relative"><img src="img/frezka-m1.jpg" alt="Naše fréza M1 v laboratoři v Holešovicích" style="width: 100%; border-radius: 16px; display: block; aspect-ratio: 4 / 3; object-fit: cover"><figcaption class="mono" style="position: absolute; left: 10px; bottom: 10px; font-size: 11px; background: rgba(15,21,24,0.78); color: #FFFFFF; padding: 5px 8px; border-radius: 6px">Naše M1 v Holešovicích</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section id="prace" style="padding: 96px 0">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 14px"><span class="mono" style="font-size: 13px; color: #0B5C6B">05 — Naše práce</span><h2 style="margin: 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em">Detaily, které nejsou vidět. Dokud nechybí.</h2></div>
+<div role="group" aria-label="Filtr galerie" style="display: flex; gap: 8px; flex-wrap: wrap">
+<button style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #14191D; background: #14191D; color: #FFFFFF; font: 600 14px Manrope, sans-serif">Vše</button>
+<button style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #CBD3D8; background: #FFFFFF; color: #14191D; font: 600 14px Manrope, sans-serif">Zirkon</button>
+<button style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #CBD3D8; background: #FFFFFF; color: #14191D; font: 600 14px Manrope, sans-serif">Implantáty</button>
+<button style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #CBD3D8; background: #FFFFFF; color: #14191D; font: 600 14px Manrope, sans-serif">Titan</button>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); grid-auto-rows: 260px; gap: 16px">
+<figure style="margin: 0; grid-row: span 2; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/mustek-titan-baze.jpg" alt="Můstek na titanové bázi" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Můstek · Ti-báze</figcaption></figure>
+<figure style="margin: 0; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/korunky-sroubovane.jpg" alt="Šroubované korunky" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Šroubované korunky</figcaption></figure>
+<figure style="margin: 0; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/abutmenty-mix.jpg" alt="Korunky s barevně anodizovanými abutmenty" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Abutmenty</figcaption></figure>
+<figure style="margin: 0; grid-column: span 2; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/mustek-titan-zespodu.jpg" alt="Můstek s titanovou konstrukcí zespodu" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Titanová konstrukce</figcaption></figure>
+<figure style="margin: 0; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/abutment-hybrid.jpg" alt="Hybridní abutment se zirkonovou korunkou" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Hybridní abutment</figcaption></figure>
+<figure style="margin: 0; border: 1px solid #E3E7EA; border-radius: 20px; overflow: hidden; position: relative"><img src="img/set-korunky-bar.jpg" alt="Sada korunek a bar v silikonovém klíči" style="width: 100%; height: 100%; object-fit: contain; display: block"><figcaption class="mono" style="position: absolute; left: 14px; bottom: 14px; font-size: 12px; background: #FFFFFF; padding: 6px 10px; border-radius: 8px">Bar + korunky</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section id="onas" style="background: #F4F6F7; padding: 96px 0">
+<div class="wrap" style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 420px; min-width: 0; aspect-ratio: 5 / 4; border-radius: 24px; background: #E3E7EA; display: flex; align-items: center; justify-content: center; color: #5A6670; font-size: 15px; text-align: center; padding: 24px; box-sizing: border-box">[Foto týmu / laboratoře v Holešovicích]</div>
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<span class="mono" style="font-size: 13px; color: #0B5C6B">06 — O nás</span>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.12; letter-spacing: -0.03em">Tým zubních techniků, pro které je přesnost posedlost.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5560">[Krátký příběh laboratoře – kdo ji vede, od kdy, s jakými ordinacemi spolupracuje.] S každou ordinací jednáme napřímo, bez prostředníků: technik, který práci navrhuje, je ten, komu voláte.</p>
+<div style="display: flex; gap: 20px; flex-wrap: wrap">
+<div style="display: flex; gap: 12px; align-items: center"><span style="width: 48px; height: 48px; border-radius: 50%; background: #D5DCE0; display: inline-block"></span><span style="display: flex; flex-direction: column"><strong style="font-size: 15px">[Jméno Příjmení]</strong><span style="font-size: 14px; color: #5A6670">vedoucí laboratoře</span></span></div>
+<div style="display: flex; gap: 12px; align-items: center"><span style="width: 48px; height: 48px; border-radius: 50%; background: #D5DCE0; display: inline-block"></span><span style="display: flex; flex-direction: column"><strong style="font-size: 15px">[Jméno Příjmení]</strong><span style="font-size: 14px; color: #5A6670">CAD/CAM technik</span></span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Výzva ke spolupráci" style="padding: 96px 0 64px">
+<div class="wrap">
+<div style="border-radius: 28px; background: #0B5C6B; color: #FFFFFF; padding: 56px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 620px"><h2 style="margin: 0; font-size: 38px; line-height: 1.12; letter-spacing: -0.03em">Vyzkoušejte, jak vypadá protetika bez kompromisů.</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; color: #D3E6E9">Pošlete STL nebo si objednejte svoz otisku. Do [24 h] se ozveme s termínem a cenou – a první práce vás přesvědčí víc než jakákoli slova.</p></div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap"><a class="btn" href="zakazka.html" style="background: #FFFFFF; color: #0B5C6B">Poslat zakázku</a><a class="btn" href="#kontakt" style="border: 1px solid #FFFFFF; color: #FFFFFF">Ceník na vyžádání</a></div>
+</div>
+</div>
+</section>
+
+<footer id="kontakt" style="border-top: 1px solid #E3E7EA; padding: 64px 0 40px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 12px"><strong style="font-size: 18px">[NÁZEV] Dental Lab s.r.o.</strong><span style="font-size: 15px; line-height: 1.6; color: #4A5560">[Ulice č. p.], 170 00 Praha 7 – Holešovice<br>IČO [00000000]</span><span style="font-size: 15px; color: #4A5560">Po–Pá [8:00–17:00]</span></div>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 12px; color: #5A6670">KONTAKT</span><a href="tel:+420000000000" style="font-size: 15px; padding: 4px 0">+420 [TELEFON]</a><a href="mailto:info@example.cz" style="font-size: 15px; padding: 4px 0">[info@domena.cz]</a></div>
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 12px; color: #5A6670">WEB</span><a href="#sluzby" style="font-size: 15px; padding: 4px 0">Služby</a><a href="#spoluprace" style="font-size: 15px; padding: 4px 0">Pro stomatology</a><a href="#prace" style="font-size: 15px; padding: 4px 0">Naše práce</a></div>
+<div style="flex: 2 1 320px; min-height: 180px; border-radius: 16px; background: #EEF1F3; display: flex; align-items: center; justify-content: center; color: #5A6670; font-size: 14px">[Mapa – Praha 7, Holešovice]</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #E3E7EA; padding-top: 20px; font-size: 13px; color: #5A6670"><span>© 2026 [NÁZEV] Dental Lab</span><span>Zdravotnický prostředek na zakázku dle MDR · Ochrana osobních údajů · Cookies</span></div>
+</div>
+</footer>
+
+</div>
+<script>
+(function(){var v=document.getElementById('heroVideo'),b=document.getElementById('heroToggle');if(!v||!b)return;
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.pause();}
+var pause=b.innerHTML,play='<svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M7 5v14l12-7z"></path></svg>';
+b.addEventListener('click',function(){if(v.paused){v.play();b.innerHTML=pause;b.setAttribute('aria-label','Pozastavit video na pozadí');}else{v.pause();b.innerHTML=play;b.setAttribute('aria-label','Spustit video na pozadí');}});})();
+</script>
+</body>
+</html>

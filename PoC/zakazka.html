@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poslat zakázku – návrh</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F6F7}
+a{color:#0B5C6B}
+.mono{font-family:'IBM Plex Mono',monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#14191D}
+input,select,textarea{font:500 15px Manrope,sans-serif;color:#14191D;border:1px solid #CBD3D8;border-radius:12px;padding:12px 14px;min-height:48px;box-sizing:border-box;background:#FFFFFF;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #0B5C6B;outline-offset:1px;border-color:#0B5C6B}
+.hint{font-size:13px;font-weight:400;color:#5A6670}
+</style>
+
+<style>html{scroll-behavior:smooth}@media (max-width:720px){h1{font-size:44px!important}h2{font-size:32px!important}header nav{display:none!important}}</style>
+</head>
+<body>
+
+<div style="font-family: Manrope, sans-serif; color: #14191D; width: 100%; background: #F4F6F7">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E3E7EA">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; min-height: 76px">
+<a href="index.html" style="font-weight: 800; font-size: 18px; color: #14191D; text-decoration: none; padding: 12px 0">[NÁZEV] Dental Lab</a>
+<a href="tel:+420000000000" class="mono" style="font-size: 14px; color: #14191D; text-decoration: none; padding: 12px 0">Raději zavolat: +420 [TELEFON]</a>
+</div>
+</header>
+
+<div id="sentBox" hidden>
+<section class="wrap" style="padding: 96px 24px; display: flex; justify-content: center">
+<div role="status" style="background: #FFFFFF; border-radius: 24px; padding: 48px; max-width: 560px; display: flex; flex-direction: column; gap: 16px; text-align: center; align-items: center">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #E6F0F2; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B5C6B" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<h1 style="margin: 0; font-size: 32px">Zakázka je u nás.</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A5560">Potvrzení jsme poslali na váš e-mail. Do [24 h] se ozveme s termínem a cenou. Číslo zakázky: <strong class="mono">ZL-2026-0142</strong></p>
+<button id="resetBtn" style="min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid #CBD3D8; background: #FFFFFF; font: 600 15px Manrope, sans-serif; cursor: pointer">Poslat další zakázku</button>
+</div>
+</section>
+</div>
+
+<div id="formBox">
+<section style="padding: 48px 0 96px">
+<div class="wrap" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<span class="mono" style="font-size: 13px; color: #0B5C6B">Pro stomatology</span>
+<h1 style="margin: 0; font-size: 44px; line-height: 1.08; letter-spacing: -0.03em">Poslat zakázku</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A5560">Nahrajte STL, nebo objednejte svoz otisku. Vyplnění zabere asi 2 minuty.</p>
+<ul style="list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: #2A333A">
+<li style="display: flex; gap: 10px"><span style="color: #0B5C6B; font-weight: 800">✓</span>CAD návrh ke schválení před výrobou</li>
+<li style="display: flex; gap: 10px"><span style="color: #0B5C6B; font-weight: 800">✓</span>Svoz a doručení po Praze [zdarma]</li>
+<li style="display: flex; gap: 10px"><span style="color: #0B5C6B; font-weight: 800">✓</span>Odpověď do [24 h] v pracovní dny</li>
+</ul>
+</div>
+
+<form style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 28px; box-sizing: border-box">
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="font-weight: 800; font-size: 18px; margin-bottom: 12px">1. Jak nám pošlete podklady?</legend>
+<div role="radiogroup" aria-label="Způsob předání" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<button type="button" id="optStl" aria-pressed="true" style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start; text-align: left; padding: 16px 18px; border-radius: 14px; border: 2px solid #0B5C6B; background: #E6F0F2; font-family: Manrope, sans-serif; color: #14191D; cursor: pointer; min-height: 44px"><strong style="font-size: 16px">Digitální sken (STL)</strong><span style="font-size: 13px; color: #5A6670; font-weight: 400">Nahrajete soubory přímo zde</span></button>
+<button type="button" id="optPickup" aria-pressed="false" style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start; text-align: left; padding: 16px 18px; border-radius: 14px; border: 2px solid #E3E7EA; background: #FFFFFF; font-family: Manrope, sans-serif; color: #14191D; cursor: pointer; min-height: 44px"><strong style="font-size: 16px">Svoz otisku</strong><span style="font-size: 13px; color: #5A6670; font-weight: 400">Přijedeme do ordinace</span></button>
+</div>
+<div id="stlBox">
+<label style="border: 2px dashed #9CC4CB; border-radius: 16px; background: #F6FAFB; padding: 28px; align-items: center; text-align: center; gap: 8px; cursor: pointer">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B5C6B" stroke-width="2" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"></path></svg>
+<span>Přetáhněte sem STL / PLY / ZIP nebo <span style="color: #0B5C6B; text-decoration: underline">vyberte soubory</span></span>
+<span class="hint">Horní, dolní čelist a skus · max. 500 MB</span>
+<input type="file" multiple style="position: absolute; width: 1px; height: 1px; opacity: 0; min-height: 0; padding: 0; border: 0">
+</label>
+</div>
+<div id="pickupBox" hidden>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label>Adresa ordinace<input type="text" placeholder="Ulice, Praha"></label>
+<label>Kdy vyzvednout<select><option>Dnes odpoledne</option><option>Zítra dopoledne</option><option>Jiný termín</option></select></label>
+</div>
+</div>
+</fieldset>
+
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
+<legend style="font-weight: 800; font-size: 18px; margin-bottom: 12px">2. Co vyrobíme</legend>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label>Typ práce<select><option>Korunka / můstek – zirkon</option><option>Šroubovaná korunka na implantátu</option><option>Individuální abutment</option><option>All-on-4 / All-on-6</option><option>Titanová konstrukce / bar</option><option>Snímatelná náhrada</option><option>Dlaha / šablona</option></select></label>
+<label>Zuby (FDI)<input type="text" placeholder="např. 14–16"></label>
+<label>Barva<input type="text" placeholder="např. A2 / 2M2"></label>
+<label>Požadovaný termín<input type="date"></label>
+</div>
+<label>Poznámka pro technika<textarea rows="3" placeholder="Implantátový systém, průměr, požadavky na tvar…" style="resize: vertical"></textarea></label>
+</fieldset>
+
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
+<legend style="font-weight: 800; font-size: 18px; margin-bottom: 12px">3. Ordinace</legend>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label>Lékař / ordinace<input type="text" autocomplete="organization"></label>
+<label>Kód pacienta<span class="hint">bez jména – kvůli GDPR</span><input type="text"></label>
+<label>E-mail<input type="email" autocomplete="email"></label>
+<label>Telefon<input type="tel" autocomplete="tel"></label>
+</div>
+</fieldset>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid #E3E7EA; padding-top: 24px">
+<span class="hint" style="max-width: 380px">Odesláním souhlasíte se zpracováním údajů pro účely zakázky.</span>
+<button type="button" id="sendBtn" style="min-height: 52px; padding: 0 28px; border-radius: 999px; border: 0; background: #0B5C6B; color: #FFFFFF; font: 700 16px Manrope, sans-serif; cursor: pointer">Odeslat zakázku</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+</div>
+<script>
+(function(){var on="display: flex; flex-direction: column; gap: 4px; align-items: flex-start; text-align: left; padding: 16px 18px; border-radius: 14px; border: 2px solid #0B5C6B; background: #E6F0F2; font-family: Manrope, sans-serif; color: #14191D; cursor: pointer; min-height: 44px",off="display: flex; flex-direction: column; gap: 4px; align-items: flex-start; text-align: left; padding: 16px 18px; border-radius: 14px; border: 2px solid #E3E7EA; background: #FFFFFF; font-family: Manrope, sans-serif; color: #14191D; cursor: pointer; min-height: 44px";function $(i){return document.getElementById(i)}
+function mode(stl){$('optStl').style.cssText=stl?on:off;$('optPickup').style.cssText=stl?off:on;$('optStl').setAttribute('aria-pressed',stl);$('optPickup').setAttribute('aria-pressed',!stl);$('stlBox').hidden=!stl;$('pickupBox').hidden=stl;}
+$('optStl').onclick=function(){mode(true)};$('optPickup').onclick=function(){mode(false)};
+$('sendBtn').onclick=function(){$('formBox').hidden=true;$('sentBox').hidden=false;window.scrollTo(0,0)};
+$('resetBtn').onclick=function(){$('formBox').hidden=false;$('sentBox').hidden=true};})();
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Lukeš Lab – formulář „Poslat zakázku“ (zakazka.html)
+   --------------------------------------------------------------------------
+   Web je čistě statický (bez PHP), proto formulář odesílá data přes službu
+   Web3Forms (https://web3forms.com). Ta je přepošle e-mailem laboratoři.
+
+   JAK FORMULÁŘ NAPOJIT:
+     1. Na https://web3forms.com zadejte e-mail laboratoře
+        → přijde „Access Key“ (dlouhý kód).
+     2. Vložte ho níže do WEB3FORMS_KEY.
+     3. Hotovo. Dokud je klíč prázdný, formulář běží v ukázkovém režimu:
+        projde celý postup, ale nic neodešle.
+
+   Co skript dělá:
+     1. Přepíná mezi variantou „STL“ a „Svoz otisku“
+     2. Kontroluje povinná pole a ukazuje chyby
+     3. Vygeneruje číslo zakázky (např. LL-261017-4821)
+     4. Odešle data a zobrazí potvrzení
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  /* ---- Nastavení --------------------------------------------------------- */
+
+  // Access Key z web3forms.com (prázdný = ukázkový režim)
+  var WEB3FORMS_KEY = '';
+
+  var WEB3FORMS_URL = 'https://api.web3forms.com/submit';
+
+
+  /* ---- Prvky na stránce -------------------------------------------------- */
+
+  var form = document.getElementById('order-form');
+  if (!form) return;
+
+  var orderBox = document.getElementById('order');
+  var sentBox = document.getElementById('sent');
+  var boxStl = document.getElementById('box-stl');
+  var boxPickup = document.getElementById('box-pickup');
+  var errorBox = document.getElementById('form-error');
+  var submitBtn = document.getElementById('submit-btn');
+
+
+  /* 1. Přepínání STL / Svoz otisku
+     ------------------------------------------------------------------------
+     Pole ve skryté variantě dostanou atribut disabled. Díky tomu
+     se neodesílají a prohlížeč je nekontroluje jako povinná.
+     ------------------------------------------------------------------------ */
+
+  function setFieldsEnabled(container, enabled) {
+    container.querySelectorAll('input, select, textarea').forEach(function (field) {
+      field.disabled = !enabled;
+      // Adresa je povinná jen u svozu
+      if (field.hasAttribute('data-required-for-pickup')) {
+        field.required = enabled;
+      }
+    });
+  }
+
+  function updateDeliveryMode() {
+    var pickup = form.elements['Způsob předání'].value === 'Svoz otisku';
+
+    boxStl.hidden = pickup;
+    boxPickup.hidden = !pickup;
+    setFieldsEnabled(boxStl, !pickup);
+    setFieldsEnabled(boxPickup, pickup);
+  }
+
+  form.querySelectorAll('input[name="Způsob předání"]').forEach(function (radio) {
+    radio.addEventListener('change', updateDeliveryMode);
+  });
+  updateDeliveryMode();
+
+
+  /* 2. Kontrola polí
+     ------------------------------------------------------------------------
+     Používáme vestavěnou validaci prohlížeče (required, type="email"…).
+     Třída was-validated v CSS obarví chybná pole červeně – přidáme ji
+     až po prvním pokusu o odeslání, ať uživatele nestrašíme předem.
+     ------------------------------------------------------------------------ */
+
+  function validate() {
+    form.classList.add('was-validated');
+
+    if (form.checkValidity()) return true;
+
+    // Přesun na první chybné pole a zobrazení bubliny s popisem chyby
+    var firstInvalid = form.querySelector(':invalid');
+    firstInvalid.focus();
+    firstInvalid.reportValidity();
+    return false;
+  }
+
+
+  /* 3. Číslo zakázky
+     ------------------------------------------------------------------------
+     Formát: LL-RRMMDD-XXXX (datum + 4 náhodné číslice).
+     Slouží jako reference v e-mailu i v potvrzení pro lékaře.
+     ------------------------------------------------------------------------ */
+
+  function createOrderNumber() {
+    var now = new Date();
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+    var date = String(now.getFullYear()).slice(2) + pad(now.getMonth() + 1) + pad(now.getDate());
+    var random = Math.floor(1000 + Math.random() * 9000);
+    return 'LL-' + date + '-' + random;
+  }
+
+
+  /* 4. Odeslání
+     ------------------------------------------------------------------------ */
+
+  function showError(message) {
+    errorBox.innerHTML = message;
+    errorBox.hidden = false;
+    errorBox.scrollIntoView({ block: 'center' });
+  }
+
+  function showConfirmation(orderNumber, isDemo) {
+    document.getElementById('order-number').textContent = orderNumber;
+    document.getElementById('demo-note').hidden = !isDemo;
+
+    orderBox.hidden = true;
+    sentBox.hidden = false;
+    window.scrollTo(0, 0);
+
+    // Focus na potvrzení, aby ho přečetla i čtečka obrazovky
+    sentBox.querySelector('.sent__box').focus();
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    errorBox.hidden = true;
+
+    if (!validate()) return;
+
+    var orderNumber = createOrderNumber();
+
+    // Data z formuláře → obyčejný objekt { "Název pole": "hodnota" }
+    var data = {};
+    new FormData(form).forEach(function (value, key) {
+      data[key] = value;
+    });
+
+    // Speciální pole pro Web3Forms (předmět, odesílatel, adresa pro odpověď)
+    data.access_key = WEB3FORMS_KEY;
+    data.subject = 'Nová zakázka ' + orderNumber + ' – ' + data['Ordinace'];
+    data.from_name = 'Web Lukeš Lab';
+    data.replyto = data.email;
+    data['Číslo zakázky'] = orderNumber;
+
+    // Ukázkový režim – formulář ještě není napojený
+    if (!WEB3FORMS_KEY) {
+      console.warn('Formulář není napojený (chybí WEB3FORMS_KEY v js/zakazka.js). Data:', data);
+      showConfirmation(orderNumber, true);
+      return;
+    }
+
+    // Během odesílání zablokujeme tlačítko (proti dvojímu kliknutí)
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Odesílám…';
+
+    fetch(WEB3FORMS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (response) { return response.json(); })
+      .then(function (result) {
+        if (!result.success) throw new Error(result.message);
+        showConfirmation(orderNumber, false);
+      })
+      .catch(function (error) {
+        console.error('Odeslání zakázky selhalo:', error);
+        showError(
+          'Zakázku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na ' +
+          '<a href="tel:+420604746757">+420 604 746 757</a> či napište na ' +
+          '<a href="mailto:petr-lukes@seznam.cz">petr-lukes@seznam.cz</a>.'
+        );
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Odeslat zakázku';
+      });
+  });
+
+
+  /* Tlačítko „Poslat další zakázku“ – vyčistí formulář a zobrazí ho znovu */
+  document.getElementById('new-order').addEventListener('click', function () {
+    form.reset();
+    form.classList.remove('was-validated');
+    updateDeliveryMode();
+
+    sentBox.hidden = true;
+    orderBox.hidden = false;
+    window.scrollTo(0, 0);
+  });
+})();
