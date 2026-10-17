@@ -185,10 +185,16 @@
           b.setAttribute('aria-pressed', String(b === button));
         });
 
-        // Skrýt / zobrazit fotky
+        // Skrýt / zobrazit fotky; zobrazené krátce „naskočí“ (CSS .is-entering)
         items.forEach(function (item) {
           var categories = item.getAttribute('data-category').split(' ');
           item.hidden = filter !== 'all' && categories.indexOf(filter) === -1;
+
+          if (!item.hidden) {
+            item.classList.remove('is-entering');
+            void item.offsetWidth; // restart animace
+            item.classList.add('is-entering');
+          }
         });
       });
     });

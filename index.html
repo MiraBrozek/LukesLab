@@ -24,9 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=3">
-  <script src="js/main.js?v=3" defer></script>
-  <script src="js/zakazka.js?v=3" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=4">
+  <script src="js/main.js?v=4" defer></script>
+  <script src="js/efekty.js?v=4" defer></script>
+  <script src="js/zakazka.js?v=4" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -160,8 +161,8 @@
       <p class="hero__eyebrow">Budoucnost je tu</p>
 
       <h1 class="hero__title" id="hero-title">
-        Digitální přesnost.<br>
-        <span class="hero__title-accent">Lidský dotek.</span>
+        <span class="hero__line">Digitální přesnost.</span>
+        <span class="hero__line hero__title-accent">Lidský dotek.</span>
       </h1>
 
       <p class="hero__lead">
@@ -179,11 +180,12 @@
       </div>
 
       <div class="hero__bottom">
-        <!-- Čísla: [X] = doplní klient. Uvádět jen ověřené hodnoty. -->
+        <!-- Čísla: [X] = doplní klient. Uvádět jen ověřené hodnoty.
+             data-count = číslo, ke kterému se při načtení „napočítá“ (efekty.js). -->
         <dl class="hero__stats">
-          <div class="hero__stat"><dt>simultánní frézování</dt><dd>5 os</dd></div>
+          <div class="hero__stat"><dt>simultánní frézování</dt><dd data-count="5" data-suffix=" os">5 os</dd></div>
           <div class="hero__stat"><dt>přesnost dosedu</dt><dd>[X]&nbsp;µm</dd></div>
-          <div class="hero__stat"><dt>digitální návrh ve 3D</dt><dd>100&nbsp;%</dd></div>
+          <div class="hero__stat"><dt>digitální návrh ve 3D</dt><dd data-count="100" data-suffix="&nbsp;%">100&nbsp;%</dd></div>
           <div class="hero__stat"><dt>od skenu k&nbsp;hotové práci</dt><dd>[X]&nbsp;dní</dd></div>
         </dl>
 
@@ -199,22 +201,57 @@
   <!-- ====================================================================
        PÁS „PRACUJEME S“
        ==================================================================== -->
+  <!-- ====================================================================
+       ČÍSLA – pás statistik pod hero
+       Čísla se při zobrazení napočítají od nuly (efekty.js).
+       data-count = cílové číslo, data-suffix = co je za ním.
+       !!! DOPLNIT skutečné hodnoty – kromě 98 % jsou zatím ukázkové !!!
+       (změnit data-count i text uvnitř <dd>)
+       ==================================================================== -->
+  <section class="stats" aria-label="Lukeš Lab v číslech">
+    <div class="wrap">
+      <dl class="stats__grid">
+        <div class="stats__item">
+          <dt>let zkušeností v oboru</dt>
+          <dd data-count="20" data-suffix="+">20+</dd>
+        </div>
+        <div class="stats__item">
+          <dt>dokončených zakázek</dt>
+          <dd data-count="5000" data-suffix="+">5&nbsp;000+</dd>
+        </div>
+        <div class="stats__item">
+          <dt>spolupracujících ordinací</dt>
+          <dd data-count="40" data-suffix="+">40+</dd>
+        </div>
+        <div class="stats__item">
+          <dt>přesnost</dt>
+          <dd data-count="98" data-suffix="&nbsp;%">98&nbsp;%</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <!-- Položky ubíhají dokola (efekty.js je zdvojí, aby smyčka navazovala).
+       Novou položku stačí přidat jako další <li>. -->
   <section class="strip" aria-label="Na čem stavíme">
     <div class="wrap strip__inner">
       <span class="strip__label">Pracujeme s</span>
-      <span class="strip__item">Zirkonzahn workflow</span>
-      <span class="strip__item">Prettau® zirkon</span>
-      <span class="strip__item">Titan Gr. 5</span>
-      <span class="strip__item">STL z intraorálních skenerů</span>
-      <span class="strip__item">[Implantátové systémy]</span>
+      <div class="strip__viewport">
+        <ul class="strip__track">
+          <li class="strip__item">Zirkonzahn workflow</li>
+          <li class="strip__item">Prettau® zirkon</li>
+          <li class="strip__item">Titan Gr. 5</li>
+          <li class="strip__item">STL z intraorálních skenerů</li>
+          <li class="strip__item">[Implantátové systémy]</li>
+        </ul>
+      </div>
     </div>
   </section>
 
 
   <!-- ====================================================================
        01 — SLUŽBY
-       Zatím má detail jen Implantologická protetika (sluzba.html).
-       Ostatní karty vedou na formulář, dokud nevzniknou jejich stránky.
        ==================================================================== -->
   <section class="section" id="sluzby" aria-labelledby="sluzby-title">
     <div class="wrap">
@@ -236,14 +273,13 @@
           </div>
         </article>
 
-        <a class="card" href="sluzba.html">
+        <article class="card">
           <img class="card__img" src="img/korunka-sroub.jpg" width="411" height="512" loading="lazy" alt="Šroubovaná korunka na titanové bázi se šroubem">
           <div class="card__body">
             <h3>Implantologická protetika</h3>
             <p>Šroubované korunky, individuální abutmenty a hybridní řešení na Ti-bázích. Přesné napojení, ideální emergenční profil a dlouhodobě stabilní výsledek.</p>
-            <span class="card__more">Detail služby →</span>
           </div>
-        </a>
+        </article>
 
         <article class="card">
           <img class="card__img" src="img/all-on-6.jpg" width="1234" height="1190" loading="lazy" alt="Hybridní náhrada All-on-6 s titanovou konstrukcí">
@@ -350,12 +386,14 @@
           <figcaption class="modelling__caption">Barevná mapa ukazuje vzdálenost k antagonistům v mm – kontakty ladíme ještě před výrobou.</figcaption>
         </figure>
 
+        <!-- Kroky se při zobrazení samy postupně zvýrazňují (efekty.js);
+             najetí myší nebo kliknutí vybere krok ručně. -->
         <ol class="modelling__steps">
           <li><span class="mono">01</span><div><strong>Import dat</strong><span>Intraorální sken (STL), sken otisku nebo modelu, případně DICOM a sken obličeje.</span></div></li>
           <li><span class="mono">02</span><div><strong>Preparační hranice a artikulátor</strong><span>Software najde hranici preparace, model zařadíme do virtuálního artikulátoru.</span></div></li>
           <li><span class="mono">03</span><div><strong>Návrh z knihovny zubů</strong><span>Tvar volíme z knihoven zubů, implantátových systémů, barů a attachmentů.</span></div></li>
           <li><span class="mono">04</span><div><strong>Dolaďování a kontrola skusu</strong><span>Volné modelování hrbolků a kontaktních bodů, simulace žvýkacích pohybů.</span></div></li>
-          <li class="is-highlight"><span class="mono">05</span><div><strong>Náhled ke schválení</strong><span>Pošleme vám 3D náhled. Změny zapracujeme hned, bez nové výroby.</span></div></li>
+          <li><span class="mono">05</span><div><strong>Náhled ke schválení</strong><span>Pošleme vám 3D náhled. Změny zapracujeme hned, bez nové výroby.</span></div></li>
           <li><span class="mono">06</span><div><strong>Nesting a frézování</strong><span>Práci rozmístíme do polotovaru a posíláme rovnou na frézu.</span></div></li>
         </ol>
       </div>
@@ -410,6 +448,7 @@
          zirkon | implantaty | titan
        Nová fotka = zkopírovat jednu <figure> a upravit obrázek, popisek
        a kategorie. Třídy --tall / --wide = dlaždice přes 2 řádky / sloupce.
+       Kliknutím se fotka zvětší (okno .lightbox dole na stránce, efekty.js).
        ==================================================================== -->
   <section class="section" id="prace" aria-labelledby="prace-title">
     <div class="wrap">
@@ -720,6 +759,31 @@
     </div>
   </div>
 </footer>
+
+
+<!-- Zvětšená fotka z galerie (otevírá efekty.js).
+     <dialog> sám řeší zavření klávesou Esc a zablokování stránky pod ním. -->
+<dialog class="lightbox" aria-label="Zvětšená fotka">
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" src="" alt="">
+    <figcaption class="lightbox__caption"></figcaption>
+  </figure>
+  <button class="lightbox__btn lightbox__close" type="button" aria-label="Zavřít">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox__btn lightbox__prev" type="button" aria-label="Předchozí fotka">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+  <button class="lightbox__btn lightbox__next" type="button" aria-label="Další fotka">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</dialog>
+
+
+<!-- Tlačítko „nahoru“ – objeví se po odjetí z úvodní obrazovky (efekty.js) -->
+<button class="to-top" type="button" aria-label="Zpět nahoru">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+</button>
 
 
 <!-- Mobilní lišta – jen na telefonu (skrývá ji CSS od 720 px) -->

@@ -6,11 +6,13 @@ zubní laboratoř Petra Lukeše v Praze-Holešovicích.
 ## Struktura
 
 ```
-index.html                  homepage (hero s videem, sekce 01–06, 07 formulář, kontakt)
-sluzba.html                 detail služby – šablona (Implantologická protetika)
+index.html                  celý web na jedné stránce (hero, čísla, sekce 01–06,
+                            07 formulář, kontakt)
 ochrana-osobnich-udaju.html zásady ochrany osobních údajů (pracovní text)
 css/style.css               všechny styly (barvy a rozměry nahoře v :root)
 js/main.js                  menu, video, filtr galerie, přepínač barev
+js/efekty.js                animace a interaktivní prvky (vyjíždění, počítání čísel,
+                            ubíhající pás, lightbox galerie, tlačítko nahoru)
 js/zakazka.js               logika formuláře „Poslat zakázku“ a odeslání
 img/                        fotky (názvy souborů zachovat při výměně)
 video/                      hero video (PC + výřez na výšku pro mobil) + postery
@@ -21,6 +23,9 @@ PoC/                        původní návrh a podklady (_claude_readme.md)
 ## Spuštění
 
 Stačí otevřít `index.html` v prohlížeči. Nic se nekompiluje ani neinstaluje.
+
+Po změně CSS nebo JS zvýšit číslo verze v odkazech (`style.css?v=4` → `?v=5`)
+ve všech HTML souborech – jinak mohou prohlížeče ještě chvíli používat starou kopii.
 
 ## Napojení formuláře
 
@@ -51,6 +56,8 @@ a funkci `initThemeSwitcher` v `js/main.js`.
 
 ## Co je potřeba doplnit
 
+Čísla v pásu statistik pod hero (roky, zakázky, ordinace) jsou zatím
+ukázková – doplnit v `index.html` (atribut `data-count` i text). 98 % je potvrzené.
 Vše v `[hranatých závorkách]` je placeholder: přesnost v µm, dodací lhůty,
 otevírací doba, implantátové systémy, CAD software, foto týmu, texty „O nás“.
 Fotky přístrojů, screenshoty Modellieru a video jsou od Zirkonzahnu –
