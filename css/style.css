@@ -714,8 +714,7 @@ body.has-mobile-bar {
 .hero__eyebrow::before {
   content: '';
   width: 12px;
-  height: 1px;
-  background: currentColor;
+  border-top: 1px solid currentColor; /* rámeček místo pozadí – viz .section-label::before */
 }
 
 .hero__title {
@@ -1008,8 +1007,10 @@ body.has-mobile-bar {
   content: '';
   flex-shrink: 0;
   width: 12px;
-  height: 1px;
-  background: currentColor;
+  /* Linka jako rámeček, ne jako 1px vysoké pozadí: tloušťku rámečku
+     prohlížeč zaokrouhlí na celé pixely obrazovky, takže je linka
+     všude stejně tenká (i při zvětšení Windows na 125 %) */
+  border-top: 1px solid currentColor;
 }
 
 .section--dark .section-label {
