@@ -842,25 +842,24 @@ body.has-mobile-bar {
 .stats__item {
   display: flex;
   flex-direction: column;
+  align-items: center; /* obsah buňky na střed – řádek je vyvážený */
   gap: 10px;
-  padding: 4px 24px;
+  padding: 4px 16px;
+  text-align: center;
   border-left: 1px solid var(--line);
 }
 
 /* První položka v řádku bez linky vlevo (mobil: 1. a 3., desktop: 1.) */
 .stats__item:nth-child(odd) {
-  padding-left: 0;
   border-left: 0;
 }
 
 @media (min-width: 900px) {
   .stats__item:nth-child(odd) {
-    padding-left: 24px;
     border-left: 1px solid var(--line);
   }
 
   .stats__item:first-child {
-    padding-left: 0;
     border-left: 0;
   }
 }
