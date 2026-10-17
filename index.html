@@ -24,10 +24,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=5">
-  <script src="js/main.js?v=5" defer></script>
-  <script src="js/efekty.js?v=5" defer></script>
-  <script src="js/zakazka.js?v=5" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=6">
+  <script src="js/main.js?v=6" defer></script>
+  <script src="js/efekty.js?v=6" defer></script>
+  <script src="js/zakazka.js?v=6" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -199,41 +199,41 @@
 
 
   <!-- ====================================================================
-       PÁS „PRACUJEME S“
-       ==================================================================== -->
-  <!-- ====================================================================
        ČÍSLA – pás statistik pod hero
        Čísla se při zobrazení napočítají od nuly (efekty.js).
-       data-count = cílové číslo, data-suffix = co je za ním.
+       data-count = cílové číslo; znak za číslem (+, %) je ve zvláštním <span>.
        !!! DOPLNIT skutečné hodnoty – kromě 98 % jsou zatím ukázkové !!!
-       (změnit data-count i text uvnitř <dd>)
+       (změnit data-count i číslo uvnitř <span>)
        ==================================================================== -->
   <section class="stats" aria-label="Lukeš Lab v číslech">
     <div class="wrap">
       <dl class="stats__grid">
         <div class="stats__item">
-          <dt>let zkušeností v oboru</dt>
-          <dd data-count="20" data-suffix="+">20+</dd>
+          <dt>Přesnost</dt>
+          <dd><span data-count="98">98</span><span class="stats__unit">%</span></dd>
         </div>
         <div class="stats__item">
-          <dt>dokončených zakázek</dt>
-          <dd data-count="5000" data-suffix="+">5&nbsp;000+</dd>
+          <dt>Let v oboru</dt>
+          <dd><span data-count="20">20</span><span class="stats__unit">+</span></dd>
         </div>
         <div class="stats__item">
-          <dt>spolupracujících ordinací</dt>
-          <dd data-count="40" data-suffix="+">40+</dd>
+          <dt>Dokončených zakázek</dt>
+          <dd><span data-count="5000">5&nbsp;000</span><span class="stats__unit">+</span></dd>
         </div>
         <div class="stats__item">
-          <dt>přesnost</dt>
-          <dd data-count="98" data-suffix="&nbsp;%">98&nbsp;%</dd>
+          <dt>Spolupracujících ordinací</dt>
+          <dd><span data-count="40">40</span><span class="stats__unit">+</span></dd>
         </div>
       </dl>
     </div>
   </section>
 
 
-  <!-- Položky ubíhají dokola (efekty.js je zdvojí, aby smyčka navazovala).
-       Novou položku stačí přidat jako další <li>. -->
+  <!-- ====================================================================
+       PÁS „PRACUJEME S“
+       Položky ubíhají dokola (efekty.js je zdvojí, aby smyčka navazovala).
+       Novou položku stačí přidat jako další <li>.
+       ==================================================================== -->
   <section class="strip" aria-label="Na čem stavíme">
     <div class="wrap strip__inner">
       <span class="strip__label">Pracujeme s</span>
