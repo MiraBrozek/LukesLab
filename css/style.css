@@ -2240,6 +2240,11 @@ body.has-mobile-bar {
   to   { opacity: 1; }
 }
 
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
 @keyframes pop-in {
   from { opacity: 0; transform: scale(0.96); }
   to   { opacity: 1; transform: none; }
@@ -2444,12 +2449,17 @@ body.has-mobile-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fade-in 0.25s both;
+  animation: fade-in 0.45s ease-out both;
 }
 
+/* Poloprůhledné pozadí – stránka pod ním zůstane vidět, jen rozmazaná */
 .lightbox::backdrop {
-  background: rgba(10, 14, 16, 0.88);
-  backdrop-filter: blur(4px);
+  background: rgba(10, 14, 16, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox[open]::backdrop {
+  animation: fade-in 0.45s ease-out both;
 }
 
 .lightbox__figure {
@@ -2469,14 +2479,20 @@ body.has-mobile-bar {
   border-radius: 16px;
 }
 
+/* Fotka plynule vyjede zespodu (při otevření i při přepnutí šipkou) */
 .lightbox__img.is-changing {
-  animation: pop-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: rise-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Tmavý štítek – pozadí je poloprůhledné, bílý text by nad světlou
+   sekcí zanikl */
 .lightbox__caption {
+  padding: 6px 10px;
   font-family: var(--font-mono);
   font-size: 13px;
   color: #FFFFFF;
+  background: rgba(15, 21, 24, 0.78);
+  border-radius: 8px;
 }
 
 .lightbox__btn {
