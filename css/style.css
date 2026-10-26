@@ -2398,6 +2398,13 @@ body.has-mobile-bar {
   transform: scale(1.05);
 }
 
+/* Fotky, které se kliknutím zvětší (lightbox, efekty.js) – kurzor lupy */
+.card__img,
+.modelling__media img,
+.tech__photo {
+  cursor: zoom-in;
+}
+
 /* Galerie – lupa, přiblížení, „naskočení“ po změně filtru */
 .gallery__item {
   cursor: zoom-in;
@@ -2494,6 +2501,12 @@ body.has-mobile-bar {
 .lightbox__close { top: 16px; right: 16px; }
 .lightbox__prev  { left: 16px; top: 50%; transform: translateY(-50%); }
 .lightbox__next  { right: 16px; top: 50%; transform: translateY(-50%); }
+
+/* Jediná fotka ve skupině – šipky nejsou potřeba */
+.lightbox.is-single .lightbox__prev,
+.lightbox.is-single .lightbox__next {
+  display: none;
+}
 
 /* Na mobilu šipky dole, ať nezakrývají fotku */
 @media (max-width: 720px) {

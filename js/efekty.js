@@ -284,17 +284,39 @@
   }
 
 
-  /* 6. Lightbox – zvětšená fotka z galerie
+  /* 6. Lightbox – zvětšená fotka
      ------------------------------------------------------------------------
      Kliknutí (nebo Enter) na fotku otevře <dialog class="lightbox">.
-     Šipky (na obrazovce i na klávesnici) přepínají mezi fotkami, které
-     jsou právě vidět podle filtru. Esc nebo klik vedle fotky zavře.
+     Fotky jsou ve skupinách podle sekce (LIGHTBOX_GROUPS); šipky (na
+     obrazovce i na klávesnici) přepínají jen v rámci skupiny – v galerii
+     jen mezi fotkami, které jsou právě vidět podle filtru.
+     Esc nebo klik vedle fotky zavře.
      ------------------------------------------------------------------------ */
+
+  var LIGHTBOX_GROUPS = [
+    '.gallery__item',          // Naše práce
+    '.card__img',              // Služby
+    '.modelling__media img',   // Digitální modelování
+    '.tech__photo'             // Technologie
+  ];
+
+  // Prvek, na který se kliká, může být <figure> s fotkou, nebo rovnou <img>
+  function lightboxImage(item) {
+    return item.tagName === 'IMG' ? item : item.querySelector('img');
+  }
+
+  // Popisek: figcaption fotky, u karet služeb nadpis karty, jinak alt
+  function lightboxCaption(item) {
+    var figcaption = item.querySelector('figcaption');
+    if (figcaption) return figcaption.textContent;
+    var card = item.closest('.card');
+    if (card) return card.querySelector('h3').textContent;
+    return lightboxImage(item).alt;
+  }
 
   function initLightbox() {
     var dialog = document.querySelector('.lightbox');
-    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery__item'));
-    if (!dialog || !items.length || typeof dialog.showModal !== 'function') return;
+    if (!dialog || typeof dialog.showModal !== 'function') return;
 
     var img = dialog.querySelector('.lightbox__img');
     var caption = dialog.querySelector('.lightbox__caption');
@@ -303,11 +325,11 @@
 
     function show(index) {
       current = (index + visible.length) % visible.length;
-      var source = visible[current].querySelector('img');
+      var source = lightboxImage(visible[current]);
 
       img.src = source.currentSrc || source.src;
       img.alt = source.alt;
-      caption.textContent = visible[current].querySelector('figcaption').textContent;
+      caption.textContent = lightboxCaption(visible[current]);
 
       // Restart animace prolnutí
       img.classList.remove('is-changing');
@@ -315,24 +337,28 @@
       img.classList.add('is-changing');
     }
 
-    function open(item) {
+    function open(items, item) {
       visible = items.filter(function (i) { return !i.hidden; });
+      dialog.classList.toggle('is-single', visible.length < 2);
       dialog.showModal();
       show(visible.indexOf(item));
     }
 
-    items.forEach(function (item) {
-      var label = item.querySelector('figcaption').textContent;
-      item.tabIndex = 0;
-      item.setAttribute('role', 'button');
-      item.setAttribute('aria-label', 'Zvětšit fotku: ' + label);
+    LIGHTBOX_GROUPS.forEach(function (selector) {
+      var items = Array.prototype.slice.call(document.querySelectorAll(selector));
 
-      item.addEventListener('click', function () { open(item); });
-      item.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          open(item);
-        }
+      items.forEach(function (item) {
+        item.tabIndex = 0;
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', 'Zvětšit fotku: ' + lightboxCaption(item));
+
+        item.addEventListener('click', function () { open(items, item); });
+        item.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            open(items, item);
+          }
+        });
       });
     });
 
@@ -341,6 +367,7 @@
     dialog.querySelector('.lightbox__next').addEventListener('click', function () { show(current + 1); });
 
     dialog.addEventListener('keydown', function (event) {
+      if (visible.length < 2) return;
       if (event.key === 'ArrowLeft') show(current - 1);
       if (event.key === 'ArrowRight') show(current + 1);
     });
