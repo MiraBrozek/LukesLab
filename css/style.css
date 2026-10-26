@@ -1117,14 +1117,14 @@ body.has-mobile-bar {
 }
 
 
-/* Proč s námi – 5 výhod pod kartami služeb: panel v silném rámečku,
+/* Proč s námi – 5 výhod pod kartami služeb: panel v rámečku,
    vlevo úvod na bílé, vpravo podbarvené body s ikonou v kolečku */
 .why {
   display: grid;
   margin-top: 56px;
   overflow: hidden;
   background: #FFFFFF;
-  border: 3px solid var(--accent);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-card);
 }
 
