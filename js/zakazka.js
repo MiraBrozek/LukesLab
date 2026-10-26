@@ -191,7 +191,7 @@
         console.error('Odeslání zakázky selhalo:', error);
         showError(
           'Zakázku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na ' +
-          '<a href="tel:+420604746757">+420 604 746 757</a> či napište na ' +
+          '<a href="tel:+420774652522">+420 774 652 522</a> či napište na ' +
           '<a href="mailto:petr-lukes@seznam.cz">petr-lukes@seznam.cz</a>.'
         );
       })
