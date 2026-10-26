@@ -92,6 +92,8 @@
     '.section-head',
     '.stats__item',
     '.card',
+    '.why__intro',
+    '.why__item',
     '.pricing',
     '.step',
     '.modelling__media',

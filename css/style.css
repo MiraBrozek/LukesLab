@@ -1117,6 +1117,77 @@ body.has-mobile-bar {
 }
 
 
+/* Proč s námi – 5 výhod pod kartami služeb: vlevo úvod, vpravo seznam */
+.why {
+  display: grid;
+  gap: 32px 64px;
+  margin-top: 72px;
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 960px) {
+  .why {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.why__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.why__intro h3 {
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.03em;
+}
+
+.why__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.why__item {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 6px 12px;
+  padding: 22px 0;
+}
+
+/* Linky jen mezi body; první bod začíná v úrovni štítku vlevo */
+.why__item:first-child {
+  padding-top: 0;
+}
+
+.why__item + .why__item {
+  border-top: 1px solid var(--line);
+}
+
+.why__num {
+  grid-row: span 2;
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.why__item h4 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.why__item p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+
 /* Ceník na vyžádání – zvýrazněný pruh hned za galerií „Naše práce“.
    Sekce nemá horní odsazení – galerie nad ní má vlastní. */
 .section--pricing {
