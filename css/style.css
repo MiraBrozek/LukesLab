@@ -1117,28 +1117,32 @@ body.has-mobile-bar {
 }
 
 
-/* Proč s námi – 5 výhod pod kartami služeb: podbarvený panel,
-   vlevo úvod, vpravo body s ikonou v kolečku */
+/* Proč s námi – 5 výhod pod kartami služeb: panel v silném rámečku,
+   vlevo úvod na bílé, vpravo podbarvené body s ikonou v kolečku */
 .why {
   display: grid;
-  gap: 32px 64px;
   margin-top: 56px;
-  padding: 40px 24px;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-line);
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 3px solid var(--accent);
   border-radius: var(--radius-card);
-}
-
-@media (min-width: 720px) {
-  .why {
-    padding: 56px;
-  }
 }
 
 @media (min-width: 960px) {
   .why {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: start;
+  }
+}
+
+.why__intro,
+.why__list {
+  padding: 36px 24px;
+}
+
+@media (min-width: 720px) {
+  .why__intro,
+  .why__list {
+    padding: 56px;
   }
 }
 
@@ -1155,8 +1159,8 @@ body.has-mobile-bar {
 
 .why__list {
   margin: 0;
-  padding: 0;
   list-style: none;
+  background: var(--accent-soft);
 }
 
 .why__item {
