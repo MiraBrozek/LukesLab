@@ -1117,13 +1117,22 @@ body.has-mobile-bar {
 }
 
 
-/* Proč s námi – 5 výhod pod kartami služeb: vlevo úvod, vpravo seznam */
+/* Proč s námi – 5 výhod pod kartami služeb: podbarvený panel,
+   vlevo úvod, vpravo body s ikonou v kolečku */
 .why {
   display: grid;
   gap: 32px 64px;
-  margin-top: 72px;
-  padding-top: 56px;
-  border-top: 1px solid var(--line);
+  margin-top: 56px;
+  padding: 40px 24px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+}
+
+@media (min-width: 720px) {
+  .why {
+    padding: 56px;
+  }
 }
 
 @media (min-width: 960px) {
@@ -1152,8 +1161,8 @@ body.has-mobile-bar {
 
 .why__item {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 6px 12px;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 4px 20px;
   padding: 22px 0;
 }
 
@@ -1162,17 +1171,41 @@ body.has-mobile-bar {
   padding-top: 0;
 }
 
-.why__item + .why__item {
-  border-top: 1px solid var(--line);
+.why__item:last-child {
+  padding-bottom: 0;
 }
 
-.why__num {
+.why__item + .why__item {
+  border-top: 1px solid var(--accent-line);
+}
+
+/* Ikona v bílém kolečku (u prvního bodu místo ikony číslo 25) */
+.why__icon {
   grid-row: span 2;
-  padding-top: 4px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FFFFFF;
   color: var(--accent);
+}
+
+.why__icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.why__icon--num {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .why__item h4 {
