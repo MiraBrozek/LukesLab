@@ -997,7 +997,7 @@ body.has-mobile-bar {
 .strip__track.is-marquee {
   flex-wrap: nowrap;
   width: max-content;
-  animation: marquee 45s linear infinite; /* delší pás = delší doba, ať rychlost zůstane stejná */
+  animation: marquee 28s linear infinite; /* delší pás = delší doba, ať rychlost zůstane stejná */
 }
 
 /* Při najetí myší nebo po kliknutí (třída .is-paused z efekty.js) se pás zastaví */
