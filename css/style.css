@@ -2454,7 +2454,7 @@ body.has-mobile-bar {
 
 /* Poloprůhledné pozadí – stránka pod ním zůstane vidět, jen rozmazaná */
 .lightbox::backdrop {
-  background: rgba(10, 14, 16, 0.55);
+  background: rgba(10, 14, 16, 0.72);
   backdrop-filter: blur(6px);
 }
 
