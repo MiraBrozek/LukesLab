@@ -100,7 +100,7 @@
     '.modelling__steps',
     '.tech__text',
     '.tech__photo',
-    '.gallery__item',
+    '.carousel',
     '.about__photo',
     '.about__text',
     '.order__intro',
@@ -379,6 +379,55 @@
   }
 
 
+  /* 6b. Karusel „Naše práce“
+     ------------------------------------------------------------------------
+     Šipky posunou řadu fotek o jednu fotku. Na začátku a na konci se šipka
+     na tu stranu schová. Po změně filtru (main.js) se řada vrátí na začátek.
+     ------------------------------------------------------------------------ */
+
+  function initCarousel() {
+    var carousel = document.querySelector('.carousel');
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.gallery');
+    var prev = carousel.querySelector('.carousel__btn--prev');
+    var next = carousel.querySelector('.carousel__btn--next');
+
+    // Posun = šířka jedné fotky + mezera mezi fotkami
+    function step() {
+      var item = track.querySelector('.gallery__item:not([hidden])');
+      if (!item) return track.clientWidth;
+      return item.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+    }
+
+    function update() {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    }
+
+    function move(direction) {
+      track.scrollBy({ left: direction * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    prev.addEventListener('click', function () { move(-1); });
+    next.addEventListener('click', function () { move(1); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    document.querySelectorAll('.filter__btn').forEach(function (button) {
+      button.addEventListener('click', function () {
+        // Až main.js skryje / zobrazí fotky
+        setTimeout(function () {
+          track.scrollLeft = 0;
+          update();
+        }, 0);
+      });
+    });
+
+    update();
+  }
+
+
   /* 7. Tlačítko „nahoru“
      ------------------------------------------------------------------------ */
 
@@ -406,5 +455,6 @@
   initMarquee();
   initModellingTour();
   initLightbox();
+  initCarousel();
   initBackToTop();
 })();

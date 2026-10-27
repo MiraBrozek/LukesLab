@@ -27,16 +27,16 @@
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
-  <!-- Písma: Manrope (text a nadpisy), IBM Plex Mono (technické štítky) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <!-- Písma: Manrope (text a nadpisy), IBM Plex Mono (technické štítky) –
+       soubory ve složce fonts/, načítá je style.css. Hlavní písmo se stáhne
+       hned, aby text neproblikl náhradním písmem. -->
+  <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=71">
+  <link rel="stylesheet" href="css/style.css?v=72">
   <script src="js/main.js?v=57" defer></script>
-  <script src="js/efekty.js?v=59" defer></script>
+  <script src="js/efekty.js?v=60" defer></script>
   <script src="js/zakazka.js?v=58" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
@@ -228,11 +228,11 @@
       </div>
 
       <div class="hero__bottom">
-        <!-- Čísla: uvádět jen ověřené hodnoty (přesnost dosedu < 50 µm = odhad, potvrdit s P. Lukešem).
+        <!-- Čísla: uvádět jen ověřené hodnoty (20+ zakázek týdně = odhad podle provozu).
              data-count = číslo, ke kterému se při načtení „napočítá“ (efekty.js). -->
         <dl class="hero__stats">
           <div class="hero__stat"><dt>simultánní frézování</dt><dd data-count="5" data-suffix=" os">5 os</dd></div>
-          <div class="hero__stat"><dt>přesnost dosedu</dt><dd>&lt;&nbsp;50&nbsp;µm</dd></div>
+          <div class="hero__stat"><dt>zakázek každý týden</dt><dd data-count="20" data-suffix="+">20+</dd></div>
           <div class="hero__stat"><dt>digitální návrh ve 3D</dt><dd data-count="100" data-suffix="&nbsp;%">100&nbsp;%</dd></div>
           <div class="hero__stat"><dt>od skenu k&nbsp;hotové práci</dt><dd data-count="3" data-suffix="&nbsp;dny">3&nbsp;dny</dd></div>
         </dl>
@@ -552,31 +552,41 @@
         </div>
       </div>
 
-      <div class="gallery">
-        <figure class="gallery__item gallery__item--tall" data-category="implantaty titan">
-          <img src="img/mustek-titan-baze.jpg" width="979" height="803" loading="lazy" alt="Můstek na titanové bázi">
-          <figcaption>Můstek · Ti-báze</figcaption>
-        </figure>
-        <figure class="gallery__item" data-category="zirkon implantaty">
-          <img src="img/korunky-sroubovane.jpg" width="667" height="573" loading="lazy" alt="Šroubované zirkonové korunky">
-          <figcaption>Šroubované korunky</figcaption>
-        </figure>
-        <figure class="gallery__item" data-category="implantaty titan">
-          <img src="img/abutmenty-mix.jpg" width="927" height="1086" loading="lazy" alt="Korunky s barevně anodizovanými abutmenty">
-          <figcaption>Abutmenty</figcaption>
-        </figure>
-        <figure class="gallery__item gallery__item--wide" data-category="titan zirkon">
-          <img src="img/mustek-titan-zespodu.jpg" width="886" height="780" loading="lazy" alt="Můstek s titanovou konstrukcí, pohled zespodu">
-          <figcaption>Titanová konstrukce</figcaption>
-        </figure>
-        <figure class="gallery__item" data-category="zirkon implantaty">
-          <img src="img/abutment-hybrid.jpg" width="467" height="301" loading="lazy" alt="Hybridní abutment se zirkonovou korunkou">
-          <figcaption>Hybridní abutment</figcaption>
-        </figure>
-        <figure class="gallery__item" data-category="titan zirkon">
-          <img src="img/set-korunky-bar.jpg" width="915" height="1400" loading="lazy" alt="Sada korunek a titanový bar v silikonovém klíči">
-          <figcaption>Bar + korunky</figcaption>
-        </figure>
+      <!-- Karusel: fotky vedle sebe, posouvá se šipkami nebo tahem prstu
+           (efekty.js). Kliknutím se fotka zvětší. -->
+      <div class="carousel">
+        <div class="gallery">
+          <figure class="gallery__item gallery__item--tall" data-category="implantaty titan">
+            <img src="img/mustek-titan-baze.jpg" width="979" height="803" loading="lazy" alt="Můstek na titanové bázi">
+            <figcaption>Můstek · Ti-báze</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="zirkon implantaty">
+            <img src="img/korunky-sroubovane.jpg" width="667" height="573" loading="lazy" alt="Šroubované zirkonové korunky">
+            <figcaption>Šroubované korunky</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="implantaty titan">
+            <img src="img/abutmenty-mix.jpg" width="927" height="1086" loading="lazy" alt="Korunky s barevně anodizovanými abutmenty">
+            <figcaption>Abutmenty</figcaption>
+          </figure>
+          <figure class="gallery__item gallery__item--wide" data-category="titan zirkon">
+            <img src="img/mustek-titan-zespodu.jpg" width="886" height="780" loading="lazy" alt="Můstek s titanovou konstrukcí, pohled zespodu">
+            <figcaption>Titanová konstrukce</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="zirkon implantaty">
+            <img src="img/abutment-hybrid.jpg" width="467" height="301" loading="lazy" alt="Hybridní abutment se zirkonovou korunkou">
+            <figcaption>Hybridní abutment</figcaption>
+          </figure>
+          <figure class="gallery__item" data-category="titan zirkon">
+            <img src="img/set-korunky-bar.jpg" width="915" height="1400" loading="lazy" alt="Sada korunek a titanový bar v silikonovém klíči">
+            <figcaption>Bar + korunky</figcaption>
+          </figure>
+        </div>
+        <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Předchozí fotky">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="carousel__btn carousel__btn--next" type="button" aria-label="Další fotky">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
       </div>
 
     </div>
@@ -802,8 +812,8 @@
 
           <div class="form__footer">
             <span class="field__hint">
-              Pole s <span class="field__req">*</span> jsou povinná. Odesláním souhlasíte
-              se&nbsp;<a href="ochrana-osobnich-udaju.html">zpracováním&nbsp;údajů</a> pro účely zakázky.
+              Pole s <span class="field__req">*</span> jsou povinná. Údaje zpracujeme
+              podle&nbsp;<a href="ochrana-osobnich-udaju.html">zásad&nbsp;ochrany&nbsp;osobních&nbsp;údajů</a>.
             </span>
             <button class="btn btn--primary btn--big" type="submit" id="submit-btn">Odeslat zakázku</button>
           </div>
