@@ -17,7 +17,7 @@ js/zakazka.js               logika formuláře „Poslat zakázku“ a odeslán�
 img/                        fotky (názvy souborů zachovat při výměně)
 video/                      hero video (PC + výřez na výšku pro mobil) + postery
 tools/priprav-video.ps1     převod nového videa (černobílé, světlejší, bez zvuku)
-PoC/                        původní návrh a podklady (_claude_readme.md)
+PoC/                        původní návrh a podklady (zadani.md)
 ```
 
 ## Spuštění

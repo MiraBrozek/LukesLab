@@ -113,7 +113,6 @@ Prémiový, sebevědomý, technicky přesný. **Žádná nepodložená čísla.*
 
 - Fotky stroje M1 a screenshoty Modellieru jsou od Zirkonzahnu (vodoznak „Zirkonzahn Worldwide“) a video frézování také. **Před spuštěním nahradit vlastními**, nebo mít písemný souhlas Zirkonzahnu či distributora.
 - Produktové fotky jsou laboratoře, s pozadím upraveným na bílé.
-- Fotka All-on-X s označením „generováno AI“ se nepoužívá.
 
 ## Chybí od klienta
 
