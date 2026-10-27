@@ -4,16 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- SEO -->
-  <title>Lukeš Lab – digitální zubní laboratoř, Praha 7 Holešovice</title>
-  <meta name="description" content="Digitální zubní laboratoř v Praze-Holešovicích. Korunky a můstky ze zirkonu, implantologická protetika, All-on-4/6 a titanové konstrukce. Návrh ve 3D, frézování na přístrojích Zirkonzahn. Příjem zakázek v Praze i v Plzni a okolí.">
+  <!-- SEO
+       Titulek do ~60 znaků, popis do ~155 znaků (víc Google ve výsledcích ořízne).
+       Adresa webu www.lukeslab.cz – při jiné doméně změnit tady, v og:url,
+       og:image, ve strukturovaných datech níže, v robots.txt a sitemap.xml. -->
+  <title>Zubní laboratoř Praha 7 – zirkon, e.max, implantáty | Lukeš Lab</title>
+  <meta name="description" content="Zubní laboratoř v Praze-Holešovicích s 25 lety praxe. Zirkon Prettau, IPS e.max, implantologická protetika a titanové konstrukce. Svoz zakázek v Praze i Plzni.">
   <link rel="canonical" href="https://www.lukeslab.cz/">
+  <meta name="theme-color" content="#0B5C6B">
 
-  <!-- Náhled při sdílení (Facebook, WhatsApp, LinkedIn…) -->
+  <!-- Náhled při sdílení (Facebook, WhatsApp, LinkedIn…) – obrázek musí mít celou adresu -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Lukeš Lab – digitální zubní laboratoř">
-  <meta property="og:description" content="Digitální přesnost. Lidský dotek. Zubní laboratoř v Praze-Holešovicích.">
-  <meta property="og:image" content="video/hero-poster-pc.jpg">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:site_name" content="Lukeš Lab">
+  <meta property="og:url" content="https://www.lukeslab.cz/">
+  <meta property="og:title" content="Lukeš Lab – zubní laboratoř Praha 7">
+  <meta property="og:description" content="Digitální přesnost. Lidský dotek. Zirkon, e.max a implantologická protetika z laboratoře v Praze-Holešovicích.">
+  <meta property="og:image" content="https://www.lukeslab.cz/video/hero-poster-pc.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
@@ -38,14 +48,24 @@
     } catch (e) {}
   </script>
 
-  <!-- Strukturovaná data pro Google (název, adresa, telefon) -->
+  <!-- Strukturovaná data pro Google (název, adresa, telefon, služby) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": "https://www.lukeslab.cz/#laborator",
     "name": "Lukeš Lab",
-    "description": "Digitální zubní laboratoř",
+    "legalName": "Petr Lukeš, zubní laboratoř",
+    "description": "Digitální zubní laboratoř v Praze-Holešovicích – zirkon, IPS e.max, implantologická protetika, titanové konstrukce a snímatelné náhrady.",
     "url": "https://www.lukeslab.cz/",
+    "image": "https://www.lukeslab.cz/video/hero-poster-pc.jpg",
+    "logo": "https://www.lukeslab.cz/img/favicon.svg",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "IČO",
+      "value": "71190112"
+    },
+    "foundingDate": "2003",
     "telephone": "+420774652522",
     "email": "petr-lukes@seznam.cz",
     "address": {
@@ -61,7 +81,24 @@
       "longitude": 14.4538413
     },
     "areaServed": ["Praha", "Plzeň"],
-    "openingHours": "Mo-Fr 07:00-17:00",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Služby zubní laboratoře",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Korunky, můstky a fazety (zirkon Prettau, IPS e.max)" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implantologická protetika" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "All-on-4 / All-on-6" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Titanové konstrukce a bary" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snímatelné náhrady" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dlahy, chirurgické šablony, wax-up" } }
+      ]
+    },
     "founder": {
       "@type": "Person",
       "name": "Petr Lukeš"
@@ -856,8 +893,11 @@
       <a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>
     </div>
 
-    <!-- Copyright a pod ním zvýrazněné upozornění na autorská práva k webu -->
-    <p class="footer__copyright">© <span data-year>2026</span> Lukeš Lab · Petr Lukeš, IČO 71190112</p>
+    <!-- Údaje o podnikateli (§ 435 občanského zákoníku): jméno, sídlo, IČO
+         a údaj o zápisu do veřejné evidence – ověřeno v ARES. -->
+    <p class="footer__copyright">© <span data-year>2026</span> Lukeš Lab · Petr Lukeš, zubní laboratoř ·
+      IČO 71190112 · Přístavní 1244/43, 170 00 Praha 7 · zapsán v Národním registru
+      poskytovatelů zdravotních služeb · neplátce DPH</p>
     <p class="footer__legal">
       Návrh, design a obsah webu jsou vlastnictvím Zubní laboratoře – Petr Lukeš
       a jsou chráněny autorským zákonem (č. 121/2000 Sb.).

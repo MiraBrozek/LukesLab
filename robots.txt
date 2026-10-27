@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Původní návrh webu – nepatří do vyhledávání
+Disallow: /PoC/
+
+Sitemap: https://www.lukeslab.cz/sitemap.xml
