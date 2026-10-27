@@ -379,52 +379,157 @@
   }
 
 
-  /* 6b. Karusel „Naše práce“
+  /* 6b. 3D karusel „Naše práce“ (kolotoč)
      ------------------------------------------------------------------------
-     Šipky posunou řadu fotek o jednu fotku. Na začátku a na konci se šipka
-     na tu stranu schová. Po změně filtru (main.js) se řada vrátí na začátek.
+     Fotky stojí na elipse kolem středu. Přední je největší, čím dál dozadu,
+     tím menší, průhlednější a víc schovaná za ostatními – vzniká dojem
+     kruhu, který se otáčí. Poloha se přepočítává v každém snímku animace,
+     takže fotky jedou po elipse, ne napřímo.
+     - sám se otočí o jednu fotku každých AUTOPLAY_MS, když na něm není myš
+       a není otevřená zvětšená fotka,
+     - šipky, tah prstem nebo klik na boční fotku ho otočí ručně – pak už se
+       sám neotáčí (návštěvník si prohlíží vlastním tempem),
+     - klik na přední fotku ji zvětší (lightbox výše).
      ------------------------------------------------------------------------ */
+
+  var AUTOPLAY_MS = 3500;
 
   function initCarousel() {
     var carousel = document.querySelector('.carousel');
     if (!carousel) return;
 
-    var track = carousel.querySelector('.gallery');
-    var prev = carousel.querySelector('.carousel__btn--prev');
-    var next = carousel.querySelector('.carousel__btn--next');
+    var stage = carousel.querySelector('.gallery');
+    var items = Array.prototype.slice.call(stage.querySelectorAll('.gallery__item'));
+    var count = items.length;
+    if (count < 2) return;
 
-    // Posun = šířka jedné fotky + mezera mezi fotkami
-    function step() {
-      var item = track.querySelector('.gallery__item:not([hidden])');
-      if (!item) return track.clientWidth;
-      return item.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+    var current = 0;         // kde kruh právě je (plynule, i desetinné číslo)
+    var target = 0;          // kam se má dotočit (celé číslo, může jít i do minusu)
+    var radiusX = 0;
+    var animating = false;
+    var timer = null;
+    var userTookOver = false;
+    var hovering = false;
+
+    function activeIndex() {
+      return ((Math.round(target) % count) + count) % count;
     }
 
-    function update() {
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    // Šířka elipsy podle šířky scény a fotky (na mobilu boční fotky jen vykukují)
+    function measure() {
+      var cardWidth = items[0].offsetWidth;
+      radiusX = Math.max(80, Math.min(420, stage.clientWidth / 2 - cardWidth * 0.3));
     }
 
-    function move(direction) {
-      track.scrollBy({ left: direction * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
-    }
+    function draw() {
+      var active = activeIndex();
+      items.forEach(function (item, i) {
+        var theta = (i - current) / count * Math.PI * 2;
+        var depth = Math.cos(theta);              // 1 = vepředu, -1 = úplně vzadu
+        var front = (depth + 1) / 2;              // 1 … 0
+        var x = Math.sin(theta) * radiusX * (0.5 + 0.5 * front); // vzdálenější blíž ke středu (perspektiva)
+        var y = (1 - front) * -70;                // zadní fotky výš – jako pohled na kruh trochu shora
+        var scale = 0.42 + 0.58 * front;
+        var tilt = Math.sin(theta) * 32;          // boční fotky natočené po obvodu kruhu
 
-    prev.addEventListener('click', function () { move(-1); });
-    next.addEventListener('click', function () { move(1); });
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-
-    document.querySelectorAll('.filter__btn').forEach(function (button) {
-      button.addEventListener('click', function () {
-        // Až main.js skryje / zobrazí fotky
-        setTimeout(function () {
-          track.scrollLeft = 0;
-          update();
-        }, 0);
+        item.style.transform = 'translateX(' + x.toFixed(1) + 'px) translateY(' + y.toFixed(1) + 'px) ' +
+          'scale(' + scale.toFixed(3) + ') rotateY(' + tilt.toFixed(1) + 'deg)';
+        // Přední a boční fotky plné (nic přes ně neprosvítá), zadní slábnou
+        item.style.opacity = front > 0.7 ? 1 : (0.3 + 0.7 * front / 0.7).toFixed(3);
+        item.style.zIndex = Math.round(front * 100);
+        item.classList.toggle('is-active', i === active);
+        item.tabIndex = i === active ? 0 : -1;   // Tabem jen na přední fotku
       });
+    }
+
+    // Plynulé dotáčení: každý snímek ujede kus zbývající vzdálenosti
+    function animate() {
+      var distance = target - current;
+      if (Math.abs(distance) < 0.002 || reduceMotion) {
+        current = target;
+        draw();
+        animating = false;
+        return;
+      }
+      current += distance * 0.09;
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    function turn(steps) {
+      target += steps;
+      if (!animating) {
+        animating = true;
+        requestAnimationFrame(animate);
+      }
+    }
+
+    function takeOver() {
+      userTookOver = true;
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function play() {
+      if (reduceMotion || timer || userTookOver) return;
+      timer = setInterval(function () {
+        var lightbox = document.querySelector('.lightbox');
+        if (hovering || document.hidden || (lightbox && lightbox.open)) return;
+        turn(1);
+      }, AUTOPLAY_MS);
+    }
+
+    carousel.querySelector('.carousel__btn--prev').addEventListener('click', function () { takeOver(); turn(-1); });
+    carousel.querySelector('.carousel__btn--next').addEventListener('click', function () { takeOver(); turn(1); });
+
+    stage.addEventListener('mouseenter', function () { hovering = true; });
+    stage.addEventListener('mouseleave', function () { hovering = false; });
+
+    // Tah prstem (nebo myší) doleva / doprava
+    var startX = null;
+    var swiped = false;
+    stage.addEventListener('pointerdown', function (event) {
+      startX = event.clientX;
+      swiped = false;
+    });
+    stage.addEventListener('pointerup', function (event) {
+      if (startX === null) return;
+      var distance = event.clientX - startX;
+      startX = null;
+      if (Math.abs(distance) < 40) return;
+      swiped = true;
+      takeOver();
+      turn(distance < 0 ? 1 : -1);
     });
 
-    update();
+    // Klik na boční fotku kruh natočí k ní (a fotku nezvětší). Zachytává se
+    // už cestou dolů (capture), dřív než klik dostane lightbox.
+    stage.addEventListener('click', function (event) {
+      var item = event.target.closest('.gallery__item');
+      if (!item) return;
+      if (swiped) {
+        event.stopPropagation();
+        swiped = false;
+        return;
+      }
+      var diff = items.indexOf(item) - activeIndex();
+      if (diff === 0) return;
+      event.stopPropagation();
+      // Kratší cestou (např. o 2 doleva místo o 5 doprava)
+      if (diff > count / 2) diff -= count;
+      if (diff < -count / 2) diff += count;
+      takeOver();
+      turn(diff);
+    }, true);
+
+    window.addEventListener('resize', function () {
+      measure();
+      draw();
+    });
+
+    measure();
+    draw();
+    whenVisible([carousel], play);
   }
 
 

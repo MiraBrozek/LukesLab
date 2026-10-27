@@ -1616,83 +1616,62 @@ body.has-mobile-bar {
 /* 14. Naše práce (galerie)
    ========================================================================== */
 
-/* Tlačítka filtru */
-.filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter__btn {
-  min-height: 44px;
-  padding: 0 18px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: #FFFFFF;
-  color: var(--text);
-  font: 600 14px var(--font);
-  cursor: pointer;
-}
-
-.filter__btn:hover {
-  border-color: var(--text);
-}
-
-/* Aktivní filtr (aria-pressed nastavuje main.js) */
-.filter__btn[aria-pressed="true"] {
-  background: var(--text);
-  border-color: var(--text);
-  color: #FFFFFF;
-}
-
-/* Karusel: fotky v jedné řadě, posun šipkami (efekty.js) nebo tahem prstu.
-   Na mobilu je vidět 1 fotka a kousek další, na tabletu 2, na PC 3. */
+/* 3D karusel (kolotoč): fotky stojí na elipse, přední je největší.
+   Polohu, velikost a průhlednost každé fotky počítá efekty.js,
+   tady je jen vzhled. */
 .carousel {
   position: relative;
 }
 
+/* Scéna – boční fotky přesahující okraj se ořežou */
 .gallery {
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0 0 4px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* posuvník schovaný – posouvá se šipkami nebo prstem */
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  touch-action: pan-y; /* svislé posouvání stránky prstem zůstane, vodorovný tah otáčí kruhem */
 }
 
-.gallery::-webkit-scrollbar {
-  display: none;
+/* Perspektiva dává natočeným bočním fotkám hloubku */
+.gallery__track {
+  position: absolute;
+  inset: 0;
+  perspective: 1600px;
 }
 
 .gallery__item {
+  --card-width: 300px;
+  position: absolute;
+  top: 46px;
+  left: 50%;
   display: flex;
-  flex: 0 0 82%;
   flex-direction: column;
-  margin: 0;
+  width: var(--card-width);
+  height: 350px;
+  margin: 0 0 0 calc(var(--card-width) / -2);
   overflow: hidden;
   background: #FFFFFF;
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
-  scroll-snap-align: start;
+  will-change: transform, opacity;
 }
 
-@media (min-width: 600px) {
-  .gallery__item { flex-basis: calc((100% - 20px) / 2); }
+@media (max-width: 600px) {
+  .gallery__item { --card-width: 230px; }
 }
 
-@media (min-width: 960px) {
-  .gallery__item { flex-basis: calc((100% - 40px) / 3); }
+.gallery__item:not(.is-active) {
+  cursor: pointer;
 }
 
-.gallery__item[hidden] {
-  display: none;
+.gallery__item.is-active {
+  box-shadow: 0 20px 48px rgba(15, 21, 24, 0.12);
 }
 
 /* Produktové fotky jsou na bílém pozadí – nechceme je ořezávat */
 .gallery__item img {
+  flex: 1;
   width: 100%;
-  height: 300px;
+  min-height: 0;
   object-fit: contain;
 }
 
@@ -1704,11 +1683,11 @@ body.has-mobile-bar {
   color: var(--text);
 }
 
-/* Šipky po stranách karuselu, svisle uprostřed fotky (300 px / 2) */
+/* Šipky po stranách, svisle uprostřed fotek */
 .carousel__btn {
   position: absolute;
-  top: 150px;
-  z-index: 1;
+  top: 221px;
+  z-index: 200;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1721,27 +1700,15 @@ body.has-mobile-bar {
   box-shadow: 0 8px 24px rgba(15, 21, 24, 0.12);
   transform: translateY(-50%);
   cursor: pointer;
-  transition: opacity 0.2s, border-color 0.2s;
+  transition: border-color 0.2s;
 }
 
 .carousel__btn:hover {
   border-color: var(--text);
 }
 
-/* Na začátku / na konci řady je šipka na tu stranu zbytečná */
-.carousel__btn:disabled {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.carousel__btn--prev { left: 8px; }
-.carousel__btn--next { right: 8px; }
-
-/* Na širokých obrazovkách šipky napůl přesahují mimo fotky */
-@media (min-width: 1240px) {
-  .carousel__btn--prev { left: -24px; }
-  .carousel__btn--next { right: -24px; }
-}
+.carousel__btn--prev { left: 0; }
+.carousel__btn--next { right: 0; }
 
 
 /* 15. O nás
@@ -2540,27 +2507,9 @@ body.has-mobile-bar {
   cursor: zoom-in;
 }
 
-/* Galerie – lupa, přiblížení, „naskočení“ po změně filtru */
-.gallery__item {
+/* Galerie – přední fotka se kliknutím zvětší (lupa) */
+.gallery__item.is-active {
   cursor: zoom-in;
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-
-.gallery__item:hover {
-  border-color: var(--line-strong);
-  box-shadow: 0 16px 40px rgba(15, 21, 24, 0.08);
-}
-
-.gallery__item img {
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.gallery__item:hover img {
-  transform: scale(1.05);
-}
-
-.gallery__item.is-entering {
-  animation: pop-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 /* Lightbox – zvětšená fotka přes celou obrazovku */

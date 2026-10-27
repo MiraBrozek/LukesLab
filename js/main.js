@@ -8,9 +8,8 @@
      1. Mobilní menu (hamburger)
      2. Video v hero sekci (autoplay, pauza, omezení animací)
      3. Zvýraznění aktuální sekce v menu
-     4. Filtr galerie „Naše práce“
-     5. Aktuální rok v patičce
-     6. DOČASNÉ: přepínač barev
+     4. Aktuální rok v patičce
+     5. DOČASNÉ: přepínač barev
    ========================================================================== */
 
 (function () {
@@ -201,44 +200,7 @@
   }
 
 
-  /* 4. Filtr galerie
-     ------------------------------------------------------------------------
-     Tlačítka mají data-filter="zirkon" apod., fotky data-category
-     s jednou nebo více kategoriemi oddělenými mezerou
-     (např. data-category="implantaty titan"). „all“ zobrazí vše.
-     ------------------------------------------------------------------------ */
-
-  function initGalleryFilter() {
-    var buttons = document.querySelectorAll('.filter__btn');
-    var items = document.querySelectorAll('.gallery__item');
-    if (!buttons.length || !items.length) return;
-
-    buttons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        var filter = button.getAttribute('data-filter');
-
-        // Stav tlačítek (aria-pressed čtou i čtečky obrazovky)
-        buttons.forEach(function (b) {
-          b.setAttribute('aria-pressed', String(b === button));
-        });
-
-        // Skrýt / zobrazit fotky; zobrazené krátce „naskočí“ (CSS .is-entering)
-        items.forEach(function (item) {
-          var categories = item.getAttribute('data-category').split(' ');
-          item.hidden = filter !== 'all' && categories.indexOf(filter) === -1;
-
-          if (!item.hidden) {
-            item.classList.remove('is-entering');
-            void item.offsetWidth; // restart animace
-            item.classList.add('is-entering');
-          }
-        });
-      });
-    });
-  }
-
-
-  /* 5. Aktuální rok v patičce (© 2026 …)
+  /* 4. Aktuální rok v patičce (© 2026 …)
      ------------------------------------------------------------------------ */
 
   function initYear() {
@@ -248,7 +210,7 @@
   }
 
 
-  /* 6. DOČASNÉ: přepínač barev
+  /* 5. DOČASNÉ: přepínač barev
      ------------------------------------------------------------------------
      Kolečka v liště .theme-bar nastaví atribut data-accent na <html>
      (barvy jsou definované v css/style.css). Volba se pamatuje
@@ -294,7 +256,6 @@
   initMobileMenu();
   initHeroVideo();
   initActiveNav();
-  initGalleryFilter();
   initYear();
   initThemeSwitcher();
 })();
