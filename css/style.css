@@ -451,6 +451,18 @@ a:hover {
   color: var(--on-accent);
 }
 
+/* Slabě obarvená – vedlejší akce vedle hlavní */
+.btn--soft {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.btn--soft:hover {
+  background: var(--accent-line);
+  color: var(--accent-hover);
+}
+
 /* Sekundární – bílá s rámečkem */
 .btn--secondary {
   background: #FFFFFF;
