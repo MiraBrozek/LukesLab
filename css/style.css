@@ -2731,7 +2731,8 @@ body.has-mobile-bar {
   }
 }
 
-.cenik-dialog__form[hidden] {
+.cenik-dialog__form[hidden],
+.cenik-dialog__form .btn[hidden] {
   display: none;
 }
 

@@ -268,6 +268,8 @@
     var input = form.elements.heslo;
     var submit = form.querySelector('[type="submit"]');
     var error = form.querySelector('.cenik-dialog__error');
+    var openLink = form.querySelector('[data-cenik-link]');
+    var isTouch = window.matchMedia('(pointer: coarse)').matches;
 
     function showError(text) {
       error.textContent = text;
@@ -316,6 +318,19 @@
         });
     }
 
+    // Telefon: PDF v nové záložce, odkud ho lze prohlédnout i uložit. Když
+    // prohlížeč záložku zablokuje, nabídne se tlačítko – klepnutí už projde.
+    function openInTab(pdf) {
+      var url = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
+      if (window.open(url, '_blank')) {
+        dialog.close();
+        return;
+      }
+      openLink.href = url;
+      openLink.hidden = false;
+      submit.hidden = true;
+    }
+
     function download(pdf) {
       var url = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
       var link = document.createElement('a');
@@ -330,8 +345,12 @@
     openBtn.addEventListener('click', function () {
       form.reset();
       showError('');
+      openLink.hidden = true;
+      submit.hidden = false;
       dialog.showModal();
     });
+
+    openLink.addEventListener('click', function () { dialog.close(); });
 
     dialog.querySelector('.cenik-dialog__close').addEventListener('click', function () { dialog.close(); });
 
@@ -361,8 +380,12 @@
           });
         })
         .then(function (pdf) {
-          download(pdf);
-          dialog.close();
+          if (isTouch) {
+            openInTab(pdf);
+          } else {
+            download(pdf);
+            dialog.close();
+          }
         })
         .catch(function (err) {
           showError(err && err.name === 'OperationError'
