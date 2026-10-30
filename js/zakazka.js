@@ -232,6 +232,12 @@
     var error = requestForm.querySelector('.cenik-dialog__error');
     var sent = dialog.querySelector('[data-cenik-sent]');
     var demoNote = dialog.querySelector('[data-cenik-demo]');
+    var MIN_FILL_MS = 2000; // rychleji e-mail nevyplní ani člověk s automatickým doplněním
+    var openedAt = 0;
+
+    document.querySelector('[data-cenik-open]').addEventListener('click', function () {
+      openedAt = Date.now();
+    });
 
     function showRequestError(text) {
       error.textContent = text;
@@ -264,6 +270,13 @@
 
       showRequestError('');
 
+      // Robot zaškrtne skryté pole nebo odešle hned po otevření okna.
+      // Dostane stejné potvrzení jako člověk, žádost se ale neodešle.
+      if (requestForm.elements.botcheck.checked || Date.now() - openedAt < MIN_FILL_MS) {
+        showSent(false);
+        return;
+      }
+
       // Ukázkový režim – formulář ještě není napojený
       if (!WEB3FORMS_KEY) {
         showSent(true);
@@ -280,7 +293,6 @@
           subject: 'Žádost o heslo k ceníku – ' + email,
           from_name: 'Web Lukeš Lab',
           replyto: email,
-          botcheck: requestForm.elements.botcheck.checked,
           'E-mail': email
         })
       })

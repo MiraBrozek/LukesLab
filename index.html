@@ -34,10 +34,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=90">
+  <link rel="stylesheet" href="css/style.css?v=91">
   <script src="js/main.js?v=61" defer></script>
   <script src="js/efekty.js?v=61" defer></script>
-  <script src="js/zakazka.js?v=59" defer></script>
+  <script src="js/zakazka.js?v=60" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -933,8 +933,7 @@
       <form class="cenik-dialog__form" id="cenik-zadost" novalidate>
         <!-- Ochrana proti spamovým robotům: člověk pole nevidí ani nevyplní -->
         <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <h4>Nemáte heslo?</h4>
-        <p>Napište nám svůj e-mail a heslo vám pošleme.</p>
+        <p><strong>Nemáte heslo?</strong> Vyplňte e-mail, kam vám ho máme zaslat.</p>
         <label class="field">
           E-mail
           <input name="email" type="email" autocomplete="email">
@@ -943,8 +942,7 @@
         <button class="btn btn--soft" type="submit">Zažádat</button>
       </form>
       <div class="cenik-dialog__form" data-cenik-sent role="status" hidden>
-        <h4>Děkujeme</h4>
-        <p>Heslo vám pošleme na uvedený e-mail.</p>
+        <p><strong>Děkujeme.</strong> Heslo vám pošleme na uvedený e-mail.</p>
         <p data-cenik-demo hidden>Ukázkový režim: žádost se zatím nikam neodeslala.</p>
       </div>
       <p class="cenik-dialog__phone">Nebo zavolejte na <a href="tel:+420774652522">+420&nbsp;774&nbsp;652&nbsp;522</a>.</p>

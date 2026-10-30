@@ -2702,22 +2702,22 @@ body.has-mobile-bar {
 
 .cenik-dialog__body {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 32px 24px 24px;
-}
-
-@media (min-width: 720px) {
-  .cenik-dialog__body {
-    padding: 36px 36px 28px;
-  }
 }
 
 .cenik-dialog__form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.cenik-dialog__body > .cenik-dialog__form {
+  padding: 32px 24px 24px;
+}
+
+@media (min-width: 720px) {
+  .cenik-dialog__body > .cenik-dialog__form {
+    padding: 36px 36px 28px;
+  }
 }
 
 .cenik-dialog__form[hidden] {
@@ -2729,21 +2729,37 @@ body.has-mobile-bar {
   font-size: 24px;
 }
 
-.cenik-dialog__form h4 {
-  margin: 0;
-  font-size: 18px;
-}
-
 .cenik-dialog__form p {
   color: var(--text-soft);
 }
 
+/* Žádost o heslo – podbarvený pruh až k okrajům okna, menší než hlavní část */
 .cenik-dialog__request {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-top: 24px;
+  gap: 14px;
+  padding: 24px;
+  background: var(--surface);
   border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .cenik-dialog__request {
+    padding: 24px 36px 28px;
+  }
+}
+
+.cenik-dialog__request .cenik-dialog__form {
+  gap: 14px;
+}
+
+.cenik-dialog__request .cenik-dialog__form p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cenik-dialog__request strong {
+  color: var(--text);
 }
 
 .cenik-dialog__close {
