@@ -1259,6 +1259,10 @@ body.has-mobile-bar {
   .why__list {
     padding: 56px;
   }
+
+  .why__intro {
+    padding-top: 36px;
+  }
 }
 
 .why__intro {
