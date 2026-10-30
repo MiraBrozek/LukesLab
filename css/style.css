@@ -912,9 +912,10 @@ body.has-mobile-bar {
   margin-top: auto; /* tlačítka sjedou dolů, těsně nad čáru s čísly */
 }
 
-/* Bílé tlačítko s rámečkem v barvě webu */
+/* Bílé tlačítko, rámeček a text v barvě webu */
 .hero__buttons .btn--light {
   border: 2px solid var(--accent-fill);
+  color: var(--accent);
 }
 
 /* Spodní řádek: čtyři čísla + tlačítko pauzy */
