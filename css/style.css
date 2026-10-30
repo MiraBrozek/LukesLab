@@ -495,41 +495,18 @@ a:hover {
   min-height: var(--header-h);
 }
 
-/* Logo: ikona + název + podtitul */
+/* Logo: kompaktní verze (img/logo.svg) – linky a písmo z originálu od klienta,
+   text je větší vůči linkám, aby byl v hlavičce čitelný.
+   Celé logo v původních proporcích je v img/logo-cele.svg. */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text);
-  text-decoration: none;
+  display: block;
   flex-shrink: 0;
 }
 
-.logo:hover {
-  color: var(--text);
-}
-
-/* Čtvereček v logu má barvu akcentu */
-.logo svg rect {
-  fill: var(--accent);
-}
-
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.logo__name {
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.logo__sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
+.logo__img {
+  display: block;
+  width: 146px;
+  height: 55px;
 }
 
 /* Hlavní menu – na mobilu skryté, otevírá se hamburgerem */
