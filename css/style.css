@@ -1401,7 +1401,7 @@ body.has-mobile-bar {
 }
 
 .pricing__buttons .btn:hover svg {
-  transform: translateX(4px);
+  transform: translateY(3px);
 }
 
 
