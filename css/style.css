@@ -1260,8 +1260,13 @@ body.has-mobile-bar {
     padding: 56px;
   }
 
+  /* Štítek blíž k okraji, nadpis a text zůstávají na svém místě */
   .why__intro {
     padding-top: 36px;
+  }
+
+  .why__intro .section-label {
+    margin-bottom: 20px;
   }
 }
 
