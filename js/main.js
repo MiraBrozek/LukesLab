@@ -10,6 +10,7 @@
      3. Zvýraznění aktuální sekce v menu
      4. Aktuální rok v patičce
      5. DOČASNÉ: přepínač barev
+     6. Stažení ceníku po zadání hesla
    ========================================================================== */
 
 (function () {
@@ -251,6 +252,131 @@
   }
 
 
+  /* 6. Stažení ceníku po zadání hesla
+     ------------------------------------------------------------------------
+     Web nemá server, proto je ceník ve složce cenik/ zašifrovaný. Klíč k němu
+     je v klice.json uložený zvlášť pro každé heslo, samotná hesla na webu
+     nejsou. Soubory vytváří skript _doc/Cenik/zasifrovat-cenik.js.
+     ------------------------------------------------------------------------ */
+
+  function initCenik() {
+    var dialog = document.querySelector('.cenik-dialog');
+    var openBtn = document.querySelector('[data-cenik-open]');
+    if (!dialog || !openBtn || typeof dialog.showModal !== 'function') return;
+
+    var form = dialog.querySelector('form');
+    var input = form.elements.heslo;
+    var submit = form.querySelector('[type="submit"]');
+    var error = dialog.querySelector('.cenik-dialog__error');
+
+    function showError(text) {
+      error.textContent = text;
+      error.hidden = !text;
+    }
+
+    // Stejná úprava jako při šifrování – nezáleží na velikosti písmen a háčcích
+    function normalize(heslo) {
+      return heslo.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    function bytes(base64) {
+      return Uint8Array.from(atob(base64), function (char) { return char.charCodeAt(0); });
+    }
+
+    function load(path, type) {
+      return fetch(path, { cache: 'no-cache' }).then(function (response) {
+        if (!response.ok) throw new Error('Soubor nenalezen: ' + path);
+        return response[type]();
+      });
+    }
+
+    // Vrátí klíč k ceníku; špatné heslo skončí chybou OperationError
+    function unlockKey(heslo, data) {
+      var subtle = crypto.subtle;
+      return subtle.importKey('raw', new TextEncoder().encode(heslo), 'PBKDF2', false, ['deriveKey'])
+        .then(function (base) {
+          return subtle.deriveKey(
+            { name: 'PBKDF2', hash: 'SHA-256', salt: bytes(data.salt), iterations: data.iterace },
+            base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+          );
+        })
+        .then(function (key) {
+          return data.klice.reduce(function (found, item) {
+            return found.catch(function () {
+              return subtle.decrypt({ name: 'AES-GCM', iv: bytes(item.iv) }, key, bytes(item.data));
+            });
+          }, Promise.reject(new Error('Žádný klíč')));
+        });
+    }
+
+    function decryptFile(rawKey, file) {
+      return crypto.subtle.importKey('raw', rawKey, 'AES-GCM', false, ['decrypt'])
+        .then(function (key) {
+          return crypto.subtle.decrypt({ name: 'AES-GCM', iv: file.slice(0, 12) }, key, file.slice(12));
+        });
+    }
+
+    function download(pdf) {
+      var url = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }));
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'Cenik-Petr-Lukes.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+    }
+
+    openBtn.addEventListener('click', function () {
+      form.reset();
+      showError('');
+      dialog.showModal();
+    });
+
+    dialog.querySelector('.cenik-dialog__close').addEventListener('click', function () { dialog.close(); });
+
+    // Kliknutí na ztmavené pozadí mimo okno
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var heslo = normalize(input.value);
+      if (!heslo) {
+        showError('Zadejte heslo.');
+        input.focus();
+        return;
+      }
+
+      showError('');
+      submit.disabled = true;
+
+      load('cenik/klice.json', 'json')
+        .then(function (data) { return unlockKey(heslo, data); })
+        .then(function (rawKey) {
+          return load('cenik/cenik.bin', 'arrayBuffer').then(function (file) {
+            return decryptFile(rawKey, file);
+          });
+        })
+        .then(function (pdf) {
+          download(pdf);
+          dialog.close();
+        })
+        .catch(function (err) {
+          showError(err && err.name === 'OperationError'
+            ? 'Heslo nesedí. Zkontrolujte ho prosím v e-mailu.'
+            : 'Ceník se nepodařilo načíst. Zkuste to znovu, nebo nám zavolejte.');
+          input.focus();
+        })
+        .then(function () {
+          submit.disabled = false;
+        });
+    });
+  }
+
+
   /* Spuštění – skript je vložený s atributem defer,
      takže HTML je v tuto chvíli už načtené. */
   initMobileMenu();
@@ -258,4 +384,5 @@
   initActiveNav();
   initYear();
   initThemeSwitcher();
+  initCenik();
 })();
