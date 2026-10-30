@@ -1880,6 +1880,10 @@ body.has-mobile-bar {
   font-style: normal;
 }
 
+.footer__col .footer__hours {
+  margin-top: 24px; /* o řádek níž pod adresou */
+}
+
 /* Seznam odkazů – bez podtržení, barva akcentu až při najetí */
 .footer__links {
   display: flex;
