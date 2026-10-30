@@ -1,5 +1,6 @@
 /* ==========================================================================
    Lukeš Lab – formulář „Poslat zakázku“ (sekce #zakazka na index.html)
+   a žádost o heslo k ceníku
    --------------------------------------------------------------------------
    Web je čistě statický (bez PHP), proto formulář odesílá data přes službu
    Web3Forms (https://web3forms.com). Ta je přepošle e-mailem laboratoři.
@@ -16,6 +17,7 @@
      2. Kontroluje povinná pole a ukazuje chyby
      3. Vygeneruje číslo zakázky (např. LL-261017-4821)
      4. Odešle data a zobrazí potvrzení
+     5. Odešle žádost o heslo k ceníku
    ========================================================================== */
 
 (function () {
@@ -212,4 +214,90 @@
     orderBox.hidden = false;
     section.scrollIntoView();
   });
+
+
+  /* 5. Žádost o heslo k ceníku
+     ------------------------------------------------------------------------
+     Spodní část okna s heslem – návštěvník vyplní e-mail a laboratoř dostane
+     žádost přes stejnou službu jako zakázky. Heslo pak posílá ručně.
+     ------------------------------------------------------------------------ */
+
+  function initPasswordRequest() {
+    var dialog = document.getElementById('cenik-heslo');
+    var requestForm = document.getElementById('cenik-zadost');
+    if (!dialog || !requestForm) return;
+
+    var input = requestForm.elements.email;
+    var button = requestForm.querySelector('[type="submit"]');
+    var error = requestForm.querySelector('.cenik-dialog__error');
+    var sent = dialog.querySelector('[data-cenik-sent]');
+    var demoNote = dialog.querySelector('[data-cenik-demo]');
+
+    function showRequestError(text) {
+      error.textContent = text;
+      error.hidden = !text;
+    }
+
+    function showSent(isDemo) {
+      demoNote.hidden = !isDemo;
+      requestForm.hidden = true;
+      sent.hidden = false;
+    }
+
+    // Po zavření okna začíná žádost příště znovu
+    dialog.addEventListener('close', function () {
+      requestForm.reset();
+      showRequestError('');
+      requestForm.hidden = false;
+      sent.hidden = true;
+    });
+
+    requestForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var email = input.value.trim();
+      if (!email || !input.checkValidity()) {
+        showRequestError('Zadejte prosím platný e-mail.');
+        input.focus();
+        return;
+      }
+
+      showRequestError('');
+
+      // Ukázkový režim – formulář ještě není napojený
+      if (!WEB3FORMS_KEY) {
+        showSent(true);
+        return;
+      }
+
+      button.disabled = true;
+
+      fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'Žádost o heslo k ceníku – ' + email,
+          from_name: 'Web Lukeš Lab',
+          replyto: email,
+          botcheck: requestForm.elements.botcheck.checked,
+          'E-mail': email
+        })
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (result) {
+          if (!result.success) throw new Error(result.message);
+          showSent(false);
+        })
+        .catch(function (err) {
+          console.error('Odeslání žádosti selhalo:', err);
+          showRequestError('Žádost se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte.');
+        })
+        .finally(function () {
+          button.disabled = false;
+        });
+    });
+  }
+
+  initPasswordRequest();
 })();

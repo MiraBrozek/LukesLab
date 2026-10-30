@@ -2688,18 +2688,28 @@ body.has-mobile-bar {
   backdrop-filter: blur(6px);
 }
 
-.cenik-dialog__form {
+.cenik-dialog__body {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   padding: 32px 24px 24px;
 }
 
 @media (min-width: 720px) {
-  .cenik-dialog__form {
+  .cenik-dialog__body {
     padding: 36px 36px 28px;
   }
+}
+
+.cenik-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cenik-dialog__form[hidden] {
+  display: none;
 }
 
 .cenik-dialog__form h3 {
@@ -2707,8 +2717,21 @@ body.has-mobile-bar {
   font-size: 24px;
 }
 
+.cenik-dialog__form h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
 .cenik-dialog__form p {
   color: var(--text-soft);
+}
+
+.cenik-dialog__request {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
 }
 
 .cenik-dialog__close {
@@ -2738,11 +2761,9 @@ body.has-mobile-bar {
   color: #B42318;
 }
 
-.cenik-dialog__form .cenik-dialog__help {
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+.cenik-dialog__phone {
   font-size: 14px;
-  line-height: 1.55;
+  color: var(--text-soft);
 }
 
 /* Tlačítko „nahoru“ */

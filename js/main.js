@@ -260,14 +260,14 @@
      ------------------------------------------------------------------------ */
 
   function initCenik() {
-    var dialog = document.querySelector('.cenik-dialog');
+    var dialog = document.getElementById('cenik-heslo');
     var openBtn = document.querySelector('[data-cenik-open]');
     if (!dialog || !openBtn || typeof dialog.showModal !== 'function') return;
 
     var form = dialog.querySelector('form');
     var input = form.elements.heslo;
     var submit = form.querySelector('[type="submit"]');
-    var error = dialog.querySelector('.cenik-dialog__error');
+    var error = form.querySelector('.cenik-dialog__error');
 
     function showError(text) {
       error.textContent = text;
