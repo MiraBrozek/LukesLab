@@ -366,7 +366,7 @@
         })
         .catch(function (err) {
           showError(err && err.name === 'OperationError'
-            ? 'Heslo nesedí. Zkontrolujte ho prosím v e-mailu.'
+            ? 'Heslo nesouhlasí. Zkontrolujte ho prosím v e-mailu.'
             : 'Ceník se nepodařilo načíst. Zkuste to znovu, nebo nám zavolejte.');
           input.focus();
         })
