@@ -1595,6 +1595,12 @@ body.has-mobile-bar {
   .tech__text h2 {
     margin-top: 16px;
   }
+
+  /* Štítek, nadpis a odstavec o kousek výš, parametry zůstávají */
+  .tech__text > :not(.tech__params) {
+    position: relative;
+    top: -10px;
+  }
 }
 
 .tech__text p {
