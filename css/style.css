@@ -2231,15 +2231,15 @@ body.has-mobile-bar {
   outline-color: #E5172F;
 }
 
-/* Po každém pokusu o odeslání chybná pole třikrát bliknou */
+/* Po každém pokusu o odeslání rámečky chybných polí třikrát bliknou */
 .form.is-blinking .field :invalid {
   animation: field-blink 0.6s ease-in-out 3;
 }
 
 @keyframes field-blink {
   50% {
-    background-color: #FFB3BC;
-    box-shadow: 0 0 0 4px rgba(229, 23, 47, 0.35);
+    border-color: transparent;
+    box-shadow: 0 0 0 1px transparent;
   }
 }
 
