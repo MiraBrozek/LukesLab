@@ -18,6 +18,7 @@
      3. Vygeneruje číslo zakázky (např. LL-261017-4821)
      4. Odešle data a zobrazí potvrzení
      5. Odešle žádost o heslo k ceníku
+     6. Schová spodní lištu na mobilu, když je vidět formulář
    ========================================================================== */
 
 (function () {
@@ -91,9 +92,15 @@
     if (clean !== this.value) this.value = clean;
   });
 
+  // Požadovaný termín nejdříve dnes (místní datum, ne UTC)
+  var today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  form.elements['Požadovaný termín'].min = today.toISOString().slice(0, 10);
+
   function errorText(field) {
     if (field.tagName === 'SELECT') return 'Vyberte prosím ze seznamu.';
     if (field.validity.valueMissing) return 'Vyplňte prosím toto pole.';
+    if (field.validity.rangeUnderflow) return 'Termín nemůže být v minulosti.';
     if (field.type === 'email') return 'Zadejte prosím platný e-mail.';
     if (field.type === 'url') return 'Zadejte prosím celý odkaz včetně https://';
     return 'Zkontrolujte prosím toto pole.';
@@ -345,4 +352,18 @@
   }
 
   initPasswordRequest();
+
+
+  /* 6. Spodní lišta na mobilu
+     ------------------------------------------------------------------------
+     Její tlačítko „Poslat zakázku“ jen posouvá na formulář. Nad formulářem by
+     vypadalo jako jeho odeslání, proto se tam lišta schová.
+     ------------------------------------------------------------------------ */
+
+  var mobileBar = document.querySelector('.mobile-bar');
+  if (mobileBar && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      mobileBar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, { rootMargin: '0px 0px -10% 0px' }).observe(form);
+  }
 })();

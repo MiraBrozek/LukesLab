@@ -785,6 +785,15 @@ a:hover {
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Nad formulářem se lišta schová – tlačítko by vypadalo jako jeho odeslání */
+.mobile-bar {
+  transition: transform 0.2s ease-out;
+}
+
+.mobile-bar.is-hidden {
+  transform: translateY(100%);
+}
+
 .mobile-bar .btn--primary {
   flex: 1;
 }
@@ -2229,6 +2238,19 @@ body.has-mobile-bar {
 
 .field textarea {
   resize: vertical;
+}
+
+/* iPhone dává poli s datem vlastní šířku a to přetéká z formuláře */
+.field input[type="date"] {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
 }
 
 .field input:focus,
