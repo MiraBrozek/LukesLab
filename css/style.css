@@ -2123,10 +2123,11 @@ body.has-mobile-bar {
   }
 }
 
+/* Mezery mezi poli 24 px: vejde se do nich popis chyby, aniž by se cokoli posunulo */
 .form fieldset {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 24px;
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -2167,7 +2168,7 @@ body.has-mobile-bar {
 .form__row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 24px 14px;
 }
 
 @media (min-width: 600px) {
@@ -2232,10 +2233,20 @@ body.has-mobile-bar {
   outline-offset: 0;
 }
 
-/* Popis chyby pod prvním chybným polem */
+/* Popis chyby pod prvním chybným polem – leží v mezeře, nic neposouvá */
+.field {
+  position: relative;
+}
+
 .field__error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 3px;
   font-size: 13px;
   font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
   color: #C8102E;
 }
 
