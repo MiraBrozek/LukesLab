@@ -2232,6 +2232,13 @@ body.has-mobile-bar {
   outline-offset: 0;
 }
 
+/* Popis chyby pod prvním chybným polem */
+.field__error {
+  font-size: 13px;
+  font-weight: 600;
+  color: #C8102E;
+}
+
 /* Po každém pokusu o odeslání rámečky chybných polí jednou bliknou */
 .form.is-blinking .field :invalid {
   animation: field-blink 0.94s ease-in-out;

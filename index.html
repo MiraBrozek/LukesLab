@@ -34,10 +34,10 @@
 
   <!-- ?v=… = verze souboru. Po každé změně CSS/JS číslo zvýšit (na všech
        stránkách), jinak prohlížeče mohou ještě chvíli používat starou kopii. -->
-  <link rel="stylesheet" href="css/style.css?v=106">
+  <link rel="stylesheet" href="css/style.css?v=107">
   <script src="js/main.js?v=62" defer></script>
   <script src="js/efekty.js?v=61" defer></script>
-  <script src="js/zakazka.js?v=62" defer></script>
+  <script src="js/zakazka.js?v=63" defer></script>
 
   <!-- DOČASNÉ (přepínač barev): obnoví naposledy zvolenou barvu ještě před
        vykreslením stránky, aby neproblikla výchozí. Po výběru barvy smazat. -->
@@ -798,6 +798,9 @@
             </div>
           </fieldset>
 
+
+          <!-- Popis chyby: zakazka.js ho přesune pod první chybné pole -->
+          <span class="field__error" id="field-error" role="alert" hidden></span>
 
           <!-- Chybová hláška (vyplní zakazka.js) -->
           <div class="form__error" id="form-error" role="alert" hidden></div>

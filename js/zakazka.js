@@ -42,6 +42,7 @@
   var boxStl = document.getElementById('box-stl');
   var boxPickup = document.getElementById('box-pickup');
   var errorBox = document.getElementById('form-error');
+  var fieldError = document.getElementById('field-error');
   var submitBtn = document.getElementById('submit-btn');
 
 
@@ -66,6 +67,7 @@
 
     boxStl.hidden = pickup;
     boxPickup.hidden = !pickup;
+    fieldError.hidden = true;
     setFieldsEnabled(boxStl, !pickup);
     setFieldsEnabled(boxPickup, pickup);
   }
@@ -89,20 +91,40 @@
     if (clean !== this.value) this.value = clean;
   });
 
+  function errorText(field) {
+    if (field.tagName === 'SELECT') return 'Vyberte prosím ze seznamu.';
+    if (field.validity.valueMissing) return 'Vyplňte prosím toto pole.';
+    if (field.type === 'email') return 'Zadejte prosím platný e-mail.';
+    if (field.type === 'url') return 'Zadejte prosím celý odkaz včetně https://';
+    return 'Zkontrolujte prosím toto pole.';
+  }
+
+  // Popis zmizí, jakmile je pole pod ním v pořádku
+  form.addEventListener('input', function (event) {
+    if (event.target.validity && event.target.validity.valid && event.target.parentNode === fieldError.parentNode) {
+      fieldError.hidden = true;
+    }
+  });
+
   function validate() {
     form.classList.add('was-validated');
 
-    if (form.checkValidity()) return true;
+    if (form.checkValidity()) {
+      fieldError.hidden = true;
+      return true;
+    }
 
     // Blikání znovu od začátku při každém pokusu o odeslání
     form.classList.remove('is-blinking');
     void form.offsetWidth;
     form.classList.add('is-blinking');
 
-    // Přesun na první chybné pole a zobrazení bubliny s popisem chyby
+    // Přesun na první chybné pole a popis chyby pod ním
     var firstInvalid = form.querySelector('.field :invalid');
+    fieldError.textContent = errorText(firstInvalid);
+    fieldError.hidden = false;
+    firstInvalid.parentNode.appendChild(fieldError);
     firstInvalid.focus();
-    firstInvalid.reportValidity();
     return false;
   }
 
