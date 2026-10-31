@@ -83,6 +83,12 @@
      až po prvním pokusu o odeslání, ať uživatele nestrašíme předem.
      ------------------------------------------------------------------------ */
 
+  // Telefon: jen číslice a „+“ na začátku (předvolba), platí i pro vložení ze schránky
+  form.elements['Telefon'].addEventListener('input', function () {
+    var clean = this.value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+    if (clean !== this.value) this.value = clean;
+  });
+
   function validate() {
     form.classList.add('was-validated');
 
