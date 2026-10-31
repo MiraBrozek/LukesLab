@@ -1810,6 +1810,14 @@ body.has-mobile-bar {
   gap: 20px;
 }
 
+/* Vedle fotky celý text o kousek výš */
+@media (min-width: 960px) {
+  .about__text {
+    position: relative;
+    top: -10px;
+  }
+}
+
 .about__text h2 {
   font-size: clamp(30px, 3.8vw, 40px);
 }
