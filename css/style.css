@@ -1827,7 +1827,7 @@ body.has-mobile-bar {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px 32px;
-  margin: 8px 0 0;
+  margin: 28px 0 0;
   padding: 0;
   list-style: none;
 }
