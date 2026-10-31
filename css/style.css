@@ -2232,9 +2232,9 @@ body.has-mobile-bar {
   outline-offset: 0;
 }
 
-/* Po každém pokusu o odeslání rámečky chybných polí třikrát bliknou */
+/* Po každém pokusu o odeslání rámečky chybných polí jednou bliknou */
 .form.is-blinking .field :invalid {
-  animation: field-blink 0.75s ease-in-out 3;
+  animation: field-blink 0.94s ease-in-out;
 }
 
 @keyframes field-blink {
