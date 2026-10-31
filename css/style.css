@@ -2222,22 +2222,25 @@ body.has-mobile-bar {
 
 /* Chybně vyplněné pole – zvýrazní se až po pokusu o odeslání */
 .form.was-validated .field :invalid {
-  border-color: #E5172F;
+  border-color: #C8102E;
   background-color: #FFECEE;
 }
 
+/* Pole s kurzorem: tenký obrys těsně kolem rámečku, bliká spolu s ním */
 .form.was-validated .field :invalid:focus {
-  outline-color: #E5172F;
+  outline: 1px solid #C8102E;
+  outline-offset: 0;
 }
 
 /* Po každém pokusu o odeslání rámečky chybných polí třikrát bliknou */
 .form.is-blinking .field :invalid {
-  animation: field-blink 0.6s ease-in-out 3;
+  animation: field-blink 0.75s ease-in-out 3;
 }
 
 @keyframes field-blink {
   50% {
     border-color: transparent;
+    outline-color: transparent;
   }
 }
 
