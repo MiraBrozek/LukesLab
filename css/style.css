@@ -2355,8 +2355,8 @@ body.has-mobile-bar {
   gap: 16px;
   max-width: 560px;
   padding: 48px 24px;
-  background: var(--accent-tint);
-  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border: 2px solid var(--accent-fill);
   border-radius: 24px;
   text-align: center;
 }
@@ -2372,8 +2372,8 @@ body.has-mobile-bar {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--accent-fill);
+  color: var(--on-accent);
 }
 
 .sent__box h3 {
@@ -2817,6 +2817,23 @@ body.has-mobile-bar {
 
 .cenik-dialog__request strong {
   color: var(--text);
+}
+
+/* Potvrzení, že žádost o heslo odešla */
+.cenik-dialog__request .cenik-dialog__form .cenik-dialog__done {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--accent-soft);
+  border: 2px solid var(--accent-fill);
+  border-radius: 12px;
+  color: var(--text);
+}
+
+.cenik-dialog__done svg {
+  flex-shrink: 0;
+  color: var(--accent);
 }
 
 /* Políčko na e-mail a tlačítko vedle sebe */
