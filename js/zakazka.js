@@ -26,7 +26,7 @@
   /* ---- Nastavení --------------------------------------------------------- */
 
   // Access Key z web3forms.com (prázdný = ukázkový režim)
-  var WEB3FORMS_KEY = '';
+  var WEB3FORMS_KEY = 'd91f8b3b-34cc-42fd-b1d5-fb4fb1e7b9b1';
 
   var WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
