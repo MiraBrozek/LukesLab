@@ -336,7 +336,7 @@
         })
         .catch(function (err) {
           console.error('Odeslání žádosti selhalo:', err);
-          showRequestError('Žádost se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte.');
+          showRequestError('Nepodařilo se odeslat. Zkuste to znovu.');
         })
         .finally(function () {
           button.disabled = false;

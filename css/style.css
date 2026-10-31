@@ -2868,10 +2868,34 @@ body.has-mobile-bar {
   background: var(--surface);
 }
 
-.cenik-dialog__form .cenik-dialog__error {
+/* Chyba má pevné místo, aby okno při jejím zobrazení neskákalo */
+.cenik-dialog__form .cenik-dialog__error,
+.cenik-dialog__form .cenik-dialog__error[hidden] {
+  display: block;
+  min-height: 18px;
+  margin: -8px 0 -6px;
   font-size: 14px;
   font-weight: 600;
-  color: #B42318;
+  line-height: 18px;
+  color: #C8102E;
+}
+
+.cenik-dialog__form .cenik-dialog__error[hidden] {
+  display: block !important; /* přebíjí obecné [hidden] – místo musí zůstat */
+  visibility: hidden;
+}
+
+/* U žádosti o heslo leží v odsazení pod políčkem */
+.cenik-dialog__request .cenik-dialog__form {
+  position: relative;
+}
+
+.cenik-dialog__request .cenik-dialog__form .cenik-dialog__error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 4px 0 0;
+  line-height: 18px;
 }
 
 /* Tlačítko „nahoru“ */
