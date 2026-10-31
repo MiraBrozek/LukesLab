@@ -1589,9 +1589,12 @@ body.has-mobile-bar {
   gap: 22px;
 }
 
-/* Štítek lícuje s horní hranou fotek, zbytek textu zůstává na výšku uprostřed */
-.tech__text h2 {
-  margin-top: auto;
+/* Štítek lícuje s horní hranou fotek, nadpis a odstavec hned pod ním,
+   parametry na výšku uprostřed zbylého místa */
+@media (min-width: 1084px) {
+  .tech__text h2 {
+    margin-top: 16px;
+  }
 }
 
 .tech__text p {
@@ -1605,7 +1608,8 @@ body.has-mobile-bar {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
-  margin: 18px 0 auto;
+  margin: auto 0;
+  padding-top: 18px; /* větší mezera pod odstavcem i na mobilu */
 }
 
 .tech__params > div {
