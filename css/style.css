@@ -2222,11 +2222,25 @@ body.has-mobile-bar {
 
 /* Chybně vyplněné pole – zvýrazní se až po pokusu o odeslání */
 .form.was-validated .field :invalid {
-  border-color: #B42318;
+  border-color: #E5172F;
+  background-color: #FFECEE;
+  box-shadow: 0 0 0 1px #E5172F;
 }
 
 .form.was-validated .field :invalid:focus {
-  outline-color: #B42318;
+  outline-color: #E5172F;
+}
+
+/* Po každém pokusu o odeslání chybná pole třikrát bliknou */
+.form.is-blinking .field :invalid {
+  animation: field-blink 0.6s ease-in-out 3;
+}
+
+@keyframes field-blink {
+  50% {
+    background-color: #FFB3BC;
+    box-shadow: 0 0 0 4px rgba(229, 23, 47, 0.35);
+  }
 }
 
 /* Přepínač „Digitální sken / Svoz otisku“ – skutečné radio buttony v kartách */

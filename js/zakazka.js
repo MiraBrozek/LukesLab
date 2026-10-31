@@ -88,8 +88,13 @@
 
     if (form.checkValidity()) return true;
 
+    // Blikání znovu od začátku při každém pokusu o odeslání
+    form.classList.remove('is-blinking');
+    void form.offsetWidth;
+    form.classList.add('is-blinking');
+
     // Přesun na první chybné pole a zobrazení bubliny s popisem chyby
-    var firstInvalid = form.querySelector(':invalid');
+    var firstInvalid = form.querySelector('.field :invalid');
     firstInvalid.focus();
     firstInvalid.reportValidity();
     return false;
